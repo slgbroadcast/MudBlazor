@@ -78,7 +78,7 @@ namespace MudBlazor
         /// <summary>
         /// Variant can be Text, Filled or Outlined.
         /// </summary>
-        [Parameter] public Variant Variant { get; set; } = Variant.Text;
+        [Parameter] public Variant Variant { get; set; } = Variant.Outlined;
 
         /// <summary>
         /// If true, the input element will be disabled.

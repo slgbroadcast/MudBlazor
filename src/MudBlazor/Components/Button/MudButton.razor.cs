@@ -62,7 +62,7 @@ namespace MudBlazor
         /// <summary>
         /// The variant to use.
         /// </summary>
-        [Parameter] public Variant Variant { get; set; } = Variant.Text;
+        [Parameter] public Variant Variant { get; set; } = Variant.Filled;
 
         /// <summary>
         /// If true, the button will take up 100% of available width.

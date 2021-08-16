@@ -75,7 +75,7 @@ namespace MudBlazor
         /// <summary>
         /// Variant to use.
         /// </summary>
-        [Parameter] public Variant Variant { get; set; } = Variant.Text;
+        [Parameter] public Variant Variant { get; set; } = Variant.Outlined;
 
         /// <summary>
         ///  Will adjust vertical spacing.

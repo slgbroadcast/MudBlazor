@@ -173,7 +173,7 @@ namespace MudBlazor
         /// <summary>
         /// Variant of the text input
         /// </summary>
-        [Parameter] public Variant Variant { get; set; } = Variant.Text;
+        [Parameter] public Variant Variant { get; set; } = Variant.Outlined;
 
         /// <summary>
         /// Sets if the icon will be att start or end, set to false to disable.
