@@ -44,12 +44,12 @@ namespace MudBlazor
         /// <summary>
         /// If true, no drop-shadow will be used.
         /// </summary>
-        [Parameter] public bool DisableElevation { get; set; }
+        [Parameter] public bool DisableElevation { get; set; } = true;
 
         /// <summary>
         /// If true, disables ripple effect.
         /// </summary>
-        [Parameter] public bool DisableRipple { get; set; }
+        [Parameter] public bool DisableRipple { get; set; } = true;
 
         /// <summary>
         /// Command executed when the user clicks on an element.
