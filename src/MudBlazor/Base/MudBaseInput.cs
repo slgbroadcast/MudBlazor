@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -81,6 +80,16 @@ namespace MudBlazor
         ///  Will adjust vertical spacing.
         /// </summary>
         [Parameter] public Margin Margin { get; set; } = Margin.None;
+
+        /// <summary>
+        /// The short hint displayed in the input before the user enters a value.
+        /// </summary>
+        [Parameter] public string Placeholder { get; set; }
+
+        /// <summary>
+        /// If string has value the label text will be displayed in the input, and scaled down at the top if the input has value.
+        /// </summary>
+        [Parameter] public string Label { get; set; }
 
         /// <summary>
         /// If true the input will focus automatically
@@ -262,10 +271,12 @@ namespace MudBlazor
             return changed;
         }
 
-        protected override async Task ValidateValue()
+        protected override Task ValidateValue()
         {
             if (Standalone)
-                await base.ValidateValue();
+                return base.ValidateValue();
+
+            return Task.CompletedTask;
         }
 
         protected override async Task OnInitializedAsync()

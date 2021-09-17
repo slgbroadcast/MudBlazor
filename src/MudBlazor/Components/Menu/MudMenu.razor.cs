@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Extensions;
@@ -15,13 +16,20 @@ namespace MudBlazor
        .Build();
 
         protected string MenuClassname =>
-        new CssBuilder("mud-menu-container")
-        .AddClass("mud-menu-fullwidth", FullWidth)
-       .Build();
+            new CssBuilder("mud-menu-container")
+            .AddClass("mud-menu-fullwidth", FullWidth)
+            .AddClass(PopoverClass)
+           .Build();
 
         private bool _isOpen;
+        private bool _isMouseOver = false;
 
         [Parameter] public string Label { get; set; }
+
+        /// <summary>
+        /// User class names for the popover, separated by space
+        /// </summary>
+        [Parameter] public string PopoverClass { get; set; }
 
         /// <summary>
         /// Icon to use if set will turn the button into a MudIconButton.
@@ -78,7 +86,19 @@ namespace MudBlazor
         /// If true, instead of positioning the menu at the left upper corner, position at the exact cursor location.
         /// This makes sense for larger activators
         /// </summary>
-        [Parameter] public bool PositionAtCurser { get; set; }
+        [Parameter] public bool PositionAtCursor { get; set; }
+
+        /// <summary>
+        /// If true, instead of positioning the menu at the left upper corner, position at the exact cursor location.
+        /// This makes sense for larger activators
+        /// </summary>
+        [Obsolete("Obsolete.  Replace with `PositionAtCursor`.")]
+        [Parameter]
+        public bool PositionAtCurser
+        {
+            get => PositionAtCursor;
+            set => PositionAtCursor = value;
+        }
 
         /// <summary>
         /// Place a MudButton, a MudIconButton or any other component capable of acting as an activator. This will
@@ -121,6 +141,7 @@ namespace MudBlazor
         public void CloseMenu()
         {
             _isOpen = false;
+            _isMouseOver = false;
             PopoverStyle = null;
             StateHasChanged();
         }
@@ -129,9 +150,14 @@ namespace MudBlazor
         {
             if (Disabled)
                 return;
-            if (PositionAtCurser) SetPopoverStyle((MouseEventArgs)args);
+            if (PositionAtCursor) SetPopoverStyle((MouseEventArgs)args);
             _isOpen = true;
             StateHasChanged();
+        }
+
+        public void PopoverMouseEnter()
+        {
+            _isMouseOver = true;
         }
 
         // Sets the popover style ONLY when there is an activator
@@ -163,6 +189,15 @@ namespace MudBlazor
         public void Activate(object activator, MouseEventArgs args)
         {
             ToggleMenu(args);
+        }
+
+        public async void MouseLeave()
+        {
+            await Task.Delay(100);
+            if (ActivationEvent == MouseEvent.MouseOver && _isMouseOver == false)
+            {
+                CloseMenu();
+            }
         }
 
     }

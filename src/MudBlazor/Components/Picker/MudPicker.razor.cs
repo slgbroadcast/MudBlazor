@@ -95,6 +95,11 @@ namespace MudBlazor
         [Parameter] public string AdornmentIcon { get; set; } = Icons.Material.Filled.Event;
 
         /// <summary>
+        /// The short hint displayed in the input before the user enters a value.
+        /// </summary>
+        [Parameter] public string Placeholder { get; set; }
+
+        /// <summary>
         /// Fired when the dropdown / dialog opens
         /// </summary>
         [Parameter] public EventCallback PickerOpened { get; set; }
@@ -110,7 +115,7 @@ namespace MudBlazor
         [Parameter] public int Elevation { set; get; } = 8;
 
         /// <summary>
-        /// If true, border-radius is set to 0 this is set to true automaticly in static mode but can be overridden with Rounded bool.
+        /// If true, border-radius is set to 0 this is set to true automatically in static mode but can be overridden with Rounded bool.
         /// </summary>
         [Parameter] public bool Square { get; set; }
 
@@ -125,7 +130,7 @@ namespace MudBlazor
         [Parameter] public bool Rounded { get; set; }
 
         /// <summary>
-        /// If string has value, helpertext will be applied.
+        /// If string has value, HelperText will be applied.
         /// </summary>
         [Parameter] public string HelperText { get; set; }
 
@@ -416,8 +421,7 @@ namespace MudBlazor
                 _pickerVerticalPosition = PickerVerticalPosition.Below;
             }
             if (size.Width < clientRect.Right &&
-                (_pickerVerticalPosition == PickerVerticalPosition.Above ||
-                _pickerVerticalPosition == PickerVerticalPosition.Below))
+                _pickerVerticalPosition is PickerVerticalPosition.Above or PickerVerticalPosition.Below)
             {
                 if (clientRect.Left - clientRect.Width + 226 /*width of the input*/ > 0)
                 {

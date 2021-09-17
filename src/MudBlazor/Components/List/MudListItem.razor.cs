@@ -44,7 +44,7 @@ namespace MudBlazor
         [Parameter] public bool ForceLoad { get; set; }
 
         /// <summary>
-        /// Avatar CSS Class to applie if Avtar is set.
+        /// Avatar CSS Class to apply if Avatar is set.
         /// </summary>
         [Parameter] public string AvatarClass { get; set; }
 
@@ -85,6 +85,15 @@ namespace MudBlazor
         /// </summary>
         [Parameter] public Color AdornmentColor { get; set; } = Color.Default;
 
+        /// <summary>
+        /// Custom expand less icon.
+        /// </summary>
+        [Parameter] public string ExpandLessIcon { get; set; } = Icons.Material.Filled.ExpandLess;
+
+        /// <summary>
+        /// Custom expand more icon.
+        /// </summary>
+        [Parameter] public string ExpandMoreIcon { get; set; } = Icons.Material.Filled.ExpandMore;
 
         /// <summary>
         /// If true, the List Subheader will be indented.

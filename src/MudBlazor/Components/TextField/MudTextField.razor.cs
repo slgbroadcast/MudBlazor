@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
 using MudBlazor.Utilities;
 
 namespace MudBlazor
@@ -47,16 +45,6 @@ namespace MudBlazor
         {
             return _elementReference.SelectRangeAsync(pos1, pos2);
         }
-
-        /// <summary>
-        /// The short hint displayed in the input before the user enters a value.
-        /// </summary>
-        [Parameter] public string Placeholder { get; set; }
-
-        /// <summary>
-        /// If string has value the label text will be displayed in the input, and scaled down at the top if the input has value.
-        /// </summary>
-        [Parameter] public string Label { get; set; }
 
     }
 

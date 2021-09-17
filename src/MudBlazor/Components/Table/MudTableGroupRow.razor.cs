@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -57,6 +55,15 @@ namespace MudBlazor
         [Parameter] public string HeaderStyle { get; set; }
         [Parameter] public string FooterStyle { get; set; }
 
+        /// <summary>
+        /// Custom expand icon.
+        /// </summary>
+        [Parameter] public string ExpandIcon { get; set; } = Icons.Material.Filled.ExpandMore;
+
+        /// <summary>
+        /// Custom collapse icon.
+        /// </summary>
+        [Parameter] public string CollapseIcon { get; set; } = Icons.Material.Filled.ChevronRight;
 
         /// <summary>
         /// On click event
@@ -84,6 +91,7 @@ namespace MudBlazor
         {
             if (GroupDefinition != null)
             {
+                IsExpanded = GroupDefinition.IsInitiallyExpanded;
                 ((TableContext<T>)Context)?.GroupRows.Add(this);
                 if (GroupDefinition.InnerGroup != null)
                 {
