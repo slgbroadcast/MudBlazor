@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Reflection;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Utilities;
@@ -14,10 +16,62 @@ namespace MudBlazor
 
         private MudInput<string> _elementReference;
 
+        private InputType? _inputType;
+
         /// <summary>
         /// Type of the input element. It should be a valid HTML5 input type.
         /// </summary>
-        [Parameter] public InputType InputType { get; set; } = InputType.Text;
+        [Parameter]
+        public InputType InputType
+        {
+            get
+            {
+                if (_inputType is not null)
+                {
+                    return _inputType.Value;
+                }
+
+                _inputType = InputType.Text;
+
+                if (For is null)
+                {
+                    return _inputType.Value;
+                }
+
+                var propertyInfo = For.SBS_PropertyInfo();
+                var attribute = (DataTypeAttribute)propertyInfo.GetCustomAttribute(typeof(DataTypeAttribute));
+                if (attribute is not null)
+                {
+                    switch (attribute.DataType)
+                    {
+                        case DataType.Text:
+                            _inputType = InputType.Text;
+                            break;
+                        case DataType.Password:
+                            _inputType = InputType.Password;
+                            break;
+                        case DataType.EmailAddress:
+                            _inputType = InputType.Email;
+                            InputMode = InputMode.email;
+                            break;
+                        case DataType.PhoneNumber:
+                            _inputType = InputType.Telephone;
+                            InputMode = InputMode.tel;
+                            break;
+                        case DataType.Url:
+                            _inputType = InputType.Url;
+                            InputMode = InputMode.url;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+                return _inputType.Value;
+            }
+            set => _inputType = value;
+        }
 
         internal override InputType GetInputType() => InputType;
 

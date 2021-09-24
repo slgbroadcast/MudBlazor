@@ -464,7 +464,7 @@ namespace MudBlazor
         /// </summary>
 #nullable enable
         [Parameter]
-        public Expression<Func<T>>? For { get; set; }
+        public Expression<Func<object>>? For { get; set; }
 #nullable disable
 
         /// <summary>
@@ -494,7 +494,7 @@ namespace MudBlazor
         /// To find out whether or not For parameter has changed we keep a separate reference
         /// </summary>
 #nullable enable
-        private Expression<Func<T>>? _currentFor;
+        private Expression<Func<object>>? _currentFor;
 #nullable disable
 
         /// <summary>
@@ -510,8 +510,7 @@ namespace MudBlazor
             {
                 // Extract validation attributes
                 // Sourced from https://stackoverflow.com/a/43076222/4839162
-                var expression = (MemberExpression)For.Body;
-                var propertyInfo = (PropertyInfo)expression.Member;
+                var propertyInfo = For.SBS_PropertyInfo();
                 _validationAttrsFor = propertyInfo.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>();
 
                 _fieldIdentifier = FieldIdentifier.Create(For);
