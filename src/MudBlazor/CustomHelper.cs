@@ -44,7 +44,7 @@ namespace MudBlazor
                 throw new ArgumentException($"Expression has no DeclaringType: {expression}", nameof(expression));
             }
 
-            PropertyInfo realPropertyInfo = realType.GetProperty(propertyInfo.Name);
+            PropertyInfo realPropertyInfo = realType.GetProperty(propertyInfo.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (realPropertyInfo is null)
             {
                 throw new ArgumentException($"Cannot get real property info: {expression}", nameof(expression));
