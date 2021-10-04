@@ -95,6 +95,11 @@ namespace MudBlazor
         [Parameter] public string AdornmentIcon { get; set; } = Icons.Material.Filled.Event;
 
         /// <summary>
+        /// The short hint displayed in the input before the user enters a value.
+        /// </summary>
+        [Parameter] public string Placeholder { get; set; }
+
+        /// <summary>
         /// Fired when the dropdown / dialog opens
         /// </summary>
         [Parameter] public EventCallback PickerOpened { get; set; }
@@ -128,6 +133,11 @@ namespace MudBlazor
         /// If string has value, HelperText will be applied.
         /// </summary>
         [Parameter] public string HelperText { get; set; }
+
+        /// <summary>
+        /// If true, the helper text will only be visible on focus.
+        /// </summary>
+        [Parameter] public bool HelperTextOnFocus { get; set; }
 
         /// <summary>
         /// If string has value the label text will be displayed in the input, and scaled down at the top if the input has value.

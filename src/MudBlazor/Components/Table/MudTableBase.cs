@@ -12,6 +12,7 @@ namespace MudBlazor
     public abstract class MudTableBase : MudComponentBase
     {
         internal object _editingItem = null;
+        internal bool _isEditing => _editingItem != null;
 
         private int _currentPage = 0;
         private int? _rowsPerPage;
@@ -24,6 +25,7 @@ namespace MudBlazor
            .AddClass("mud-md-table", Breakpoint == Breakpoint.Md)
            .AddClass("mud-lg-table", Breakpoint is Breakpoint.Lg or Breakpoint.Always)
            .AddClass("mud-xl-table", Breakpoint is Breakpoint.Xl or Breakpoint.Always)
+           .AddClass("mud-xxl-table", Breakpoint is Breakpoint.Xxl or Breakpoint.Always)
            .AddClass("mud-table-dense", Dense)
            .AddClass("mud-table-hover", Hover)
            .AddClass("mud-table-bordered", Bordered)
@@ -122,6 +124,11 @@ namespace MudBlazor
                     SetRowsPerPage(value);
             }
         }
+        
+        /// <summary>
+        /// Rows Per Page two-way bindable parameter
+        /// </summary>
+        [Parameter] public EventCallback<int> RowsPerPageChanged {get;set;}
 
         /// <summary>
         /// The page index of the currently displayed page (Zero based). Usually called by MudTablePager.
@@ -355,6 +362,7 @@ namespace MudBlazor
             _rowsPerPage = size;
             CurrentPage = 0;
             StateHasChanged();
+            RowsPerPageChanged.InvokeAsync(_rowsPerPage.Value);
             if (_isFirstRendered)
                 InvokeServerLoadFunc();
         }

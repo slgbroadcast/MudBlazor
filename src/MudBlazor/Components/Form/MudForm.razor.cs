@@ -11,7 +11,6 @@ namespace MudBlazor
 {
     public partial class MudForm : MudComponentBase, IDisposable, IForm
     {
-
         protected string Classname =>
             new CssBuilder("mud-form")
             .AddClass(Class)
@@ -26,7 +25,19 @@ namespace MudBlazor
         /// Validation status. True if the form is valid and without errors. This parameter is two-way bindable.
         /// </summary>
         [Parameter]
-        public bool IsValid { get; set; } = true;
+        public bool IsValid
+        {
+            get => _valid && ChildForms.All(x => x.IsValid);
+            set
+            {
+                _valid = value;
+            }
+        }
+
+        // Note: w/o any children the form is automatically valid.
+        // It stays valid, as long as non-required fields are added or
+        // a required field is added or the user touches a field that fails validation.
+        private bool _valid = true;
 
         private void SetIsValid(bool value)
         {
@@ -50,7 +61,7 @@ namespace MudBlazor
 
         /// <summary>
         /// Validation debounce delay in milliseconds. This can help improve rendering performance of forms with real-time validation of inputs
-        /// i.e. when textfields have Immediate="true"
+        /// i.e. when textfields have Immediate="true".
         /// </summary>
         [Parameter] public int ValidationDelay { get; set; } = 300;
 
@@ -85,7 +96,7 @@ namespace MudBlazor
         protected HashSet<string> _errors = new();
 
         /// <summary>
-        /// Validation error messages
+        /// Validation error messages.
         /// </summary>
         [Parameter]
         public string[] Errors
@@ -95,6 +106,17 @@ namespace MudBlazor
         }
 
         [Parameter] public EventCallback<string[]> ErrorsChanged { get; set; }
+
+        /// <summary>
+        /// Specifies the top-level model object for the form. Used with Fluent Validation
+        /// </summary>
+#nullable enable
+        [Parameter] public object? Model { get; set; }
+#nullable disable
+
+        private HashSet<MudForm> ChildForms { get; set; } = new HashSet<MudForm>();
+
+        [CascadingParameter] private MudForm ParentMudForm { get; set; }
 
         void IForm.Add(IFormComponent formControl)
         {
@@ -168,19 +190,22 @@ namespace MudBlazor
         }
 
         /// <summary>
-        /// Force a validation of all form controls, even if they haven't been touched by the user yet
+        /// Force a validation of all form controls, even if they haven't been touched by the user yet.
         /// </summary>
-        public void Validate()
+        public async Task Validate()
         {
-            foreach (var control in _formControls.ToArray())
+            await Task.WhenAll(_formControls.Select(x => x.Validate()));
+
+            if (ChildForms.Count > 0)
             {
-                control.Validate();
+                await Task.WhenAll(ChildForms.Select(x => x.Validate()));
             }
+
             EvaluateForm(debounce: false);
         }
 
         /// <summary>
-        /// Reset all form controls and reset their validation state
+        /// Reset all form controls and reset their validation state.
         /// </summary>
         public void Reset()
         {
@@ -188,11 +213,17 @@ namespace MudBlazor
             {
                 control.Reset();
             }
+
+            foreach (var form in ChildForms)
+            {
+                form.Reset();
+            }
+
             EvaluateForm(debounce: false);
         }
 
         /// <summary>
-        /// Reset the validation state but keep the values
+        /// Reset the validation state but keep the values.
         /// </summary>
         public void ResetValidation()
         {
@@ -200,6 +231,12 @@ namespace MudBlazor
             {
                 control.ResetValidation();
             }
+
+            foreach (var form in ChildForms)
+            {
+                form.ResetValidation();
+            }
+
             EvaluateForm(debounce: false);
         }
 
@@ -218,10 +255,19 @@ namespace MudBlazor
             return base.OnAfterRenderAsync(firstRender);
         }
 
+        protected override void OnInitialized()
+        {
+            if (ParentMudForm != null)
+            {
+                ParentMudForm.ChildForms.Add(this);
+            }
+
+            base.OnInitialized();
+        }
+
         public void Dispose()
         {
             _timer?.Dispose();
         }
-
     }
 }

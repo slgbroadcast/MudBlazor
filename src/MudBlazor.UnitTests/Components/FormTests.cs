@@ -2,6 +2,8 @@
 #pragma warning disable CS1998 // async without await
 
 using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 using Bunit;
@@ -658,7 +660,7 @@ namespace MudBlazor.UnitTests.Components
         /// <summary>
         /// Ensure validation attributes aren't incorrectly called with `null` context.
         /// </summary>
-        /// <see cref="https://github.com/Garderoben/MudBlazor/issues/1229"/>
+        /// <see cref="https://github.com/MudBlazor/MudBlazor/issues/1229"/>
         [Test]
         public async Task EditForm_Validation_NullContext()
         {
@@ -688,6 +690,262 @@ namespace MudBlazor.UnitTests.Components
             var form = comp.FindComponent<MudForm>().Instance;
             form.Errors.Should().BeEmpty();
         }
+
+        /// <summary>
+        /// Testing the functionality of the MudForm example from the docs.
+        /// Root MudForm is valid and nested MudForm is invalid
+        /// </summary>
+        [Test]
+        public async Task MudFormExample_FillInValuesRootForm()
+        {
+            var comp = Context.RenderComponent<FluentValidationComplexExample>();
+            //Console.WriteLine(comp.Markup);
+            comp.FindAll("input")[0].Input("Rick Sanchez");
+            comp.FindAll("input")[0].Blur();
+            comp.FindAll("input")[1].Input("rick.sanchez@citadel-of-ricks.com");
+            comp.FindAll("input")[1].Blur();
+            comp.FindAll("input")[3].Input("Wabalabadubdub1234!");
+            comp.FindAll("input")[3].Blur();
+            comp.FindAll("input")[4].Input("sdfsfsdf!");
+            comp.FindAll("input")[4].Blur();
+            comp.FindAll("input")[5].Input("adsadasad!");
+            comp.FindAll("input")[5].Blur();
+
+            var form = comp.FindComponent<MudForm>().Instance;
+            await comp.InvokeAsync(() => form.Validate());
+            form.IsValid.Should().BeFalse();
+
+            var textfields = comp.FindComponents<MudTextField<string>>();
+            var numericFields = comp.FindComponents<MudNumericField<decimal>>();
+
+            textfields[0].Instance.HasErrors.Should().BeFalse();
+            textfields[0].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[1].Instance.HasErrors.Should().BeFalse();
+            textfields[1].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[2].Instance.HasErrors.Should().BeFalse();
+            textfields[2].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[3].Instance.HasErrors.Should().BeFalse();
+            textfields[3].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[4].Instance.HasErrors.Should().BeFalse();
+            textfields[4].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[5].Instance.HasErrors.Should().BeFalse();
+            textfields[5].Instance.ErrorText.Should().BeNullOrEmpty();
+
+            //Nested Forms
+            textfields[6].Instance.HasErrors.Should().BeFalse();
+            textfields[6].Instance.ErrorText.Should().BeNullOrEmpty();
+            numericFields[0].Instance.HasErrors.Should().BeFalse();
+            numericFields[0].Instance.ErrorText.Should().BeNullOrEmpty();
+
+            textfields[7].Instance.HasErrors.Should().BeTrue();
+            textfields[7].Instance.ErrorText.Should().NotBeNullOrEmpty();
+            numericFields[1].Instance.HasErrors.Should().BeTrue();
+            numericFields[1].Instance.ErrorText.Should().NotBeNullOrEmpty();
+        }
+
+        /// <summary>
+        /// Testing the functionality of the MudForm example from the docs.
+        /// Root MudForm is invalid and nested MudForm is valid
+        /// </summary>
+        [Test]
+        public async Task MudFormExample_FillInValuesNestedForm()
+        {
+            var comp = Context.RenderComponent<FluentValidationComplexExample>();
+            //Console.WriteLine(comp.Markup);
+            comp.FindAll("input")[8].Change("SomeWork");
+            comp.FindAll("input")[8].Blur();
+            comp.FindAll("input")[9].Change("99");
+            comp.FindAll("input")[9].Blur();
+
+            var form = comp.FindComponent<MudForm>().Instance;
+            await comp.InvokeAsync(() => form.Validate());
+            form.IsValid.Should().BeFalse();
+
+            var textfields = comp.FindComponents<MudTextField<string>>();
+            var numericFields = comp.FindComponents<MudNumericField<decimal>>();
+
+            textfields[0].Instance.HasErrors.Should().BeTrue();
+            textfields[0].Instance.ErrorText.Should().NotBeNullOrEmpty();
+            textfields[1].Instance.HasErrors.Should().BeTrue();
+            textfields[1].Instance.ErrorText.Should().NotBeNullOrEmpty();
+            textfields[2].Instance.HasErrors.Should().BeFalse();
+            textfields[2].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[3].Instance.HasErrors.Should().BeTrue();
+            textfields[3].Instance.ErrorText.Should().NotBeNullOrEmpty();
+            textfields[4].Instance.HasErrors.Should().BeTrue();
+            textfields[4].Instance.ErrorText.Should().NotBeNullOrEmpty();
+            textfields[5].Instance.HasErrors.Should().BeTrue();
+            textfields[5].Instance.ErrorText.Should().NotBeNullOrEmpty();
+
+            //Nested Forms
+            textfields[6].Instance.HasErrors.Should().BeFalse();
+            textfields[6].Instance.ErrorText.Should().BeNullOrEmpty();
+            numericFields[0].Instance.HasErrors.Should().BeFalse();
+            numericFields[0].Instance.ErrorText.Should().BeNullOrEmpty();
+
+            textfields[7].Instance.HasErrors.Should().BeFalse();
+            textfields[7].Instance.ErrorText.Should().BeNullOrEmpty();
+            numericFields[1].Instance.HasErrors.Should().BeFalse();
+            numericFields[1].Instance.ErrorText.Should().BeNullOrEmpty();
+        }
+
+        /// <summary>
+        /// Testing the functionality of the MudForm example from the docs.
+        /// Both root MudForm and nested MudForm are valid
+        /// </summary>
+        [Test]
+        public async Task MudFormExample_FillInValues()
+        {
+            var comp = Context.RenderComponent<FluentValidationComplexExample>();
+            //Console.WriteLine(comp.Markup);
+            comp.FindAll("input")[0].Input("Rick Sanchez");
+            comp.FindAll("input")[0].Blur();
+            comp.FindAll("input")[1].Input("rick.sanchez@citadel-of-ricks.com");
+            comp.FindAll("input")[1].Blur();
+            comp.FindAll("input")[3].Input("Wabalabadubdub1234!");
+            comp.FindAll("input")[3].Blur();
+            comp.FindAll("input")[4].Input("sdfsfsdf!");
+            comp.FindAll("input")[4].Blur();
+            comp.FindAll("input")[5].Input("adsadasad!");
+            comp.FindAll("input")[5].Blur();
+            comp.FindAll("input")[8].Change("SomeWork");
+            comp.FindAll("input")[8].Blur();
+            comp.FindAll("input")[9].Change("99");
+            comp.FindAll("input")[9].Blur();
+
+            var form = comp.FindComponent<MudForm>().Instance;
+            await comp.InvokeAsync(() => form.Validate());
+            form.IsValid.Should().BeTrue();
+
+            var textfields = comp.FindComponents<MudTextField<string>>();
+            var numericFields = comp.FindComponents<MudNumericField<decimal>>();
+
+            textfields[0].Instance.HasErrors.Should().BeFalse();
+            textfields[0].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[1].Instance.HasErrors.Should().BeFalse();
+            textfields[1].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[2].Instance.HasErrors.Should().BeFalse();
+            textfields[2].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[3].Instance.HasErrors.Should().BeFalse();
+            textfields[3].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[4].Instance.HasErrors.Should().BeFalse();
+            textfields[4].Instance.ErrorText.Should().BeNullOrEmpty();
+            textfields[5].Instance.HasErrors.Should().BeFalse();
+            textfields[5].Instance.ErrorText.Should().BeNullOrEmpty();
+
+            //Nested Forms
+            textfields[6].Instance.HasErrors.Should().BeFalse();
+            textfields[6].Instance.ErrorText.Should().BeNullOrEmpty();
+            numericFields[0].Instance.HasErrors.Should().BeFalse();
+            numericFields[0].Instance.ErrorText.Should().BeNullOrEmpty();
+
+            textfields[7].Instance.HasErrors.Should().BeFalse();
+            textfields[7].Instance.ErrorText.Should().BeNullOrEmpty();
+            numericFields[1].Instance.HasErrors.Should().BeFalse();
+            numericFields[1].Instance.ErrorText.Should().BeNullOrEmpty();
+        }
+
+        /// <summary>
+        /// Testing error handling of MudFormComponent.ValidateModelWithFullPathOfMember
+        /// We have no form, error should reflect that
+        /// </summary>
+        [Test]
+        public async Task MudFormComponent_ValidationWithModel_UnexpectedErrorInValidationFunc1()
+        {
+            var comp = Context.RenderComponent<MudTextField<string>>();
+            comp.SetParam(nameof(MudTextField<string>.Validation), new Func<object, string, IEnumerable<string>>((obj, property) => new[] { "Error1", "Error2" }));
+            await comp.InvokeAsync(comp.Instance.Validate);
+            comp.Instance.Error.Should().Be(true);
+            comp.Instance.ErrorText.Should().Be("Form is null, unable to validate with model!");
+        }
+
+        /// <summary>
+        /// Testing error handling of MudFormComponent.ValidateModelWithFullPathOfMember
+        /// We have not set a form model, error should reflect that
+        /// </summary>
+        [Test]
+        public async Task MudFormComponent_ValidationWithModel_UnexpectedErrorInValidationFunc2()
+        {
+            var comp = Context.RenderComponent<FormWithSingleTextField>();
+            var tf = comp.FindComponent<MudTextField<string>>();
+            var validationFunc = new Func<object, string, IEnumerable<string>>((obj, property) => new string[] { });
+            tf.SetParam(nameof(MudTextField<string>.Validation), validationFunc);
+            await comp.InvokeAsync(tf.Instance.Validate);
+            tf.Instance.Error.Should().Be(true);
+            tf.Instance.ErrorText.Should().Be("Form.Model is null, unable to validate with model!");
+        }
+
+        /// <summary>
+        /// Testing error handling of MudFormComponent.ValidateModelWithFullPathOfMember
+        /// Validation func throws an error, the error should contain the exception message
+        /// </summary>
+        [Test]
+        public async Task MudFormComponent_ValidationWithModel_UnexpectedErrorInValidationFunc3()
+        {
+            var comp = Context.RenderComponent<FormWithSingleTextField>();
+            var form = comp.FindComponent<MudForm>();
+            var model = new { data = "asdf" };
+            form.SetParam(nameof(MudForm.Model), model);
+            var tf = comp.FindComponent<MudTextField<string>>();
+            var validationFunc = new Func<object, string, IEnumerable<string>>((obj, property) =>
+            {
+                throw new InvalidOperationException("User error");
+            });
+            tf.SetParam(nameof(MudTextField<string>.Validation), validationFunc);
+            Expression<Func<string>> expression = () => model.data;
+            tf.SetParam(nameof(MudTextField<string>.For), expression);
+            await comp.InvokeAsync(tf.Instance.Validate);
+            tf.Instance.Error.Should().Be(true);
+            tf.Instance.ErrorText.Should().Be("Error in validation func: User error");
+        }
+
+        /// <summary>
+        /// Testing error handling of MudFormComponent.ValidateModelWithFullPathOfMember
+        /// We have set no For expression, error should reflect that
+        /// </summary>
+        [Test]
+        public async Task MudFormComponent_ValidationWithModel_UnexpectedErrorInValidationFunc4()
+        {
+            var comp = Context.RenderComponent<FormWithSingleTextField>();
+            var form = comp.FindComponent<MudForm>();
+            var model = new { data = "asdf" };
+            form.SetParam(nameof(MudForm.Model), model);
+            var tf = comp.FindComponent<MudTextField<string>>();
+            var validationFunc = new Func<object, string, IEnumerable<string>>((obj, property) =>
+            {
+                throw new InvalidOperationException("User error");
+            });
+            tf.SetParam(nameof(MudTextField<string>.Validation), validationFunc);
+            await comp.InvokeAsync(tf.Instance.Validate);
+            tf.Instance.Error.Should().Be(true);
+            tf.Instance.ErrorText.Should().Be("For is null, please set parameter For on the form input component of type MudTextField`1");
+        }
+
+        /// <summary>
+        /// Testing validation with MudFormComponent.ValidateModelWithFullPathOfMember
+        /// </summary>
+        [Test]
+        public async Task MudFormComponent_ValidationWithModel_UnexpectedErrorInValidationFunc5()
+        {
+            var comp = Context.RenderComponent<FormWithSingleTextField>();
+            var form = comp.FindComponent<MudForm>();
+            var model = new { data = "asdf" };
+            form.SetParam(nameof(MudForm.Model), model);
+            var tf = comp.FindComponent<MudTextField<string>>();
+            var validationFunc = new Func<object, string, IEnumerable<string>>((obj, property) =>
+            {
+                obj.Should().Be(model);
+                property.Should().Be("data");
+                return new[] { "Error1", "Error2" };
+            });
+            tf.SetParam(nameof(MudTextField<string>.Validation), validationFunc);
+            Expression<Func<string>> expression = () => model.data;
+            tf.SetParam(nameof(MudTextField<string>.For), expression);
+            await comp.InvokeAsync(tf.Instance.Validate);
+            tf.Instance.Error.Should().Be(true);
+            tf.Instance.ErrorText.Should().Be("Error1");
+        }
+
     }
 }
 
