@@ -13,7 +13,17 @@ namespace MudBlazor
     {
         [Inject] IScrollManager ScrollManager { get; set; }
 
-        private bool _dense;
+        private bool               _dense;
+
+        /// <summary>
+        /// To prevent submit the EditFrom when pressing enter in a AutoComplete
+        /// </summary>
+        /// <remarks>
+        /// MudBlazor issue #2189
+        /// https://github.com/MudBlazor/MudBlazor/issues/2189
+        /// Code stolen from https://github.com/MudBlazor/MudBlazor/issues/2189#issuecomment-877056336
+        /// </remarks>
+        Dictionary<string, object> preventPressEnterAttributes = new Dictionary<string, object> { { "onkeydown", "var event = (arguments[0] || window.event); if(event.keyCode === 13){ event.stopPropagation(); return false; }" } };
 
         protected string Classname =>
             new CssBuilder("mud-select")
