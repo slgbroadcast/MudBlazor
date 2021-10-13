@@ -295,6 +295,9 @@ namespace MudBlazor
             if (typeof(T) == typeof(string))
                 return !IsNullOrWhiteSpace(value as string);
 
+            if (value is Guid guidValue)
+                return guidValue != Guid.Empty;
+
             return value != null;
         }
 

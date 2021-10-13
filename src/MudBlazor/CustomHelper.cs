@@ -27,7 +27,6 @@ namespace MudBlazor
                 throw new ArgumentException($"Expression has no GET method: {expression}", nameof(expression));
             }
 
-            // TODO SBS-1299: Test why no static
             if (getMethod.IsStatic)
             {
                 throw new ArgumentException($"Expression cannot be static: {expression}", nameof(expression));
