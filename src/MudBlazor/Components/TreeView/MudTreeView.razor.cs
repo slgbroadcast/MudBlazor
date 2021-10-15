@@ -83,7 +83,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact vertical padding will be applied to all treeview items.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// Setting a height will allow to scroll the treeview. If not set, it will try to grow in height. 

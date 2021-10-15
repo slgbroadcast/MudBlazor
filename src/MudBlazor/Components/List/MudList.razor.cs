@@ -34,7 +34,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact vertical padding will be applied to all list items.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// If true, the left and right padding is removed on all list items.

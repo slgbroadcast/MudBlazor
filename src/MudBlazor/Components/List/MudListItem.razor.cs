@@ -65,7 +65,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, disables ripple effect.
         /// </summary>
-        [Parameter] public bool DisableRipple { get; set; }
+        [Parameter] public bool DisableRipple { get; set; } = true;
 
         /// <summary>
         /// Icon to use if set.
@@ -105,7 +105,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact vertical padding will be used.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// If true, the left and right padding is removed.

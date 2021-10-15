@@ -34,12 +34,12 @@ namespace MudBlazor
         /// <summary>
         /// If true, disables ripple effect.
         /// </summary>
-        [Parameter] public bool DisableRipple { get; set; }
+        [Parameter] public bool DisableRipple { get; set; } = true;
 
         /// <summary>
         /// If true, compact padding will be applied.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// The Size of the component.

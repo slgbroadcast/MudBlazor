@@ -120,7 +120,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, disables ripple effect, ripple effect is only applied to clickable chips.
         /// </summary>
-        [Parameter] public bool DisableRipple { get; set; }
+        [Parameter] public bool DisableRipple { get; set; } = true;
 
         /// <summary>
         /// Child content of component.

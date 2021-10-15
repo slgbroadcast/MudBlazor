@@ -31,7 +31,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, removes vertical padding from all panels' childcontent.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// If true, the left and right padding is removed from all panels' childcontent.

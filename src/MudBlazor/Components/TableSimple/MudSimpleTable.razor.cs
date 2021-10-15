@@ -38,7 +38,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact padding will be used.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// If true, table will be outlined.

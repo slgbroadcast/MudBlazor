@@ -65,7 +65,7 @@ namespace MudBlazor
         /// <summary>
         /// Set true for rows with a narrow height
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// Set true to see rows hover on mouse-over.

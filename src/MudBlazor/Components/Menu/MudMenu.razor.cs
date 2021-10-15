@@ -70,7 +70,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact vertical padding will be applied to all menu items.
         /// </summary>
-        [Parameter] public bool Dense { get; set; }
+        [Parameter] public bool Dense { get; set; } = true;
 
         /// <summary>
         /// If true, the list menu will be same width as the parent.

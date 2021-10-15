@@ -49,7 +49,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, disables ripple effect.
         /// </summary>
-        [Parameter] public bool DisableRipple { get; set; } = true;
+        [Parameter] public bool DisableRipple { get; set; }= true;
 
         /// <summary>
         /// Command executed when the user clicks on an element.
