@@ -67,6 +67,19 @@ namespace MudBlazor.UnitTests.Components
         }
 
         [Test]
+        public void RangeConverter_RoundTrip_Ok()
+        {
+            var d1 = "val1";
+            var d2 = "val2";
+
+            var repr = RangeConverter<DateTime>.Join(d1, d2);
+            RangeConverter<DateTime>.Split(repr, out var c1, out var c2).Should().BeTrue();
+
+            c1.Should().Be(d1);
+            c2.Should().Be(d2);
+        }
+
+        [Test]
         public void Open_SelectTheSameDateTwice_RangeStartShouldEqualsEnd()
         {
             var comp = OpenPicker();
@@ -427,6 +440,25 @@ namespace MudBlazor.UnitTests.Components
             comp.Find("input").Change(dateTime.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern));
             comp.Instance.DateRange.Start.Should().Be(dateTime);
 
+        }
+
+
+        [Test]
+        public void SetDateRange_NoChangedIfSameValues()
+        {
+            var dr1 = new DateRange(new DateTime(2021, 10, 08), new DateTime(2021, 10, 09));
+            var dr2 = new DateRange(new DateTime(2021, 10, 08), new DateTime(2021, 10, 09));
+
+            var wasEventCallbackCalled = false;
+
+            var comp = Context.RenderComponent<MudDateRangePicker>(
+                Parameter(nameof(MudDateRangePicker.DateRange), dr1),
+                EventCallback(nameof(MudDateRangePicker.DateRangeChanged), (DateRange _) => wasEventCallbackCalled = true));
+
+            comp.SetParam(nameof(MudDateRangePicker.DateRange), dr2);
+
+            comp.Instance.DateRange.Should().Be(dr2);
+            wasEventCallbackCalled.Should().BeFalse();
         }
 
         [Test]
