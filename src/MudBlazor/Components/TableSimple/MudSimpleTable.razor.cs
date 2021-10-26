@@ -23,7 +23,7 @@ namespace MudBlazor
         /// <summary>
         /// Child content of component.
         /// </summary>
-        [Parameter] public int Elevation { set; get; } = 1;
+        [Parameter] public int Elevation { set; get; } = 0;
 
         /// <summary>
         /// If true, the table row will shade on hover.
