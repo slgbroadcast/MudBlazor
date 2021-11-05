@@ -371,6 +371,10 @@ namespace MudBlazor
 
         public override void SetEditingItem(object item)
         {
+            // When a row is selected and a refresh is called, the "old" list will be return. With this change we prevent this to get always the correct list
+            if(ReadOnly is true)
+                return;
+
             if (!ReferenceEquals(_editingItem, item))
                 _editingItem = item;
         }
