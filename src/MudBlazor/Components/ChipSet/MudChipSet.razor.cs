@@ -214,6 +214,7 @@ namespace MudBlazor
         {
             if (firstRender)
                 // Console.WriteLine("First Render Done");
+
             return base.OnAfterRenderAsync(firstRender);
         }
 
