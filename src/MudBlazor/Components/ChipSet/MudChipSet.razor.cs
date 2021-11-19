@@ -212,15 +212,11 @@ namespace MudBlazor
 
         protected override Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender)
-                // Console.WriteLine("First Render Done");
-
             return base.OnAfterRenderAsync(firstRender);
         }
 
         internal Task Add(MudChip chip)
         {
-            // Console.WriteLine("Add chip");
             _chips.Add(chip);
             if (_selectedValues.Contains(chip.Value))
                 chip.IsSelected = true;
