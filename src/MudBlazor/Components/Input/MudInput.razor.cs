@@ -21,6 +21,8 @@ namespace MudBlazor
         /// </summary>
         [Parameter] public InputType InputType { get; set; } = InputType.Text;
 
+        [Parameter] public string InputStyle { get; set; }
+
         internal override InputType GetInputType() => InputType;
 
         protected string InputTypeString => InputType.ToDescriptionString();

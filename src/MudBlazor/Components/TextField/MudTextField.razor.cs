@@ -88,6 +88,8 @@ namespace MudBlazor
         /// </summary>
         [Parameter] public EventCallback<MouseEventArgs> OnClearButtonClick { get; set; }
 
+        [Parameter] public string InputStyle { get; set; }
+
         public override ValueTask FocusAsync()
         {
             return _elementReference.FocusAsync();
