@@ -28,7 +28,7 @@ namespace MudBlazor
         /// <summary>
         /// If true, the table row will shade on hover.
         /// </summary>
-        [Parameter] public bool Hover { get; set; }
+        [Parameter] public bool Hover { get; set; } = true;
 
         /// <summary>
         /// If true, border-radius is set to 0.
