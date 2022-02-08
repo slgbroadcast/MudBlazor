@@ -25,6 +25,14 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.ComponentBase.Common)]
         public object Tag { get; set; }
+        
+        // TODO SBS-1317: Dies wird zur Zeit nur beim MudButton verwendet. Prüfen, wo das sonst noch Sinn macht
+        /// <summary>
+        /// Optional ID for component
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.ComponentBase.Common)]
+        public string HtmlId { get; set; }
 
         /// <summary>
         /// UserAttributes carries all attributes you add to the component that don't match any of its parameters.
