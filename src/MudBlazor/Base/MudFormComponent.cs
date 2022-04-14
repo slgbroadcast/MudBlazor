@@ -316,10 +316,12 @@ namespace MudBlazor
         {
             try
             {
-                // The validation context is applied either on the `EditContext.Model`, or `this` as a stub subject.
-                // Complex validation with fields references (like `CompareAttribute`) should use an EditContext.
-                var validationContextSubject = EditContext?.Model ?? this;
+                // The validation context is applied either on the `EditContext.Model`, '_fieldIdentifier.Model', or `this` as a stub subject.
+                // Complex validation with fields references (like `CompareAttribute`) should use an EditContext or For when not using EditContext.
+                var validationContextSubject = EditContext?.Model ?? _fieldIdentifier.Model ?? this;
                 var validationContext = new ValidationContext(validationContextSubject);
+                if (validationContext.MemberName is null && _fieldIdentifier.FieldName is not null)
+                    validationContext.MemberName = _fieldIdentifier.FieldName;
                 var validationResult = attr.GetValidationResult(value, validationContext);
                 if (validationResult != ValidationResult.Success)
                     errors.Add(validationResult.ErrorMessage);
@@ -376,21 +378,17 @@ namespace MudBlazor
         {
             try
             {
-                if (Form==null)
+                if (Form?.Model == null)
                 {
-                    errors.Add("Form is null, unable to validate with model!");
                     return;
                 }
-                if (Form.Model == null)
-                {
-                    errors.Add("Form.Model is null, unable to validate with model!");
-                    return;
-                }
+                
                 if (For == null)
                 {
                     errors.Add($"For is null, please set parameter For on the form input component of type {GetType().Name}");
                     return;
                 }
+
                 foreach (var error in func(Form.Model, For.GetFullPathOfMember()))
                     errors.Add(error);
             }
@@ -444,6 +442,17 @@ namespace MudBlazor
         {
             try
             {
+                if (Form?.Model == null)
+                {
+                    return;
+                }
+                
+                if (For == null)
+                {
+                    errors.Add($"For is null, please set parameter For on the form input component of type {GetType().Name}");
+                    return;
+                }
+                
                 foreach (var error in await func(Form.Model, For.GetFullPathOfMember()))
                     errors.Add(error);
             }
@@ -555,7 +564,14 @@ namespace MudBlazor
             if (For != null && For != _currentFor)
             {
                 // Extract validation attributes
-                // Sourced from https://stackoverflow.com/a/43076222/4839162
+                // Sourced from https://stackoverflow.com/a/43076222/4839162 
+                // and also https://stackoverflow.com/questions/59407225/getting-a-custom-attribute-from-a-property-using-an-expression
+               
+                // MudBlazor original code
+                // var expression = (MemberExpression)For.Body;
+                // var propertyInfo = (PropertyInfo)expression.Expression?.Type.GetProperty(expression.Member.Name);
+                // _validationAttrsFor = propertyInfo?.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>();
+                
                 var propertyInfo = For.SBS_PropertyInfo();
                 _validationAttrsFor = propertyInfo.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>();
 
@@ -588,7 +604,10 @@ namespace MudBlazor
 
         protected virtual void RegisterAsFormComponent()
         {
-            Form?.Add(this);
+            if (Standalone)
+            {
+                Form?.Add(this);
+            }
         }
 
         /// <summary>

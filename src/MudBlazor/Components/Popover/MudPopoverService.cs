@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -25,11 +26,13 @@ namespace MudBlazor
 
     public class MudPopoverHandler
     {
-        private IJSRuntime _runtime;
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
+        private readonly IJSRuntime _runtime;
         private readonly Action _updater;
         private bool _locked;
+        private bool _detached;
 
-        public Guid Id { get; init; }
+        public Guid Id { get; }
         public RenderFragment Fragment { get; private set; }
         public bool IsConnected { get; private set; }
         public string Class { get; private set; }
@@ -69,21 +72,44 @@ namespace MudBlazor
 
         public async Task Initialize()
         {
-            await _runtime.InvokeVoidAsync("mudPopover.connect", Id);
-            IsConnected = true;
+            await _semaphore.WaitAsync();
+            try
+            {
+                if (_detached)
+                {
+                    // If _detached is True, it means Detach() was invoked before Initialize() has had
+                    // a chance to run. In this case, we just want to return and not do anything else
+                    // otherwise we will end up with a memory leak.
+                    return;
+                }
+
+                await _runtime.InvokeVoidAsync("mudPopover.connect", Id);
+                IsConnected = true;
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
         }
 
         public async Task Detach()
         {
+            await _semaphore.WaitAsync();
             try
             {
-                await _runtime.InvokeVoidAsync("mudPopover.disconnect", Id);
+                _detached = true;
+
+                if (IsConnected)
+                {
+                    await _runtime.InvokeVoidAsync("mudPopover.disconnect", Id);
+                }
             }
             catch (JSDisconnectedException) { }
             catch (TaskCanceledException) { }
             finally
             {
                 IsConnected = false;
+                _semaphore.Release();
             }
         }
 
@@ -92,7 +118,7 @@ namespace MudBlazor
 
     public class MudPopoverService : IMudPopoverService, IAsyncDisposable
     {
-        private List<MudPopoverHandler> _handlers = new();
+        private Dictionary<Guid, MudPopoverHandler> _handlers = new();
         private bool _isInitilized = false;
         private readonly IJSRuntime _jsRuntime;
         private readonly PopoverOptions _options;
@@ -100,7 +126,7 @@ namespace MudBlazor
 
         public event EventHandler FragmentsChanged;
 
-        public IEnumerable<MudPopoverHandler> Handlers => _handlers.AsEnumerable();
+        public IEnumerable<MudPopoverHandler> Handlers => _handlers.Values.AsEnumerable();
 
         public MudPopoverService(IJSRuntime jsInterop, IOptions<PopoverOptions> options = null)
         {
@@ -131,7 +157,7 @@ namespace MudBlazor
         public MudPopoverHandler Register(RenderFragment fragment)
         {
             var handler = new MudPopoverHandler(fragment, _jsRuntime, () => FragmentsChanged?.Invoke(this, EventArgs.Empty));
-            _handlers.Add(handler);
+            _handlers.Add(handler.Id, handler);
 
             FragmentsChanged?.Invoke(this, EventArgs.Empty);
 
@@ -141,18 +167,17 @@ namespace MudBlazor
         public async Task<bool> Unregister(MudPopoverHandler handler)
         {
             if (handler == null) { return false; }
-            if (_handlers.Contains(handler) == false) { return false; }
-
-            if (handler.IsConnected == false) { return false; }
+            if (_handlers.Remove(handler.Id) == false) { return false; }
 
             await handler.Detach();
-            _handlers.Remove(handler);
 
             FragmentsChanged?.Invoke(this, EventArgs.Empty);
 
             return true;
         }
 
+        //TO DO add js test
+        [ExcludeFromCodeCoverage]
         public async ValueTask DisposeAsync()
         {
             if (_isInitilized == false) { return; }

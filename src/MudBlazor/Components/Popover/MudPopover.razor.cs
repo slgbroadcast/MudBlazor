@@ -35,7 +35,7 @@ namespace MudBlazor
             .AddStyle(Style)
             .Build();
 
-        private Direction ConvertDirection(Direction direction)
+        internal Direction ConvertDirection(Direction direction)
         {
             return direction switch
             {
@@ -174,6 +174,12 @@ namespace MudBlazor
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
+            
+            // Only update the fragment if the popover is currently shown or will show
+            // This prevents unnecessary renders and popover handle locking
+            if (!_handler.ShowContent && !Open)
+                return;
+
             _handler.UpdateFragment(ChildContent, this, PopoverClass, PopoverStyles, Open);
         }
 
@@ -190,6 +196,7 @@ namespace MudBlazor
             await base.OnAfterRenderAsync(firstRender);
         }
 
+        [ExcludeFromCodeCoverage]
         public async ValueTask DisposeAsync()
         {
             try
