@@ -654,5 +654,10 @@ namespace MudBlazor
             await SetTextAsync(text, true);
         }
 
+        private async Task ListItemOnClick(T item)
+        {
+            await SelectOption(item);
+        }
+
     }
 }
