@@ -42,6 +42,8 @@
                 @onkeyup:preventDefault="@KeyUpPreventDefault"
                 @onmousewheel="@OnMouseWheel" 
                 @onwheel="@OnMouseWheel"
+                aria-invalid="@Error.ToString().ToLower()"
+                aria-describedby="@ErrorId"
                 Style="@InputStyle"
         > 
             @Text
@@ -73,6 +75,8 @@
                 @onkeyup:preventDefault="@KeyUpPreventDefault"
                 @onmousewheel="@OnMouseWheel" 
                 @onwheel="@OnMouseWheel"
+                aria-invalid="@Error.ToString().ToLower()"
+                aria-describedby="@ErrorId"
                 Style="@InputStyle"
          />
 	     @*Note: double mouse wheel handlers needed for Firefox because it doesn't know onmousewheel*@
