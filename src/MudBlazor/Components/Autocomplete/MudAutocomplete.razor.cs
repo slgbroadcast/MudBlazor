@@ -137,12 +137,12 @@ namespace MudBlazor
         public Func<string, Task<IEnumerable<T>>> SearchFunc { get; set; }
 
         /// <summary>
-        /// Maximum items to display, defaults to 10.
+        /// Maximum items to display.
         /// A null value will display all items.
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListBehavior)]
-        public int? MaxItems { get; set; } = 10;
+        public int? MaxItems { get; set; } = null;
 
         /// <summary>
         /// Minimum characters to initiate a search
