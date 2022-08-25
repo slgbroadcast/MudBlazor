@@ -102,6 +102,14 @@ namespace MudBlazor
                 return _maskReference.FocusAsync();
         }
 
+        public override ValueTask BlurAsync()
+        {
+            if (_mask == null)
+                return InputReference.BlurAsync();
+            else
+                return _maskReference.BlurAsync();
+        }
+
         public override ValueTask SelectAsync()
         {
             if (_mask == null)
