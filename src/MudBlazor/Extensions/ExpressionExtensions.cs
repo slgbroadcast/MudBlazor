@@ -37,9 +37,14 @@ namespace MudBlazor
         /// </summary>
         public static string GetDisplayNameString<T>(this Expression<Func<T>> expression)
         {
-            var memberExpression = (MemberExpression)expression.Body;
-            var propertyInfo = memberExpression.Expression?.Type.GetProperty(memberExpression.Member.Name);
-            return propertyInfo?.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().FirstOrDefault()?.Name ?? string.Empty;
+            // MudBlazor code
+            // var memberExpression = (MemberExpression)expression.Body;
+            // var propertyInfo     = memberExpression.Expression?.Type.GetProperty(memberExpression.Member.Name);
+            // return propertyInfo?.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().FirstOrDefault()?.Name ?? string.Empty;
+            
+            // SLG code
+            var propertyInfo = CustomHelper.SBS_PropertyInfo(expression);
+            return propertyInfo?.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().FirstOrDefault()?.Name ?? propertyInfo.Name;
         }
     }
 }

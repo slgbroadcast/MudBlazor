@@ -422,8 +422,8 @@ namespace MudBlazor
             if (typeof(T) != typeof(string))
                 await UpdateTextPropertyAsync(false);
 
-            if (Label == null && For != null)
-                Label = For.GetDisplayNameString();
+            // if (Label == null && For != null)
+                // Label = For.GetDisplayNameString();
         }
 
         public virtual void ForceRender(bool forceTextUpdate)

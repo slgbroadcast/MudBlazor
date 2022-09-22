@@ -590,9 +590,11 @@ namespace MudBlazor
                 // var propertyInfo = (PropertyInfo)expression.Expression?.Type.GetProperty(expression.Member.Name);
                 // _validationAttrsFor = propertyInfo?.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>();
                 
+                // SLG code
                 var propertyInfo = For.SBS_PropertyInfo();
                 _validationAttrsFor = propertyInfo.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>();
 
+                // MudBlazor code
                 _fieldIdentifier = FieldIdentifier.Create(For);
                 _currentFor = For;
             }

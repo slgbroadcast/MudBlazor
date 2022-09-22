@@ -434,8 +434,8 @@ namespace MudBlazor
                 _pickerElevation = Elevation;
             }
 
-            if (Label == null && For != null)
-                Label = For.GetDisplayNameString();
+            // if (Label == null && For != null)
+                // Label = For.GetDisplayNameString();
         }
 
         private async Task EnsureKeyInterceptor()

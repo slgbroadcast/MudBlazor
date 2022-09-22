@@ -213,8 +213,8 @@ namespace MudBlazor
         {
             base.OnInitialized();
 
-            if (Label == null && For != null)
-                Label = For.GetDisplayNameString();
+            // if (Label == null && For != null)
+                // Label = For.GetDisplayNameString();
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
