@@ -19,7 +19,7 @@ namespace MudBlazor
         public static string GetFullPathOfMember<T>(this Expression<Func<T>> property)
         {
             var resultingString = string.Empty;
-            var p = property.Body as MemberExpression;
+            var p               = property.Body as MemberExpression;
 
             while (p != null)
             {
@@ -27,8 +27,10 @@ namespace MudBlazor
                 {
                     resultingString = p.Member.Name + (resultingString != string.Empty ? "." : string.Empty) + resultingString;
                 }
+
                 p = p.Expression as MemberExpression;
             }
+
             return resultingString;
         }
 
@@ -37,8 +39,14 @@ namespace MudBlazor
         /// </summary>
         public static string GetLabelString<T>(this Expression<Func<T>> expression)
         {
-            var memberExpression = (MemberExpression)expression.Body;
-            var propertyInfo = memberExpression.Expression?.Type.GetProperty(memberExpression.Member.Name);
+            // MudBlazor code
+            // var memberExpression = (MemberExpression)expression.Body;
+            // var propertyInfo = memberExpression.Expression?.Type.GetProperty(memberExpression.Member.Name);
+
+            // SLG code
+            var propertyInfo = CustomHelper.SBS_PropertyInfo(expression);
+            
+            // MudBlazor code
             return propertyInfo?.GetCustomAttributes(typeof(LabelAttribute), true).Cast<LabelAttribute>().FirstOrDefault()?.Name ?? string.Empty;
         }
     }
