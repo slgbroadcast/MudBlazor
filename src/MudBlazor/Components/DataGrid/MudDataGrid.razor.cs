@@ -169,6 +169,11 @@ namespace MudBlazor
         /// </summary>
         [Parameter] public EventCallback<T> CommittedItemChanges { get; set; }
 
+        /// <summary>
+        /// Callback is called when a field changes in the dialog MudForm. Only works in EditMode.Form
+        /// </summary>
+        [Parameter] public EventCallback<FormFieldChangedEventArgs> FormFieldChanged { get; set; }
+
         #endregion
 
         #region Parameters
@@ -598,6 +603,16 @@ namespace MudBlazor
         [Parameter] public string GroupStyle { get; set; }
 
         /// <summary>
+        /// Returns the class that will get joined with GroupClass.
+        /// </summary>
+        [Parameter] public Func<GroupDefinition<T>, string> GroupClassFunc { get; set; }
+
+        /// <summary>
+        /// Returns the class that will get joined with GroupStyle.
+        /// </summary>
+        [Parameter] public Func<GroupDefinition<T>, string> GroupStyleFunc { get; set; }
+
+        /// <summary>
         /// When true, displays the built-in menu icon in the header of the data grid.
         /// </summary>
         [Parameter] public bool ShowMenuIcon { get; set; } = false;
@@ -688,6 +703,14 @@ namespace MudBlazor
             }
         }
 
+        private bool hasHierarchyColumn
+        {
+            get
+            {
+                return RenderedColumns.Any(x => x.Tag?.ToString() == "hierarchy-column");
+            }
+        }
+
         #endregion
 
         [UnconditionalSuppressMessage("Trimming", "IL2046: 'RequiresUnreferencedCodeAttribute' annotations must match across all interface implementations or overrides.", Justification = "Suppressing because we annotating the whole component with RequiresUnreferencedCodeAttribute for information that generic type must be preserved.")]
@@ -695,9 +718,11 @@ namespace MudBlazor
         {
             if (firstRender)
             {
-                _isFirstRendered = true;
-                GroupItems();
                 await InvokeServerLoadFunc();
+                GroupItems();
+                if (ServerData == null)
+                    StateHasChanged();
+                _isFirstRendered = true;
             }
             else
             {
@@ -794,6 +819,7 @@ namespace MudBlazor
             FilterDefinitions.Add(new FilterDefinition<T>
             {
                 Id = Guid.NewGuid(),
+                DataGrid = this,
                 Field = column?.Field,
                 Title = column?.Title,
                 FieldType = column?.FieldType
@@ -819,6 +845,7 @@ namespace MudBlazor
             FilterDefinitions.Add(new FilterDefinition<T>
             {
                 Id = id,
+                DataGrid = this,
                 Field = field,
                 Title = column?.Title,
                 FieldType = column?.FieldType,
@@ -1058,8 +1085,13 @@ namespace MudBlazor
         private async Task InvokeSortUpdates(Dictionary<string, SortDefinition<T>> activeSortDefinitions, HashSet<string> removedSortDefinitions)
         {
             SortChangedEvent?.Invoke(activeSortDefinitions, removedSortDefinitions);
-            await InvokeServerLoadFunc();
-            StateHasChanged();
+
+            if (_isFirstRendered)
+            {
+                await InvokeServerLoadFunc();
+                if (ServerData == null)
+                    StateHasChanged();
+            }
         }
 
         /// <summary>
@@ -1187,7 +1219,8 @@ namespace MudBlazor
             if (GroupedColumn == null)
             {
                 _groups = new List<GroupDefinition<T>>();
-                StateHasChanged();
+                if (_isFirstRendered)
+                    StateHasChanged();
                 return;
             }
 
@@ -1211,7 +1244,8 @@ namespace MudBlazor
             _groups = groupings.Select(x => new GroupDefinition<T>(x,
                 _groupExpansions.Contains(x.Key))).ToList();
 
-            StateHasChanged();
+            if (_isFirstRendered || ServerData != null)
+                StateHasChanged();
         }
 
         internal void ChangedGrouping(Column<T> column)
@@ -1244,15 +1278,16 @@ namespace MudBlazor
             foreach (var group in _groups)
             {
                 group.IsExpanded = true;
+                _groupExpansions.Add(group.Grouping.Key);
             }
         }
 
         public void CollapseAllGroups()
         {
+            _groupExpansions.Clear();
+
             foreach (var group in _groups)
-            {
                 group.IsExpanded = false;
-            }
         }
 
         #endregion

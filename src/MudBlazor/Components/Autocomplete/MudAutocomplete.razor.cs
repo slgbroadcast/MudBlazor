@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 using MudBlazor.Utilities;
 
 namespace MudBlazor
@@ -49,6 +50,13 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
         public string PopoverClass { get; set; }
+
+        /// <summary>
+        /// User class names for the internal list, separated by space
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.ListAppearance)]
+        public string ListClass { get; set; }
 
         /// <summary>
         /// Set the anchor origin point to determen where the popover will open from.
@@ -441,7 +449,7 @@ namespace MudBlazor
 
             _cancellationTokenSrc = new CancellationTokenSource();
         }
-        
+
         private int _itemsReturned; //the number of items returned by the search function
 
         /// <remarks>
@@ -485,7 +493,7 @@ namespace MudBlazor
             }
             catch (Exception e)
             {
-                Console.WriteLine("The search function failed to return results: " + e.Message);
+                Logger.LogWarning("The search function failed to return results: " + e.Message);
             }
 
             _itemsReturned = searched_items.Count();

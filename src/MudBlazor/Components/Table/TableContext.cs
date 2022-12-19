@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using MudBlazor.Extensions;
@@ -27,13 +28,13 @@ namespace MudBlazor
         public abstract void ManagePreviousEditedRow(MudTr row);
     }
 
-    public class TableContext<T> : TableContext
+    public class TableContext<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] T> : TableContext
     {
         private MudTr editedRow;
 
         public IEqualityComparer<T> Comparer //when the comparer value is setup, update the collections with the new comparer
         {
-            get => _comparer; 
+            get => _comparer;
             set
             {
                 _comparer = value;
@@ -53,30 +54,35 @@ namespace MudBlazor
         {
             if (!Table.MultiSelection)
                 return;
-            // update row checkboxes
+            // Update row checkboxes
             foreach (var pair in Rows.ToArray())
             {
                 var row = pair.Value;
                 var item = pair.Key;
-                row.SetChecked(Selection.Contains(item), notify: notify);
+                row.SetChecked(Selection.Contains(item), notify);
             }
-            //update group checkboxes
+            // Update group checkboxes
             foreach (var row in GroupRows)
             {
                 var rowGroupItems = row.Items.ToList();
-                row.SetChecked(Selection.Intersect(rowGroupItems).Count() == rowGroupItems.Count, notify: false);
+                var itemsCount = Selection.Intersect(rowGroupItems).Count();
+                var selectAll = itemsCount == rowGroupItems.Count;
+                var indeterminate = !selectAll && itemsCount > 0 && Selection.Count > 0;
+                row.SetChecked(indeterminate && !selectAll ? null : selectAll, notify: false);
             }
             if (HeaderRows.Count > 0 || FooterRows.Count > 0)
             {
                 var itemsCount = Table.GetFilteredItemsCount();
-                var b = Selection.Count == itemsCount && itemsCount != 0;
-                // update header checkbox
+                var selectAll = Selection.Count == itemsCount;
+                var indeterminate = !selectAll && Selection.Count > 0;
+                var isChecked = selectAll && itemsCount != 0;
+                // Update header checkbox
                 foreach (var header in HeaderRows)
-                    header.SetChecked(b, notify: false);
+                    header.SetChecked(indeterminate ? null : isChecked, notify: false);
 
-                // update footer checkbox
+                // Update footer checkbox
                 foreach (var footer in FooterRows)
-                    footer.SetChecked(b, notify: false);
+                    footer.SetChecked(indeterminate ? null : isChecked, notify: false);
             }
         }
 
