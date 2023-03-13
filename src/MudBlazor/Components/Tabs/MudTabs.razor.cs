@@ -108,11 +108,11 @@ namespace MudBlazor
         public int? MaxHeight { get; set; } = null;
 
         /// <summary>
-        /// Sets the min-wdth of the tabs. 160px by default.
+        /// Sets the min-width of the tabs. 25px by default.
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.Tabs.Appearance)]
-        public string MinimumTabWidth { get; set; } = "160px";
+        public string MinimumTabWidth { get; set; } = "25px";
 
         /// <summary>
         /// Sets the position of the tabs itself.
