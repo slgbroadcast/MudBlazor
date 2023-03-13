@@ -8,6 +8,7 @@ using AngleSharp.Dom;
 using Bunit;
 using FluentAssertions;
 using Microsoft.AspNetCore.Components;
+using MudBlazor.Docs.Examples;
 using MudBlazor.UnitTests.TestComponents;
 using NUnit.Framework;
 
@@ -313,10 +314,10 @@ namespace MudBlazor.UnitTests.Components
             // print the generated html      
             // select elements needed for the test
             var table = comp.FindComponent<MudTable<string>>();
-            var pager = comp.FindComponent<MudSelect<string>>().Instance;
+            var pager = comp.FindComponent<MudSelect<int>>().Instance;
             // change page size
             await table.InvokeAsync(() => table.Instance.SetRowsPerPage(20));
-            pager.Value.Should().Be("20");
+            pager.Value.Should().Be(20);
             comp.FindAll("tr.mud-table-row").Count.Should().Be(20);
             comp.FindAll("div.mud-table-pagination-caption")[^1].TextContent.Trim().Should().Be("1-20 of 59");
             comp.FindAll("button")[0].IsDisabled().Should().Be(true);
@@ -325,7 +326,7 @@ namespace MudBlazor.UnitTests.Components
             comp.FindAll("button")[3].IsDisabled().Should().Be(false);
             // change page size
             await table.InvokeAsync(() => table.Instance.SetRowsPerPage(60));
-            pager.Value.Should().Be("60");
+            pager.Value.Should().Be(60);
             comp.FindAll("tr.mud-table-row").Count.Should().Be(59);
             comp.FindAll("div.mud-table-pagination-caption")[^1].TextContent.Trim().Should().Be("1-59 of 59");
             comp.FindAll("button")[0].IsDisabled().Should().Be(true);
@@ -334,13 +335,37 @@ namespace MudBlazor.UnitTests.Components
             comp.FindAll("button")[3].IsDisabled().Should().Be(true);
             // change page size
             await table.InvokeAsync(() => table.Instance.SetRowsPerPage(10));
-            pager.Value.Should().Be("10");
+            pager.Value.Should().Be(10);
             comp.FindAll("tr.mud-table-row").Count.Should().Be(10);
             comp.FindAll("div.mud-table-pagination-caption")[^1].TextContent.Trim().Should().Be("1-10 of 59");
             comp.FindAll("button")[0].IsDisabled().Should().Be(true);
             comp.FindAll("button")[1].IsDisabled().Should().Be(true);
             comp.FindAll("button")[2].IsDisabled().Should().Be(false);
             comp.FindAll("button")[3].IsDisabled().Should().Be(false);
+        }
+
+        /// <summary>
+        /// Tests that the "All" table pager option shows all items
+        /// </summary>
+        [Test]
+        public async Task TablePagingAllTest()
+        {
+            var comp = Context.RenderComponent<TablePagingTest1>();
+
+            var table = comp.FindComponent<MudTable<string>>();
+            var pager = comp.FindComponent<MudSelect<int>>().Instance;
+
+            comp.FindAll("div.mud-table-pagination-caption")[^1].TextContent.Trim().Should().Be("1-10 of 59"); //check initial value
+            // change page size
+            await table.InvokeAsync(() => table.Instance.SetRowsPerPage(int.MaxValue));
+            pager.Value.Should().Be(int.MaxValue);
+            comp.FindAll("tr.mud-table-row").Count.Should().Be(59);
+            comp.FindAll("div.mud-table-pagination-caption")[^1].TextContent.Trim().Should().Be("1-59 of 59");
+            comp.FindAll("button")[0].IsDisabled().Should().Be(true); //buttons are disabled
+            comp.FindAll("button")[1].IsDisabled().Should().Be(true);
+            comp.FindAll("button")[2].IsDisabled().Should().Be(true);
+            comp.FindAll("button")[3].IsDisabled().Should().Be(true);
+            pager.Value.Should().Be(int.MaxValue);
         }
 
         /// <summary>
@@ -353,7 +378,7 @@ namespace MudBlazor.UnitTests.Components
             // print the generated html
             // select elements needed for the test
             var table = comp.FindComponent<MudTable<int>>();
-            var pager = comp.FindComponent<MudSelect<string>>().Instance;
+            var pager = comp.FindComponent<MudSelect<int>>().Instance;
             // after initial load
             comp.FindAll("tr").Count.Should().Be(4); // three rows + header row
             comp.FindAll("td")[0].TextContent.Trim().Should().Be("1");
@@ -376,7 +401,7 @@ namespace MudBlazor.UnitTests.Components
             comp.FindAll("button")[3].IsDisabled().Should().Be(true);
             // change page size
             await table.InvokeAsync(() => table.Instance.SetRowsPerPage(100));
-            pager.Value.Should().Be("100");
+            pager.Value.Should().Be(100);
             comp.FindAll("div.mud-table-pagination-caption")[^1].TextContent.Trim().Should().Be("1-99 of 99");
             comp.FindAll("button")[0].IsDisabled().Should().Be(true);
             comp.FindAll("button")[1].IsDisabled().Should().Be(true);
@@ -477,6 +502,24 @@ namespace MudBlazor.UnitTests.Components
             table.SelectedItems.Count.Should().Be(0);
         }
 
+        [Test]
+        public void TableMultiSelection_MultiGrouping_DefaultCheckboxStatesTest()
+        {
+            var comp = Context.RenderComponent<TableMultiSelection_MultiGrouping_DefaultCheckboxStatesTest>();
+            var mudTable = comp.Instance.MudTable;
+
+            // All row checkbox states must be false.
+            mudTable.Context.Rows.Count(r => r.Value.IsChecked).Should().Be(0);
+
+            // All grouprow checkbox states must be false.
+            mudTable.Context.GroupRows.Count(r => r.IsChecked.HasValue && !r.IsChecked.Value).Should().Be(14);
+
+            // The headerrow checkbox state must be false.
+            mudTable.Context.HeaderRows.Count(r => r.IsChecked.HasValue && !r.IsChecked.Value).Should().Be(1);
+
+            // The footerrow checkbox state must be false.
+            mudTable.Context.FooterRows.Count(r => r.IsChecked.HasValue && !r.IsChecked.Value).Should().Be(0);
+        }
 
         /// <summary>
         /// checking the header checkbox should select all items (all checkboxes on, all items in SelectedItems)
@@ -979,6 +1022,15 @@ namespace MudBlazor.UnitTests.Components
         }
 
         /// <summary>
+        /// The table should not crash if its ServerData Items are null
+        /// </summary>
+        [Test]
+        public async Task TableServerSideDataNull()
+        {
+            var comp = Context.RenderComponent<TableServerSideDataTest6>();
+        }
+
+        /// <summary>
         /// The table should render the classes and style to the tr using the RowStyleFunc and RowClassFunc parameters
         /// </summary>
         [Test]
@@ -1008,6 +1060,23 @@ namespace MudBlazor.UnitTests.Components
         public class TableRowValidatorTest : TableRowValidator
         {
             public int ControlCount => _formControls.Count;
+        }
+
+        [Test]
+        public async Task TableInlineEdit_SetValidatorModel()
+        {
+            var comp = Context.RenderComponent<TableInlineEditTest>();
+            var validator = comp.Instance.Table.Validator;
+
+            var trs = comp.FindAll("tr");
+            trs.Count.Should().Be(4); // three rows + header row
+
+            trs[1].Click();
+            validator.Model.Should().Be("A");
+            trs[2].Click();
+            validator.Model.Should().Be("B");
+            trs[3].Click();
+            validator.Model.Should().Be("C");
         }
 
         [Test]
@@ -1611,7 +1680,7 @@ namespace MudBlazor.UnitTests.Components
             table.SelectedItems.Count.Should().Be(2);
 
             inputs = comp.FindAll("input").ToArray();
-            inputs.Where(x => x.IsChecked()).Count().Should().Be(3);
+            inputs.Where(x => x.IsChecked()).Count().Should().Be(5);
 
             inputs[1].Change(false);
             table.SelectedItems.Count.Should().Be(0);
