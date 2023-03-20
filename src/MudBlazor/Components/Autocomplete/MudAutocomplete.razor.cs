@@ -220,7 +220,7 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Behavior)]
-        public bool Strict { get; set; } = true;
+        public bool Strict { get; set; } = false;
 
         /// <summary>
         /// Debounce interval in milliseconds.
@@ -331,7 +331,7 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListBehavior)]
-        public bool SelectValueOnTab { get; set; } = false;
+        public bool SelectValueOnTab { get; set; } = true;
 
         /// <summary>
         /// Show clear button.
