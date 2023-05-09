@@ -11,6 +11,30 @@
 else if (Column != null && !Column.Hidden)
 {
     <th @ref=@_headerElement scope="col" class="@_classname" style="@_style" colspan="@Column.HeaderColSpan" @attributes="@UserAttributes">
+        @if (DataGrid.DragDropColumnReordering)
+        {
+            <MudDropZone CanDrop="@((item) => (Column.DragAndDropEnabled ?? true))" ItemIsDisabled="@((item) => !item.DragAndDropEnabled ?? false)" T="Column<T>" Identifier="@(Column.PropertyName ?? $"mud-header-cell-{_id}")">
+
+            </MudDropZone>
+        }
+        else
+        {
+            @TableHeader()
+        }
+        @if (resizable)
+        {
+            <div @onmousedown=OnResizerMouseDown @onmouseover=OnResizerMouseOver @onmouseleave=OnResizerMouseLeave
+                 class="@_resizerClass" style="@_resizerStyle" />
+        }
+    </th>
+}
+
+@code{
+
+    internal RenderFragment TableHeader()
+    {
+        return
+        @<text>
         <span class="column-header">
             @if (sortable)
             {
@@ -61,7 +85,7 @@ else if (Column != null && !Column.Hidden)
                     }
                     else if (showFilterIcon)
                     {
-                        <MudIconButton Class="filter-button" Icon="@Icons.Material.Outlined.FilterAlt" Size="@Size.Small" OnClick="@AddFilter"></MudIconButton>
+                        <MudIconButton Class="filter-button" Icon="@Icons.Material.Outlined.FilterAlt" Size="@Size.Small" OnClick="@AddFilterAsync"></MudIconButton>
                     }
                 }
 
@@ -71,7 +95,7 @@ else if (Column != null && !Column.Hidden)
                         <MudMenuItem Disabled="@(_initialDirection == SortDirection.None)" OnClick="@RemoveSortAsync">Unsort</MudMenuItem>
                         @if (filterable && DataGrid.FilterMode != DataGridFilterMode.ColumnFilterRow)
                         {
-                            <MudMenuItem OnClick="@AddFilter">Filter</MudMenuItem>
+                            <MudMenuItem OnClick="@AddFilterAsync">Filter</MudMenuItem>
                         }
                         @if (hideable)
                         {
@@ -90,14 +114,12 @@ else if (Column != null && !Column.Hidden)
                         }
                     </MudMenu>
                 }
+                @if (DataGrid.DragDropColumnReordering && (Column.DragAndDropEnabled ?? true))
+                {
+                    <MudIconButton Icon="@DataGrid.DragIndicatorIcon" Size="@DataGrid.DragIndicatorSize" Class="drag-icon-options"></MudIconButton>
+                }
             </span>
         </span>
-        @if (resizable)
-        {
-            <div @onmousedown=OnResizerMouseDown @onmouseover=OnResizerMouseOver @onmouseleave=OnResizerMouseLeave
-                class="@_resizerClass" style="@_resizerStyle" />
-        }
-
         @if (filterable && DataGrid.FilterMode == DataGridFilterMode.ColumnFilterMenu)
         {
             <MudOverlay Visible="@_filtersMenuVisible" OnClick="@(() => _filtersMenuVisible = false)" />
@@ -113,12 +135,13 @@ else if (Column != null && !Column.Hidden)
                             @DataGrid.Filter(Column.FilterContext.FilterDefinition, Column)
                         </MudItem>
                         <MudItem xs="12" Class="d-flex justify-end">
-                            <MudButton Class="clear-filter-button" OnClick="@ClearFilter">Clear</MudButton>
-                            <MudButton Class="apply-filter-button" Color="@Color.Primary" OnClick="@ApplyFilter">Filter</MudButton>
+                            <MudButton Class="clear-filter-button" OnClick="@ClearFilterAsync">Clear</MudButton>
+                            <MudButton Class="apply-filter-button" Color="@Color.Primary" OnClick="@ApplyFilterAsync">Filter</MudButton>
                         </MudItem>
                     </MudGrid>
                 }
             </MudPopover>
         }
-    </th>
+        </text>;
+    }
 }

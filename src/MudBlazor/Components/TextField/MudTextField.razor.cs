@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Components;
@@ -126,6 +127,8 @@ namespace MudBlazor
                 return _maskReference.SelectRangeAsync(pos1, pos2);
         }
 
+        [Obsolete($"Use {nameof(ResetValueAsync)} instead. This will be removed in v7")]
+        [ExcludeFromCodeCoverage]
         protected override void ResetValue()
         {
             if (_mask == null)
@@ -133,6 +136,15 @@ namespace MudBlazor
             else
                 _maskReference.Reset();
             base.ResetValue();
+        }
+
+        protected override async Task ResetValueAsync()
+        {
+            if (_mask == null)
+                await InputReference.ResetAsync();
+            else
+                await _maskReference.ResetAsync();
+            await base.ResetValueAsync();
         }
 
         /// <summary>
@@ -188,9 +200,10 @@ namespace MudBlazor
             {
                 var textValue = Converter.Set(value);
                 _mask.SetText(textValue);
-                textValue=Mask.GetCleanText();
+                textValue = Mask.GetCleanText();
                 value = Converter.Get(textValue);
             }
+
             return base.SetValueAsync(value, updateText);
         }
 

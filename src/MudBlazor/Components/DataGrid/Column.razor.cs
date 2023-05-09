@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using MudBlazor.Interfaces;
 using MudBlazor.Utilities;
 
 namespace MudBlazor
@@ -60,6 +60,11 @@ namespace MudBlazor
         [Parameter] public bool? Resizable { get; set; }
 
         /// <summary>
+        /// If set this will override the DragDropColumnReordering parameter of MudDataGrid which applies to all columns.
+        /// Set true to enable reordering for this column. Set false to disable it. 
+        /// </summary>
+        [Parameter] public bool? DragAndDropEnabled { get; set; }
+        /// <summary>
         /// Determines whether this columns data can be filtered. This overrides the Filterable parameter on the DataGrid.
         /// </summary>
         [Parameter] public bool? Filterable { get; set; }
@@ -80,6 +85,13 @@ namespace MudBlazor
         [Parameter] public bool? ShowColumnOptions { get; set; }
 
         [Parameter]
+        public IComparer<object> Comparer
+        {
+            get => _comparer;
+            set => _comparer = value;
+        }
+
+        [Parameter]
         public Func<T, object> SortBy
         {
             get
@@ -91,7 +103,6 @@ namespace MudBlazor
                 _sortBy = value;
             }
         }
-
         [Parameter] public SortDirection InitialDirection { get; set; } = SortDirection.None;
         [Parameter] public string SortIcon { get; set; } = Icons.Material.Filled.ArrowUpward;
 
@@ -113,6 +124,9 @@ namespace MudBlazor
         [Parameter] public bool StickyRight { get; set; }
 
         [Parameter] public RenderFragment<FilterContext<T>> FilterTemplate { get; set; }
+
+        public string Identifier { get; set; }
+        
 
         private CultureInfo _culture;
         /// <summary>
@@ -218,7 +232,7 @@ namespace MudBlazor
         {
             get
             {
-                return FilterOperator.NumericTypes.Contains(PropertyType);
+                return TypeIdentifier.IsNumber(PropertyType);
             }
         }
 
@@ -243,6 +257,7 @@ namespace MudBlazor
         internal int SortIndex { get; set; } = -1;
         internal HeaderCell<T> HeaderCell { get; set; }
 
+        private IComparer<object> _comparer = null;
         private Func<T, object> _sortBy;
         internal Func<T, object> groupBy;
         internal HeaderContext<T> headerContext;
@@ -377,7 +392,7 @@ namespace MudBlazor
         {
             Hidden = !Hidden;
             await HiddenChanged.InvokeAsync(Hidden);
-            DataGrid.ExternalStateHasChanged();
+            ((IMudStateHasChanged)DataGrid).StateHasChanged();
         }
 
 
@@ -393,7 +408,10 @@ namespace MudBlazor
         }
 
         public virtual string PropertyName { get; }
-        protected internal virtual string ContentFormat { get; }
+
+#nullable enable
+        protected internal virtual string? ContentFormat { get; }
+#nullable disable
 
         protected internal abstract object CellContent(T item);
 

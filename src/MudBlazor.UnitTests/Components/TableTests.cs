@@ -8,6 +8,7 @@ using AngleSharp.Dom;
 using Bunit;
 using FluentAssertions;
 using Microsoft.AspNetCore.Components;
+using Moq;
 using MudBlazor.Docs.Examples;
 using MudBlazor.UnitTests.TestComponents;
 using NUnit.Framework;
@@ -232,6 +233,28 @@ namespace MudBlazor.UnitTests.Components
             searchString.Change(string.Empty);
             table.GetFilteredItemsCount().Should().Be(59);
             comp.FindAll("tr").Count.Should().Be(59);
+        }
+
+        [Test]
+        public void TableFilterCachingTest()
+        {
+            var comp = Context.RenderComponent<TableFilterTest1>();
+            // print the generated html      
+            var table = comp.FindComponent<MudTable<string>>().Instance;
+            var searchString = comp.Find("#searchString");
+            table.FilteringRunCount.Should().Be(1);
+            // should return 3 items
+            searchString.Change("Ala");
+            table.FilteringRunCount.Should().Be(2);
+            // no matches
+            searchString.Change("ZZZ");
+            table.FilteringRunCount.Should().Be(3);
+            // should return 1 item
+            searchString.Change("Alaska");
+            table.FilteringRunCount.Should().Be(4);
+            // clear search
+            searchString.Change(string.Empty);
+            table.FilteringRunCount.Should().Be(5);
         }
 
         /// <summary>
@@ -1028,6 +1051,16 @@ namespace MudBlazor.UnitTests.Components
         public async Task TableServerSideDataNull()
         {
             var comp = Context.RenderComponent<TableServerSideDataTest6>();
+        }
+
+        /// <summary>
+        /// The table should not render its NoContent fragment prior to loading server data
+        /// </summary>
+        [Test]
+        public async Task TableServerDataLoadingTest()
+        {
+            var comp = Context.RenderComponent<TableServerDataLoadingTest>();
+            comp.Instance.NoRecordsHasRendered.Should().BeFalse();
         }
 
         /// <summary>
