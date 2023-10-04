@@ -26,7 +26,7 @@
                     else if (!String.IsNullOrEmpty(HelperText))
                     {
                         <div class="me-auto">
-                            @HelperText
+                            @(((MarkupString)HelperText))
                         </div>
                     }
                     @if (!String.IsNullOrEmpty(CounterText))
