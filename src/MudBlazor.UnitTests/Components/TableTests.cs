@@ -118,6 +118,38 @@ namespace MudBlazor.UnitTests.Components
         }
 
         /// <summary>
+        /// Ensure that when the loading switch is enabled,
+        /// a new row appears in the table header without affecting the table body.
+        /// </summary>
+        [Test]
+        public void LoadingSwitchAddsRowToHeaderWithoutAffectingBody()
+        {
+            // Render the component
+            var comp = Context.RenderComponent<TableLoadingTest>();
+
+            // Initial count of header and body rows
+            var initialHeaderRows = comp.FindAll("thead tr");
+            var initialBodyRows = comp.FindAll("tbody tr");
+
+            // Verify initial state: 1 row in the header and 2 rows in the body
+            initialHeaderRows.Count.Should().Be(1);
+            initialBodyRows.Count.Should().Be(2);
+
+            // Toggle the loading switch to the 'loading' state
+            var loadingSwitch = comp.Find("#switch");
+            loadingSwitch.Change(true);
+
+            // Count rows after toggling the switch
+            var updatedHeaderRows = comp.FindAll("thead tr");
+            var updatedBodyRows = comp.FindAll("tbody tr");
+
+            // Verify updated state:
+            // 2 rows in the header (original + loading row) and 2 rows in the body (unchanged)
+            updatedHeaderRows.Count.Should().Be(2);
+            updatedBodyRows.Count.Should().Be(2);
+        }
+
+        /// <summary>
         /// Check if the loading and no records functionnality is working in grouped table.
         /// </summary>
         [Test]
@@ -325,6 +357,19 @@ namespace MudBlazor.UnitTests.Components
             //navigate to specified page
             await table.InvokeAsync(() => table.Instance.NavigateTo(pageIndex));
             comp.FindAll("tr.mud-table-row")[0].TextContent.Should().Be(expectedFirstItem);
+        }
+
+        /// <summary>
+        /// page size option initial value test. Initial value should not be 10 since PageSizeOption is set to be new int[]{8, 16, 32}
+        /// </summary>
+        [Test]
+        public async Task TablePageSizeOptions()
+        {
+            var comp = Context.RenderComponent<TablePageSizeOptionsTest>();
+            // print the generated html      
+            // select elements needed for the test
+            var pager = comp.FindComponent<MudSelect<int>>().Instance;
+            pager.Value.Should().Be(8);
         }
 
         /// <summary>
@@ -1789,6 +1834,29 @@ namespace MudBlazor.UnitTests.Components
             table.Context.GroupRows.Count.Should().Be(4); // 4 categories
             var tr = comp.FindAll("tr").ToArray();
             tr.Length.Should().Be(5); // 1 table header + 4 group headers
+        }
+
+        [Test]
+        public void ExpandAndCollapsAllGroupsTest()
+        {
+            var comp = Context.RenderComponent<TableGroupingTest>();
+            var table = comp.Instance.tableInstance;
+            table.GroupBy = new TableGroupDefinition<TableGroupingTest.RacingCar>(rc => rc.Category, null) { GroupName = "Category", IsInitiallyExpanded = false, Expandable = true };
+            comp.Render();
+
+            // Header only since we have IsInitiallyExpanded = false
+            table.Context.GroupRows.Count.Should().Be(4);
+            comp.FindAll("tr").ToArray().Length.Should().Be(5); // 1 table header + 4 group headers
+
+            // Expand all groups
+            table.ExpandAllGroups();
+            comp.Render();
+            comp.FindAll("tr").ToArray().Length.Should().Be(18); // 1 table header + 4 group headers + 9 item rows + 4 group footers
+
+            // Collapse all groups
+            table.CollapseAllGroups();
+            comp.Render();
+            comp.FindAll("tr").ToArray().Length.Should().Be(5); // 1 table header + 4 group headers
         }
 
         /// <summary>

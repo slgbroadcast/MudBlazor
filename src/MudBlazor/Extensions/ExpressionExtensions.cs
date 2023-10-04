@@ -14,18 +14,16 @@ namespace MudBlazor
         public static string GetFullPathOfMember<T>(this Expression<Func<T>> property)
         {
             var resultingString = string.Empty;
-            var p               = property.Body as MemberExpression;
+            var p = property.Body as MemberExpression;
 
-            while (p != null)
+            while (p is not null)
             {
                 if (p.Expression is MemberExpression)
                 {
                     resultingString = p.Member.Name + (resultingString != string.Empty ? "." : string.Empty) + resultingString;
                 }
-
                 p = p.Expression as MemberExpression;
             }
-
             return resultingString;
         }
 

@@ -3,6 +3,7 @@
 
 <MudElement @bind-Ref="@_elementReference"
             HtmlTag="@HtmlTag"
+            id="@HtmlId"
             Class="@Classname" 
             Style="@Style"
             @attributes="UserAttributes"
@@ -12,7 +13,7 @@
             target="@Target"
             rel="@GetRel()"
             disabled="@GetDisabledState()"
-            id="@HtmlId">
+            ClickPropagation="@ClickPropagation">
     <span class="mud-button-label">
         @if (!string.IsNullOrWhiteSpace(StartIcon))
         {
@@ -21,7 +22,7 @@
             </span>
         }
         @ChildContent
-        @if (!string.IsNullOrWhiteSpace(@EndIcon))
+        @if (!string.IsNullOrWhiteSpace(EndIcon))
         {
             <span class="@EndIconClass">
                 <MudIcon Icon="@EndIcon" Size="@(IconSize ?? Size)" Color="@IconColor" />

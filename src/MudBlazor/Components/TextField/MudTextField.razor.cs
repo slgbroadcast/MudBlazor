@@ -176,7 +176,6 @@ namespace MudBlazor
             _maskReference.OnPaste(text);
         }
 
-
         private IMask _mask = null;
 
         /// <summary>

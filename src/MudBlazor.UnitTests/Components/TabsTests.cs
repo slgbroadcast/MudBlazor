@@ -174,6 +174,17 @@ namespace MudBlazor.UnitTests.Components
             comp.FindAll("p")[^1].MarkupMatches("<p>Panel 1<br>Panel 2<br>Panel 3<br>Panel 1<br></p>");
         }
 
+
+        [Test]
+        public void TabHeaderClassPropagated()
+        {
+            var comp = Context.RenderComponent<MudTabs>();
+            
+            comp.SetParametersAndRender(builder => builder.Add(tabs => tabs.TabHeaderClass, "testA testB"));
+
+            comp.Find(".mud-tabs-toolbar").ClassList.Should().Contain(new[] { "testA", "testB" });
+        }
+
         [Test]
         public void ScrollToItem_NoScrollingNeeded()
         {
@@ -1100,7 +1111,9 @@ namespace MudBlazor.UnitTests.Components
         [Test]
         public async Task ToggleTabsSliderAnimation()
         {
-            var comp = Context.RenderComponent<ToggleTabsSlideAnimationTest>();
+            //The first tab should be active because for the rest the slider position is calculated by JS
+            //and before the calculation the slider is hidden to avoid movement on first load
+            var comp = Context.RenderComponent<ToggleTabsSlideAnimationTest>(p => p.Add(x => x.SelectedTab, 0));
 
             //Toggle DisableSliderAnimation to true
             //Check if style attr contains transform: none
