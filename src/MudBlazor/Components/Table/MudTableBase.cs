@@ -16,7 +16,7 @@ namespace MudBlazor
         internal bool IsEditing => _editingItem != null;
 
         private int _currentPage = 0;
-        private int? _rowsPerPage;
+        internal int? _rowsPerPage;
         private bool _isFirstRendered = false;
 
         protected string Classname =>
@@ -447,6 +447,13 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Table.Behavior)]
         public int OverscanCount { get; set; } = 3;
+
+        /// <summary>
+        /// Gets the size of each item in pixels. Defaults to 50px.
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.Table.Behavior)]
+        public float ItemSize { get; set; } = 50f;
 
         #region --> Obsolete Forwarders for Backwards-Compatiblilty
         /// <summary>

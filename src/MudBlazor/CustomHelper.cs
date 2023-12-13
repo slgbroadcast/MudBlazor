@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -6,7 +7,7 @@ namespace MudBlazor
 {
     public static class CustomHelper
     {
-           public static PropertyInfo SBS_PropertyInfo<T2>(this Expression<T2> expression)
+        public static PropertyInfo SBS_PropertyInfo<T2>(this Expression<T2> expression)
         {
             if (expression is null)
             {
@@ -15,8 +16,7 @@ namespace MudBlazor
 
             MemberExpression memberExpression = SBS_MemberExpression(expression);
 
-            PropertyInfo propertyInfo = memberExpression.Member as PropertyInfo;
-            if (propertyInfo == null)
+            if (memberExpression.Member is not PropertyInfo propertyInfo)
             {
                 throw new ArgumentException($"Expression not a Property: {expression}", nameof(expression));
             }
@@ -34,7 +34,7 @@ namespace MudBlazor
 
             if (memberExpression.Expression is null)
             {
-                throw new ArgumentException($"Expression has no expression: {expression}", nameof(expression));
+                throw new ArgumentException($"MemberExpression has no expression: {expression}", nameof(expression));
             }
 
             Type realType = memberExpression.Expression.Type;
@@ -44,6 +44,17 @@ namespace MudBlazor
             }
 
             PropertyInfo realPropertyInfo = realType.GetProperty(propertyInfo.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            // If the "realType" is an interface which itself does not have the property you are looking for
+            // because it is in a parent interface, then the property is not found.
+            // In this case, the property must be loaded via the interfaces
+            if (realPropertyInfo is null && realType.IsInterface)
+            {
+                realPropertyInfo = realType.GetInterfaces()
+                    .SelectMany(type => type.GetProperties())
+                    .FirstOrDefault(info => info.Name == propertyInfo.Name);
+            }
+
             if (realPropertyInfo is null)
             {
                 throw new ArgumentException($"Cannot get real property info: {expression}", nameof(expression));
@@ -54,6 +65,8 @@ namespace MudBlazor
 
         public static MemberExpression SBS_MemberExpression<T2>(this Expression<T2> expression)
         {
+            ArgumentNullException.ThrowIfNull(expression);
+
             if (expression.Body is MemberExpression memberExpression)
             {
                 return memberExpression;

@@ -499,6 +499,10 @@ namespace MudBlazor
         /// Table will await this func and update based on the returned TableData.
         /// Used only with ServerData
         /// </summary>
+        /// <remarks>
+        /// MudTable will automatically control loading animation visibility if ServerData is set.
+        /// See <see cref="MudTableBase.Loading"/>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Table.Data)]
         public Func<TableState, Task<TableData<T>>> ServerData { get; set; }
@@ -595,6 +599,25 @@ namespace MudBlazor
 
             if (SelectedItemsChanged.HasDelegate)
                 SelectedItemsChanged.InvokeAsync(SelectedItems);
+        }
+
+        public void ExpandAllGroups()
+        {
+            ToggleExpandGroups(expand: true);
+        }
+
+        public void CollapseAllGroups()
+        {
+            ToggleExpandGroups(expand: false);
+        }
+
+        private void ToggleExpandGroups(bool expand)
+        {
+            if (_groupBy is not null)
+            {
+                _groupBy.IsInitiallyExpanded = expand;
+                Context?.GroupRows.Where(gr => gr.GroupDefinition == _groupBy).ToList().ForEach(gr => gr.IsExpanded = _groupBy.IsInitiallyExpanded);
+            }
         }
 
         private string ClearFilterCache()

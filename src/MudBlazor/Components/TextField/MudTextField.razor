@@ -25,7 +25,10 @@
                               @ref="InputReference"
                               @attributes="UserAttributes"
                               InputType="@InputType"
+                              InputMode="@InputMode"
                               Lines="@Lines"
+                              MaxLines="@MaxLines"
+                              AutoGrow="@AutoGrow"
                               Style="@Style"
                               Variant="@Variant"
                               TextUpdateSuppression="@TextUpdateSuppression"
@@ -67,6 +70,7 @@
                              @attributes="UserAttributes"
                              Mask="@_mask"
                              InputType="@InputType"
+                             InputMode="@InputMode"
                              Lines="@Lines"
                              Style="@Style"
                              Variant="@Variant"
@@ -74,7 +78,7 @@
                              Value="@Text"
                              ValueChanged="OnMaskedValueChanged"
                              Placeholder="@Placeholder"
-                            Disabled=@GetDisabledState()
+                             Disabled=@GetDisabledState()
                              DisableUnderLine="@DisableUnderLine"
                              ReadOnly="@GetReadOnlyState()"
                              MaxLength="@MaxLength"
