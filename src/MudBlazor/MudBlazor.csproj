@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net7.0;net8.0</TargetFramework>
+  <!--    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>-->
+    <TargetFrameworks>net8.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -64,11 +65,11 @@
 <!--    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.25" />-->
 <!--  </ItemGroup>-->
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.14" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.14" />
-  </ItemGroup>
+<!--  <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">-->
+<!--    <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.14" />-->
+<!--    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.14" />-->
+<!--    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.14" />-->
+<!--  </ItemGroup>-->
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />

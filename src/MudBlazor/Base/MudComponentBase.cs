@@ -42,7 +42,7 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.ComponentBase.Common)]
-        public string HtmlId { get; set; }
+        public string? HtmlId { get; set; }
 
         /// <summary>
         /// UserAttributes carries all attributes you add to the component that don't match any of its parameters.

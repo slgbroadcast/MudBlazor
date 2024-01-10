@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+// ReSharper disable SuggestVarOrType_SimpleTypes
 
 namespace MudBlazor
 {
     public static class CustomHelper
     {
+        [SuppressMessage("Trimming", "IL2075:\'this\' argument does not satisfy \'DynamicallyAccessedMembersAttribute\' in call to target method. The return value of the source method does not have matching annotations.")]
+        [SuppressMessage("Trimming", "IL2070:\'this\' argument does not satisfy \'DynamicallyAccessedMembersAttribute\' in call to target method. The parameter of method does not have matching annotations.")]
         public static PropertyInfo SBS_PropertyInfo<T2>(this Expression<T2> expression)
         {
             if (expression is null)
