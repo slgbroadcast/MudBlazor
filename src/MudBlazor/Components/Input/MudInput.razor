@@ -87,8 +87,7 @@
              *@
             <div class="@InputClassname"
                 style="@("display:"+(InputType == InputType.Hidden && ChildContent != null ? "inline" : "none"))"
-                @onblur="@OnBlurredAsync" @ref="@_elementReference1"
-            >
+                @onblur="@OnBlurredAsync" @ref="@_elementReference1">
                 @ChildContent
             </div>
         }
@@ -98,8 +97,7 @@
             <div class="@InputClassname"
                  style="@("display:"+(InputType == InputType.Hidden && ChildContent != null ? "inline" : "none"))"
                  tabindex="@(InputType == InputType.Hidden && ChildContent != null ? 0 : -1)"
-                 @onblur="@OnBlurredAsync" @ref="@_elementReference1"
-            >
+                 @onblur="@OnBlurredAsync" @ref="@_elementReference1">
                 @ChildContent
             </div>
         }
