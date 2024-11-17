@@ -215,6 +215,20 @@ public static class MudGlobal
         public static Underline Underline { get; set; } = Underline.Hover;
     }
 
+    public static class MenuDefaults
+    {
+        /// <summary>
+        /// Indicate the default delay time before starting to close after a leave event.
+        /// Unit : ms
+        /// </summary>
+        public static int HoverDelay { get; set; } = 100;
+
+        /// <summary>
+        /// Indicate the default waiting time to prevent closing if a mouse enter event occurs.
+        /// </summary>
+        public static int PreventCloseWaitingTime { get; set; } = 50;
+    }
+
     public static class OverlayDefaults
     {
         /// <summary>
