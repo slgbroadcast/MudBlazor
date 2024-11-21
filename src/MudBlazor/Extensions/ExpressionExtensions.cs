@@ -33,8 +33,7 @@ namespace MudBlazor
         /// </summary>
         public static string GetLabelString<T>(this Expression<Func<T>> expression)
         {
-            // SLG code
-            var propertyInfo = CustomHelper.SBS_PropertyInfo(expression);
+            var propertyInfo = CustomHelper.SBS_PropertyInfo(expression); // SLG code
 
             return propertyInfo?.GetCustomAttributes(typeof(LabelAttribute), true).Cast<LabelAttribute>().FirstOrDefault()?.Name ?? string.Empty;
         }
