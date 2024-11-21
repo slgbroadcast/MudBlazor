@@ -3,7 +3,7 @@
 # Please add MudBlazor Team Overrides at the end
 # of this file.
 
-# top-most EditorConfig file Test
+# top-most EditorConfig file
 root = true
 
 # Don't use tabs for indentation.
