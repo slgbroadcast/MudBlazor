@@ -39,8 +39,9 @@ public partial class SectionContent
             .AddClass($"relative d-flex flex-grow-1 flex-wrap justify-center align-center", !Block)
             .AddClass($"d-block mx-auto", Block)
             .AddClass($"mud-width-full", Block && FullWidth)
-            .AddClass("pa-8", !_hasCode)
-            .AddClass("px-8 pb-8 pt-2", _hasCode)
+            .AddClass("pa-8", !_hasCode && !IsApiSection)
+            .AddClass("px-8 pb-8 pt-2", _hasCode && !IsApiSection)
+            .AddClass("pa-2", IsApiSection)
             .Build();
 
     protected string SourceClassname =>
@@ -61,6 +62,8 @@ public partial class SectionContent
     [Parameter] public string HighLight { get; set; }
     [Parameter] public IEnumerable<CodeFile> Codes { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public bool IsApiSection { get; set; }
 
     private bool _hasCode;
     private string _activeCode;
@@ -147,7 +150,7 @@ public partial class SectionContent
 
     protected virtual async void RunOnTryMudBlazor()
     {
-        string firstFile = "";
+        var firstFile = "";
 
         if (Codes != null)
         {
@@ -164,7 +167,7 @@ public partial class SectionContent
         // Add dialogs for dialog examples
         if (firstFile.StartsWith("Dialog"))
         {
-            var regex = new Regex(@"\Show<(Dialog.*?_Dialog)\>");
+            var regex = ShowDialogRegularExpression();
             var dialogCodeName = regex.Match(codeFiles).Groups[1].Value;
             if (dialogCodeName != string.Empty)
             {
@@ -176,13 +179,13 @@ public partial class SectionContent
         // Data models
         if (codeFiles.Contains("MudBlazor.Examples.Data.Models"))
         {
-            if (Regex.Match(codeFiles, @"\bElement\b").Success)
+            if (ElementRegularExpression().Match(codeFiles).Success)
             {
                 var elementCodeFile = "Element.cs" + (char)31 + Snippets.GetCode("Element");
                 codeFiles = codeFiles + (char)31 + elementCodeFile;
             }
 
-            if (Regex.Match(codeFiles, @"\bServer\b").Success)
+            if (ServerRegularExpression().Match(codeFiles).Success)
             {
                 var serverCodeFile = "Server.cs" + (char)31 + Snippets.GetCode("Server");
                 codeFiles = codeFiles + (char)31 + serverCodeFile;
@@ -195,4 +198,13 @@ public partial class SectionContent
         var url = $"{tryMudBlazorLocation}snippet/{codeFileEncoded}";
         await JsApiService.OpenInNewTabAsync(url);
     }
+
+    [GeneratedRegex(@"\Show<(Dialog.*?_Dialog)\>")]
+    private static partial Regex ShowDialogRegularExpression();
+
+    [GeneratedRegex(@"\bElement\b")]
+    private static partial Regex ElementRegularExpression();
+
+    [GeneratedRegex(@"\bServer\b")]
+    private static partial Regex ServerRegularExpression();
 }

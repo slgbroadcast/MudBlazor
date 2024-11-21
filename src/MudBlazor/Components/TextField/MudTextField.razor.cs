@@ -127,17 +127,6 @@ namespace MudBlazor
                 return _maskReference.SelectRangeAsync(pos1, pos2);
         }
 
-        [Obsolete($"Use {nameof(ResetValueAsync)} instead. This will be removed in v7")]
-        [ExcludeFromCodeCoverage]
-        protected override void ResetValue()
-        {
-            if (_mask == null)
-                InputReference.Reset();
-            else
-                _maskReference.Reset();
-            base.ResetValue();
-        }
-
         protected override async Task ResetValueAsync()
         {
             if (_mask == null)
@@ -236,7 +225,4 @@ namespace MudBlazor
         [Category(CategoryTypes.General.Behavior)]
         public int MaxLines { get; set; }
     }
-
-    [Obsolete("MudTextFieldString is no longer available.", true)]
-    public class MudTextFieldString : MudTextField<string> { }
 }
