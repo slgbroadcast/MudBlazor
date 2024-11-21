@@ -29,8 +29,8 @@ internal class BrowserViewportService : IBrowserViewportService
     private bool _disposed;
     private readonly SemaphoreSlim _semaphore;
     private readonly ResizeListenerInterop _resizeListenerInterop;
-    private readonly ObserverManager<BrowserViewportSubscription, IBrowserViewportObserver> _observerManager;
     private readonly Lazy<DotNetObjectReference<BrowserViewportService>> _dotNetReferenceLazy;
+    private readonly ObserverManager<BrowserViewportSubscription, IBrowserViewportObserver> _observerManager;
 
     private BrowserWindowSize? _latestWindowSize;
     // ReSharper disable once NotAccessedField.Local
@@ -164,6 +164,7 @@ internal class BrowserViewportService : IBrowserViewportService
         try
         {
             await _semaphore.WaitAsync();
+
             var subscription = await RemoveJavaScriptListener(observerId);
             if (subscription is not null)
             {
@@ -272,25 +273,16 @@ internal class BrowserViewportService : IBrowserViewportService
         {
             if (disposing)
             {
-                var jsListenerIds = _observerManager
-                    .Observers
-                    .Keys
-                    .Select(x => x.JavaScriptListenerId)
-                    .Distinct()
-                    .ToArray();
-
-                if (jsListenerIds.Length > 0)
-                {
-                    //https://github.com/MudBlazor/MudBlazor/pull/5367#issuecomment-1258649968
-                    //Fixed in NET8
-                    _ = _resizeListenerInterop.CancelListeners(jsListenerIds);
-                }
                 _observerManager.Clear();
 
                 if (_dotNetReferenceLazy.IsValueCreated)
                 {
                     _dotNetReferenceLazy.Value.Dispose();
                 }
+
+                // https://github.com/MudBlazor/MudBlazor/pull/5367#issuecomment-1258649968
+                // Fixed in NET8
+                _ = _resizeListenerInterop.Dispose();
             }
 
             _disposed = true;

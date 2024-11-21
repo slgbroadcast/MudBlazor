@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using MudBlazor.Extensions;
 using MudBlazor.Interfaces;
 using MudBlazor.Utilities;
 
@@ -246,7 +245,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Menu.PopupBehavior)]
         public RenderFragment ChildContent { get; set; }
-        
+
         /// <summary>
         /// Fired when the menu IsOpen property changes.
         /// </summary>
@@ -285,8 +284,18 @@ namespace MudBlazor
         public void OpenMenu(EventArgs args)
         {
             if (Disabled)
+            {
                 return;
-            if (PositionAtCursor) SetPopoverStyle((MouseEventArgs)args);
+            }
+
+            if (PositionAtCursor)
+            {
+                if (args is MouseEventArgs mouseEventArgs)
+                {
+                    SetPopoverStyle(mouseEventArgs);
+                }
+            }
+
             _isOpen = true;
             StateHasChanged();
             IsOpenChanged.InvokeAsync(_isOpen);

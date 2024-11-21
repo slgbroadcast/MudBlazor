@@ -14,7 +14,8 @@ namespace MudBlazor
         public static string GetFullPathOfMember<T>(this Expression<Func<T>> property)
         {
             var resultingString = string.Empty;
-            var p = property.Body as MemberExpression;
+            // Add handling for validation expressions that refer to non-nullable properties (#8931):
+            var p = (property.Body as MemberExpression ?? (MemberExpression)((UnaryExpression)property.Body).Operand);
 
             while (p is not null)
             {
@@ -32,19 +33,9 @@ namespace MudBlazor
         /// </summary>
         public static string GetLabelString<T>(this Expression<Func<T>> expression)
         {
-            // MudBlazor code
-            // var memberExpression = (MemberExpression)expression.Body;
-
-            // Currently we have no solution for this which is trimming incompatible
-            // A possible solution is to use source gen
-            // #pragma warning disable IL2075
-            // var propertyInfo = memberExpression.Expression?.Type.GetProperty(memberExpression.Member.Name);
-            // #pragma warning restore IL2075
-            
             // SLG code
             var propertyInfo = CustomHelper.SBS_PropertyInfo(expression);
-            
-            // MudBlazor code
+
             return propertyInfo?.GetCustomAttributes(typeof(LabelAttribute), true).Cast<LabelAttribute>().FirstOrDefault()?.Name ?? string.Empty;
         }
     }
