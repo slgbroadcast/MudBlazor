@@ -19,7 +19,7 @@ namespace MudBlazor
     /// <typeparam name="T">The kind of item managed by the grid.</typeparam>
     public partial class HeaderCell<T> : MudComponentBase, IDisposable
     {
-        private Guid _id = Guid.NewGuid();
+        private string _id = Identifier.Create();
 
         /// <summary>
         /// The <see cref="MudDataGrid{T}"/> which contains this header cell.
@@ -305,7 +305,12 @@ namespace MudBlazor
         private async Task OnResizerPointerOver()
         {
             if (!_isResizing)
-                _resizerHeight = await DataGrid?.GetActualHeight();
+            {
+                if (DataGrid is not null)
+                {
+                    _resizerHeight = await DataGrid.GetActualHeight();
+                }
+            }
         }
 
         private void OnResizerPointerLeave()
@@ -400,7 +405,10 @@ namespace MudBlazor
 
         internal async Task ApplyFilterAsync()
         {
-            DataGrid.FilterDefinitions.Add(Column.FilterContext.FilterDefinition);
+            if (DataGrid.FilterDefinitions.All(x => x.Id != Column.FilterContext.FilterDefinition.Id))
+            {
+                DataGrid.FilterDefinitions.Add(Column.FilterContext.FilterDefinition);
+            }
             if (DataGrid.HasServerData)
             {
                 await DataGrid.ReloadServerData();
@@ -415,7 +423,10 @@ namespace MudBlazor
 
         internal async Task ApplyFilterAsync(IFilterDefinition<T> filterDefinition)
         {
-            DataGrid.FilterDefinitions.Add(filterDefinition);
+            if (DataGrid.FilterDefinitions.All(x => x.Id != filterDefinition.Id))
+            {
+                DataGrid.FilterDefinitions.Add(filterDefinition);
+            }
             if (DataGrid.HasServerData)
             {
                 await DataGrid.ReloadServerData();
@@ -430,7 +441,8 @@ namespace MudBlazor
 
         internal async Task ApplyFiltersAsync(IEnumerable<IFilterDefinition<T>> filterDefinitions)
         {
-            DataGrid.FilterDefinitions.AddRange(filterDefinitions);
+            var filterDefinitionsToApply = filterDefinitions.Where(x => DataGrid.FilterDefinitions.All(y => y.Id != x.Id)).ToArray();
+            DataGrid.FilterDefinitions.AddRange(filterDefinitionsToApply);
             if (DataGrid.HasServerData)
             {
                 await DataGrid.ReloadServerData();
@@ -479,27 +491,38 @@ namespace MudBlazor
 
         private async Task CheckedChangedAsync(bool value)
         {
-            await DataGrid?.SetSelectAllAsync(value);
+            if (DataGrid is not null)
+            {
+                await DataGrid.SetSelectAllAsync(value);
+            }
         }
 
         internal async Task HideColumnAsync()
         {
-            if (Column != null)
+            if (Column is not null)
             {
                 await Column.HideAsync();
                 ((IMudStateHasChanged)DataGrid).StateHasChanged();
             }
         }
 
-        internal async Task GroupColumn()
+        internal async Task GroupColumnAsync()
         {
-            await Column?.SetGrouping(true);
+            if (Column is not null)
+            {
+                await Column.SetGroupingAsync(true);
+            }
+
             DataGrid.DropContainerHasChanged();
         }
 
-        internal async Task UngroupColumn()
+        internal async Task UngroupColumnAsync()
         {
-            await Column?.SetGrouping(false);
+            if (Column is not null)
+            {
+                await Column.SetGroupingAsync(false);
+            }
+
             DataGrid.DropContainerHasChanged();
         }
 
@@ -516,7 +539,7 @@ namespace MudBlazor
         /// </summary>
         public void Dispose()
         {
-            if (DataGrid != null)
+            if (DataGrid is not null)
             {
                 DataGrid.SortChangedEvent -= OnGridSortChanged;
                 DataGrid.SelectedAllItemsChangedEvent -= OnSelectedAllItemsChanged;

@@ -31,9 +31,14 @@ namespace MudBlazor
                 .AddClass(Class)
                 .Build();
 
+        protected string HeaderClassname =>
+            new CssBuilder("mud-expand-panel-header")
+                .AddClass(HeaderClass)
+                .Build();
+
         protected string PanelContentClassname =>
             new CssBuilder("mud-expand-panel-content")
-                .AddClass("mud-expand-panel-disable-gutters", !Gutters && Parent?.Gutters != true)
+                .AddClass("mud-expand-panel-gutters", Gutters || Parent?.Gutters == true)
                 .AddClass("mud-expand-panel-dense", Dense || Parent?.Dense == true)
                 .Build();
 
@@ -46,6 +51,13 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.ExpansionPanel.Appearance)]
         public int? MaxHeight { get; set; }
+
+        /// <summary>
+        /// User class names, separated by space.
+        /// </summary>
+        [Parameter]
+        [Category(CategoryTypes.ExpansionPanel.Appearance)]
+        public string? HeaderClass { get; set; }
 
         /// <summary>
         /// The content within the title area.

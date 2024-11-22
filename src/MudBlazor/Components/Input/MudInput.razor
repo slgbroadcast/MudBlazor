@@ -26,7 +26,7 @@
                 Style="@InputStyle"
                 rows="@Lines"
                 @attributes="UserAttributes"
-                id="@InputIdState.Value"
+                id="@InputElementId"
                 type="@InputTypeString"
                 placeholder="@Placeholder"
                 disabled=@GetDisabledState()
@@ -58,8 +58,8 @@
         <input class="@InputClassname"
                 @ref="ElementReference"
                 @attributes="UserAttributes"
-                Style="@InputStyle"
-                id="@InputIdState.Value"
+               Style="@InputStyle"
+                id="@InputElementId"
                 type="@InputTypeString"
                 value="@_internalText"
                 @oninput="OnInput"
@@ -115,7 +115,7 @@
                     Icon="@ClearIcon"
                     Size="@Size.Small"
                     OnClick="@ClearButtonClickHandlerAsync"
-                    aria-label="@Localizer[nameof(LanguageResource.MudInput_Clear)]"
+                    aria-label="@Localizer[LanguageResource.MudInput_Clear]"
                     tabindex="-1"
                 />
     }
@@ -145,7 +145,7 @@
                        @onclick="OnIncrement"
                        Disabled="@(GetDisabledState() || GetReadOnlyState())"
                        tabindex="-1"
-                       aria-label="@Localizer[nameof(LanguageResource.MudInput_Increment)]">
+                       aria-label="@Localizer[LanguageResource.MudInput_Increment]">
                 <MudIcon Icon="@NumericUpIcon" Size="@GetButtonSize()" />
             </MudButton>
 
@@ -153,7 +153,7 @@
                        @onclick="OnDecrement"
                        Disabled="@(GetDisabledState() || GetReadOnlyState())"
                        tabindex="-1"
-                       aria-label="@Localizer[nameof(LanguageResource.MudInput_Decrement)]">
+                       aria-label="@Localizer[LanguageResource.MudInput_Decrement]">
                 <MudIcon Icon="@NumericDownIcon" Size="@GetButtonSize()" />
             </MudButton>
         </div>

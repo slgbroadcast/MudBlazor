@@ -50,7 +50,7 @@ public partial class SectionContent
             .AddClass("show-code", _hasCode && ShowCode)
             .Build();
 
-    private string _snippetId = "_" + Guid.NewGuid().ToString()[..8];
+    private string _snippetId = Identifier.Create();
 
     [Parameter] public string Class { get; set; }
     [Parameter] public bool DarkenBackground { get; set; }
@@ -107,8 +107,7 @@ public partial class SectionContent
     private async Task CopyTextToClipboard()
     {
         var code = Snippets.GetCode(Code);
-        if (code == null)
-            code = await DocsJsApiService.GetInnerTextByIdAsync(_snippetId);
+        code ??= await DocsJsApiService.GetInnerTextByIdAsync(_snippetId);
         await JsApiService.CopyToClipboardAsync(code ?? $"Snippet '{Code}' not found!");
     }
 
@@ -122,9 +121,12 @@ public partial class SectionContent
             {
                 var read = reader.ReadToEnd();
 
+                // Ensure the code uses spaces for identation regardless of the formatting within the source code.
+                read = read.Replace("\t", "    ");
+
                 if (!string.IsNullOrEmpty(HighLight))
                 {
-                    if (HighLight.Contains(","))
+                    if (HighLight.Contains(','))
                     {
                         var highlights = HighLight.Split(",");
 
@@ -150,15 +152,14 @@ public partial class SectionContent
 
     protected virtual async void RunOnTryMudBlazor()
     {
-        var firstFile = "";
-
-        if (Codes != null)
+        string firstFile;
+        if (Codes == null)
         {
-            firstFile = Codes.FirstOrDefault().code;
+            firstFile = Code;
         }
         else
         {
-            firstFile = Code;
+            firstFile = Codes.FirstOrDefault().code;
         }
 
         // We use a separator that wont be in code so we can send 2 files later
@@ -168,7 +169,7 @@ public partial class SectionContent
         if (firstFile.StartsWith("Dialog"))
         {
             var regex = ShowDialogRegularExpression();
-            var dialogCodeName = regex.Match(codeFiles).Groups[1].Value;
+            var dialogCodeName = regex.Match(codeFiles).Groups["dialogname"].Value;
             if (dialogCodeName != string.Empty)
             {
                 var dialogCodeFile = dialogCodeName + ".razor" + (char)31 + Snippets.GetCode(dialogCodeName);
@@ -199,7 +200,7 @@ public partial class SectionContent
         await JsApiService.OpenInNewTabAsync(url);
     }
 
-    [GeneratedRegex(@"\Show<(Dialog.*?_Dialog)\>")]
+    [GeneratedRegex(@"Show(?:Async)?<(?<dialogname>Dialog.*?_Dialog)>")]
     private static partial Regex ShowDialogRegularExpression();
 
     [GeneratedRegex(@"\bElement\b")]

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using MudBlazor.Interfaces;
 using MudBlazor.Services;
 using MudBlazor.State;
@@ -15,10 +12,10 @@ namespace MudBlazor
     /// </summary>
     /// <seealso cref="MudDrawerContainer"/>
     /// <seealso cref="MudDrawerHeader"/>
-    public partial class MudDrawer : MudComponentBase, INavigationEventReceiver, IBrowserViewportObserver, IDisposable
+    public partial class MudDrawer : MudComponentBase, INavigationEventReceiver, IBrowserViewportObserver, IAsyncDisposable
     {
         private double _height;
-        private int _disposeCount;
+        private bool _disposed;
         private readonly ParameterState<bool> _rtlState;
         private readonly ParameterState<bool> _openState;
         private readonly ParameterState<Breakpoint> _breakpointState;
@@ -163,6 +160,19 @@ namespace MudBlazor
         public bool Overlay { get; set; } = true;
 
         /// <summary>
+        /// Sets a value indicating whether the overlay should automatically close when clicked.
+        /// </summary>
+        /// <remarks>
+        /// If the <see cref="Variant"/> is set to <see cref="DrawerVariant.Temporary"/>, an overlay will be displayed. 
+        /// When this property is <c>true</c>, clicking on the overlay will close it automatically. 
+        /// When this property is <c>false</c>, the overlay will not close automatically.
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.Drawer.Behavior)]
+        public bool OverlayAutoClose { get; set; } = true;
+
+        /// <summary>
         /// For mini drawers, opens this drawer when the pointer hovers over it.
         /// </summary>
         /// <remarks>
@@ -269,7 +279,10 @@ namespace MudBlazor
             if (firstRender)
             {
                 await UpdateHeightAsync();
-                await BrowserViewportService.SubscribeAsync(this, fireImmediately: true);
+                if (!_disposed)
+                {
+                    await BrowserViewportService.SubscribeAsync(this, fireImmediately: true);
+                }
 
                 _isRendered = true;
                 if (string.IsNullOrWhiteSpace(Height) && Anchor is Anchor.Bottom or Anchor.Top)
@@ -281,24 +294,17 @@ namespace MudBlazor
             await base.OnAfterRenderAsync(firstRender);
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (Interlocked.Increment(ref _disposeCount) == 1)
+            if (!_disposed)
             {
-                if (disposing)
-                {
-                    DrawerContainer?.Remove(this);
+                _disposed = true;
 
-                    if (IsJSRuntimeAvailable)
-                    {
-                        BrowserViewportService.UnsubscribeAsync(this).CatchAndLog();
-                    }
+                DrawerContainer?.Remove(this);
+
+                if (IsJSRuntimeAvailable)
+                {
+                    await BrowserViewportService.UnsubscribeAsync(this);
                 }
             }
         }

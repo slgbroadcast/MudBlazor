@@ -18,7 +18,7 @@
                      Margin="@Margin"
                      Required="@Required"
                      CounterText="@GetCounterText()"
-                     ForId="@InputIdState.Value">
+                     ForId="@InputElementId">
         <InputContent>
             <CascadingValue Name="SubscribeToParentForm" Value="false" IsFixed="true">
                 <MudInput T="string"
@@ -27,6 +27,7 @@
                           InputType="@InputType.Text"
                           Style="@Style"
                           Variant="@Variant"
+                          Typo="@Typo"
                           Label="@Label"
                           TextUpdateSuppression="@TextUpdateSuppression"
                           Value="@Text"
@@ -62,8 +63,9 @@
                           OnDecrement="@Decrement"
                           OnMouseWheel="@OnMouseWheel"
                           Clearable="@Clearable"
+                          ClearIcon="@ClearIcon"
                           ShrinkLabel="@ShrinkLabel"
-                          InputId="@InputIdState.Value"
+                          InputId="@InputElementId"
                           Required="@Required" />
             </CascadingValue>
         </InputContent>
