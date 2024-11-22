@@ -39,7 +39,9 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Behavior)]
+#pragma warning disable BL0007
         public InputType InputType
+#pragma warning restore BL0007
         {
             get
             {
@@ -79,7 +81,6 @@ namespace MudBlazor
                             _inputType = InputType.Url;
                             InputMode = InputMode.url;
                             break;
-
                         default:
                             break;
                     }
@@ -158,7 +159,7 @@ namespace MudBlazor
         [MemberNotNullWhen(true, nameof(_mask), nameof(Mask), nameof(_maskReference))]
         private bool HasMask => _mask is not null;
 
-        [Parameter] public string InputStyle { get; set; }
+        [Parameter] public string? InputStyle { get; set; }
         
         /// <inheritdoc />
         public override ValueTask FocusAsync()

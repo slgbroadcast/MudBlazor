@@ -110,7 +110,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public bool Ripple { get; set; } = true;
+    public bool Ripple { get; set; } = false;
 
     /// <summary>
     /// Displays a shadow.
