@@ -23,7 +23,7 @@ public partial class MudToolBar : MudComponentBase
     /// </summary>
     [Parameter]
     [Category(CategoryTypes.ToolBar.Appearance)]
-    public bool Dense { get; set; }
+    public bool Dense { get; set; } = true;
 
     /// <summary>
     /// Adds left and right padding.
