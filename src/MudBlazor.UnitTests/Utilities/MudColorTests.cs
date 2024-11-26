@@ -210,19 +210,12 @@ namespace MudBlazor.UnitTests.Utilities
                 var darkenColor = color.ColorRgbDarken();
 
                 //use as reference
-                var colorFromRGB = new MudColor(color.R, color.G, color.B, color.A);
-                var darkenColorFromRGB = colorFromRGB.ColorRgbDarken();
+                var colorFromRgb = new MudColor(color.R, color.G, color.B, color.A);
+                var darkenColorFromRgb = colorFromRgb.ColorRgbDarken();
 
-                darkenColor.R.Should().Be(darkenColorFromRGB.R);
-                darkenColor.G.Should().Be(darkenColorFromRGB.G);
-                darkenColor.B.Should().Be(darkenColorFromRGB.B);
-
-                //MudColor implicitCasted = input;
-
-                //implicitCasted.R.Should().Be(r);
-                //implicitCasted.G.Should().Be(g);
-                //implicitCasted.B.Should().Be(b);
-                //implicitCasted.A.Should().Be(alpha);
+                darkenColor.R.Should().Be(darkenColorFromRgb.R);
+                darkenColor.G.Should().Be(darkenColorFromRgb.G);
+                darkenColor.B.Should().Be(darkenColorFromRgb.B);
             }
         }
 
@@ -837,18 +830,29 @@ namespace MudBlazor.UnitTests.Utilities
         [Test]
         public void Equals_DifferentObjectType()
         {
+            // Arrange
             MudColor color1 = new(10, 20, 50, 255);
-            color1.Equals(124).Should().BeFalse();
+            object obj = 124;
+
+            // Act
+            var equals = color1.Equals(obj);
+
+            // Assert
+            equals.Should().BeFalse();
         }
 
         [Test]
-        [TestCase(130, 150, 240, 255, 775)]
-        [TestCase(71, 88, 99, 100, 358)]
-        public void GetHashCode(byte r, byte g, byte b, byte a, int expectedValue)
+        public void GetHashCodeTest()
         {
-            MudColor color = new(r, g, b, a);
+            // Arrange
+            var color1 = new MudColor(130, 150, 240, 255);
+            var color2 = new MudColor(130, 150, 240, 255);
 
-            color.GetHashCode().Should().Be(expectedValue);
+            // Act
+            var areEqualGetHashCode = color1.GetHashCode() == color2.GetHashCode();
+
+            // Assert
+            areEqualGetHashCode.Should().BeTrue();
         }
 
         [Test]
@@ -932,6 +936,105 @@ namespace MudBlazor.UnitTests.Utilities
 
             actualUint.Should().Be(expectedUint);
             mudColor.UInt32.Should().Be(mudColor.UInt32);
+        }
+
+        [Test]
+        [TestCase("rgba(130,150,240,0.52)", 130, 150, 240, 132)]
+        [TestCase("rgb(71,88,99)", 71, 88, 99, 255)]
+        [TestCase("#8296f0ff", 130, 150, 240, 255)]
+        [TestCase("#475863", 71, 88, 99, 255)]
+        public void ParseTest(string value, byte r, byte g, byte b, byte a)
+        {
+            // Arrange
+            var expected = new MudColor(r, g, b, a);
+
+            // Act
+            var result = MudColor.Parse(value);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Test]
+        [TestCase("rgba(130,150,240,0.52,50)")]
+        [TestCase("rgb(71,88,99,63)")]
+        [TestCase("#8296f0ffff")]
+        public void ParseIncorrectFormatTest(string value)
+        {
+            // Act & Arrange
+            var act = () => MudColor.Parse(value);
+
+            // Assert
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Test]
+        [TestCase("rgba(130,150,240,0.52)", 130, 150, 240, 132)]
+        [TestCase("rgb(71,88,99)", 71, 88, 99, 255)]
+        [TestCase("#8296f0ff", 130, 150, 240, 255)]
+        [TestCase("#475863", 71, 88, 99, 255)]
+        public void TryParseTest(string value, byte r, byte g, byte b, byte a)
+        {
+            // Arrange
+            var expected = new MudColor(r, g, b, a);
+
+            // Act
+            var success = MudColor.TryParse(value, out var result);
+
+            // Assert
+            success.Should().BeTrue();
+            result.Should().Be(expected);
+        }
+
+        [Test]
+        [TestCase("rgba(130,150,240,0.52,50)")]
+        [TestCase("rgb(71,88,99, 63)")]
+        [TestCase("#8296f0ffff")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void TryParseIncorrectFormatTest(string value)
+        {
+            // Act
+            var success = MudColor.TryParse(value, out var result);
+
+            // Assert
+            success.Should().BeFalse();
+            result.Should().BeNull();
+        }
+
+        [Test]
+        public void DeconstructTest()
+        {
+            // Arrange
+            var mudColor = new MudColor(255, 128, 64, 192);
+
+            // Act
+            var (r, g, b, a) = mudColor;
+            var (r2, g2, b2) = mudColor;
+
+            // Assert
+            r.Should().Be(255);
+            g.Should().Be(128);
+            b.Should().Be(64);
+            a.Should().Be(192);
+            r2.Should().Be(255);
+            g2.Should().Be(128);
+            b2.Should().Be(64);
+        }
+
+        [Test]
+        public void ExplicitMudColorToStringCastTest()
+        {
+            // Arrange
+            var mudColor1 = new MudColor(71, 88, 99, 1);
+
+            // Act
+            var result1 = (string)mudColor1;
+            var result2 = (string)(MudColor)null;
+
+            // Act & Assert
+            result1.Should().Be("#47586301");
+            result2.Should().Be(string.Empty);
         }
 
         private static readonly object[] _multiGradientTestCases =
