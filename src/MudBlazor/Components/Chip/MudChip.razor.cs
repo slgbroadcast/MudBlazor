@@ -222,15 +222,15 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
     [Category(CategoryTypes.Chip.Appearance)]
     public string? CloseIcon { get; set; }
 
-        /// <summary>
-        /// Displays a ripple effect when this chip is clicked.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>null</c>.
-        /// </remarks>
-        [Parameter]
-        [Category(CategoryTypes.Chip.Appearance)]
-        public bool? Ripple { get; set; } = false;
+    /// <summary>
+    /// Displays a ripple effect when this chip is clicked.
+    /// </summary>
+    /// <remarks>
+    /// Defaults to <c>null</c>.
+    /// </remarks>
+    [Parameter]
+    [Category(CategoryTypes.Chip.Appearance)]
+    public bool? Ripple { get; set; } = false;
 
     /// <summary>
     /// The content within this chip.

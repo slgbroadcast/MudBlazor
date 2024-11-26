@@ -8,7 +8,7 @@ namespace MudBlazor
 #nullable enable
     public partial class MudNavGroup : MudComponentBase
     {
-        private readonly ParameterState<bool> _expandedState;
+        protected readonly ParameterState<bool> _expandedState; // TODO SBS-3165: Auf private stellen
         private readonly ParameterState<bool> _disabledState;
         private readonly ParameterState<NavigationContext?> _parentNavigationContextState;
         private NavigationContext _navigationContext = new(false, true);
@@ -136,7 +136,8 @@ namespace MudBlazor
             UpdateNavigationContext();
         }
 
-        private void UpdateNavigationContext()
+        // TODO SBS-3165: Auf private stellen
+        protected void UpdateNavigationContext()
             => _navigationContext = _navigationContext with
             {
                 Disabled = _disabledState.Value || _parentNavigationContextState.Value is { Disabled: true },
