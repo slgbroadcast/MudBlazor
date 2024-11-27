@@ -1067,7 +1067,7 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudSimpleTable.Elevation"/>
         public static int Elevation { set; get; } = 1;
-        
+
         /// <summary>
         /// The default hover setting for <see cref="MudSimpleTable"/>.
         /// </summary>
