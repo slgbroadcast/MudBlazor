@@ -27,7 +27,6 @@ public static class MudGlobal
         /// </remarks>
         public static bool Ripple { get; set; } = true;
 
-
         /// <summary>
         /// The default setting to use compact padding for all components.
         /// </summary>
@@ -35,8 +34,6 @@ public static class MudGlobal
         /// Defaults to <c>false</c>.
         /// </remarks>
         public static bool Dense { get; set; }
-
-        public static Variant? Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     // TODO: Is IconButton ButtonDefault or an independent class?  => public bool Ripple { get; set; } = true;
@@ -48,15 +45,6 @@ public static class MudGlobal
     public static class AlertDefaults
     {
         /// <summary>
-        /// The default ripple effect setting for <see cref="MudBooleanInput{T}"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>true</c>.
-        /// </remarks>
-        /// <seealso cref="MudBooleanInput{T}.Ripple"/>
-        public static bool Ripple { get; set; } = All.Ripple;
-
-        /// <summary>
         /// The default setting to use compact padding for <see cref="MudAlert"/>.
         /// </summary>
         /// <remarks>
@@ -64,6 +52,15 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudAlert.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
+
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudAlert"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudAlert.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     /// <summary>
@@ -100,6 +97,40 @@ public static class MudGlobal
         public static bool Strict { get; set; } = true;
         public static bool SelectValueOnTab { get; set; }
     }
+
+    #region Avatar
+
+    /// <summary>
+    /// Defaults for the <see cref="MudAvatar"/> component.
+    /// </summary>
+    public static class AvatarDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudAvatar"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Filled" />.
+        /// </remarks>
+        /// <seealso cref="MudAvatar.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Filled;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudAvatarGroup"/> component.
+    /// </summary>
+    public static class AvatarGroupDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudAvatarGroup"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Filled" />.
+        /// </remarks>
+        /// <seealso cref="MudAvatarGroup.MaxVariant"/>
+        public static Variant MaxVariant { get; set; } = MudBlazor.Variant.Filled;
+    }
+
+    #endregion
 
     /// <summary>
     /// Defaults for the <see cref="MudBooleanInput{T}"/> component.
@@ -143,8 +174,9 @@ public static class MudGlobal
         /// The default variant for <see cref="MudButton"/>.
         /// </summary>
         /// <remarks>
-        /// Defaults to <see cref="Variant.Text"/>.
+        /// Defaults to <see cref="MudBlazor.Variant.Text"/>.
         /// </remarks>
+        /// <seealso cref="MudButton.Variant"/>
         public static Variant Variant { get; set; } = Variant.Text;
 
         /// <summary>
@@ -164,6 +196,22 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudBaseButton.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+
+    /// <summary>
+    /// Defaults for the <see cref="MudIconButton"/> component.
+    /// </summary>
+    public static class IconButtonDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudIconButton.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     /// <summary>
@@ -188,12 +236,21 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudToggleIconButton.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
+
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudToggleIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudToggleIconButton.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     /// <summary>
     /// Defaults for the <see cref="MudButtonGroup"/> component.
     /// </summary>
-    public static class ButtoGroupDefaults
+    public static class ButtonGroupDefaults
     {
         /// <summary>
         /// The default drop shadow setting for <see cref="MudButtonGroup"/>.
@@ -203,6 +260,15 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudButtonGroup.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
+
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudButtonGroup"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudButtonGroup.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     #endregion
@@ -255,7 +321,6 @@ public static class MudGlobal
         public static bool Dense { get; set; } = All.Dense;
     }
 
-
     /// <summary>
     /// Defaults for the <see cref="MudChip{T}"/> component.
     /// </summary>
@@ -269,6 +334,15 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudChip{T}.Ripple"/>
         public static bool? Ripple { get; set; }
+
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudChip{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>null</c>.
+        /// </remarks>
+        /// <seealso cref="MudChip{T}.Variant"/>
+        public static Variant? Variant { get; set; }
     }
 
     /// <summary>
@@ -284,8 +358,16 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudChipSet{T}.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
-    }
 
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudChipSet{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Filled" />.
+        /// </remarks>
+        /// <seealso cref="MudChipSet{T}.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Filled;
+    }
 
     /// <summary>
     /// Defaults for the <see cref="MudDataGrid{T}"/> component.
@@ -438,7 +520,14 @@ public static class MudGlobal
     /// </summary>
     public static class FieldDefaults
     {
-        public static Variant Variant { get; set; } = Variant.Text;
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudField"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudField.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     /// <summary>
@@ -473,7 +562,7 @@ public static class MudGlobal
         /// The default variant for <see cref="MudBaseInput{T}"/>.
         /// </summary>
         /// <remarks>
-        /// Defaults to <see cref="Variant.Text"/>.
+        /// Defaults to <see cref="MudBlazor.Variant.Text"/>.
         /// </remarks>
         public static Variant Variant { get; set; } = Variant.Text;
 
@@ -484,6 +573,40 @@ public static class MudGlobal
         /// Defaults to <see cref="Margin.None"/>.
         /// </remarks>
         public static Margin Margin { get; set; } = Margin.None;
+    }
+
+    #region Input
+
+    /// <summary>
+    /// Defaults for the <see cref="MudInputLabel"/> component.
+    /// </summary>
+    public static class InputLabelDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudInputLabel"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudInputLabel.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Defaults for the <see cref="MudInputControl"/> component.
+    /// </summary>
+    public static class InputControlDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudInputControl"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudInputControl.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     /// <summary>
@@ -601,6 +724,15 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudMenu.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
+
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudMenu.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     /// <summary>
@@ -672,6 +804,30 @@ public static class MudGlobal
     }
 
     /// <summary>
+    /// Defaults for the <see cref="MudPagination"/> component.
+    /// </summary>
+    public static class PaginationDefaults
+    {
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudPagination"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudPagination.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
+
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudPagination"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudPagination.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+    }
+
+    /// <summary>
     /// Defaults for the <see cref="MudPicker{T}"/> component.
     /// </summary>
     public static class PickerDefaults
@@ -692,23 +848,16 @@ public static class MudGlobal
         /// </remarks>
         public static TimeSpan Duration { get; set; } = TransitionDefaults.Duration;
 
-        public static Variant Variant { get; set; } = Variant.Text;
-    }
-
-    /// <summary>
-    /// Defaults for the <see cref="MudPagination"/> component.
-    /// </summary>
-    public static class PaginationDefaults
-    {
         /// <summary>
-        /// The default drop shadow setting for <see cref="MudPagination"/>.
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudPicker{T}"/>.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>true</c>.
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
-        /// <seealso cref="MudPagination.DropShadow"/>
-        public static bool DropShadow { get; set; } = All.DropShadow;
+        /// <seealso cref="MudPicker{T}.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
     }
+
 
     /// <summary>
     /// Defaults for the <see cref="MudPopover"/> component.
@@ -732,25 +881,6 @@ public static class MudGlobal
         /// <seealso cref="MudPopover.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
     }
-
-    #region Select
-
-    /// <summary>
-    /// Defaults for the <see cref="MudSelect{T}"/> component.
-    /// </summary>
-    public static class SelectDefaults
-    {
-        /// <summary>
-        /// The default setting to use compact padding for <see cref="MudSelect{T}"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>false</c>.
-        /// </remarks>
-        /// <seealso cref="MudSelect{T}.Dense"/>
-        public static bool Dense { get; set; } = All.Dense;
-    }
-
-    #endregion
 
 
     /// <summary>
@@ -801,23 +931,41 @@ public static class MudGlobal
     }
 
 
-    /// <summary>
-    /// Defaults for the <see cref="MudSimpleTable"/> component.
-    /// </summary>
-    public static class SimpleTable
-    {
-        public static int Elevation { set; get; } = 1;
-        public static bool Hover { get; set; }
+    #region Select
 
+    /// <summary>
+    /// Defaults for the <see cref="MudSelect{T}"/> component.
+    /// </summary>
+    public static class SelectDefaults
+    {
         /// <summary>
-        /// The default setting to use compact padding for <see cref="MudSimpleTable"/>.
+        /// The default setting to use compact padding for <see cref="MudSelect{T}"/>.
         /// </summary>
         /// <remarks>
         /// Defaults to <c>false</c>.
         /// </remarks>
-        /// <seealso cref="MudSimpleTable.Dense"/>
+        /// <seealso cref="MudSelect{T}.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
     }
+
+    #endregion
+
+
+    /// <summary>
+    /// Defaults for the <see cref="MudSlider{T}"/> component.
+    /// </summary>
+    public static class SliderDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudSlider{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudSlider{T}.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+    }
+
 
     /// <summary>
     /// Defaults for the <see cref="MudSwitch{T}"/> component.
@@ -886,6 +1034,24 @@ public static class MudGlobal
         /// Defaults to <c>false</c>.
         /// </remarks>
         /// <seealso cref="MudTable{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudSimpleTable"/> component.
+    /// </summary>
+    public static class SimpleTable
+    {
+        public static int Elevation { set; get; } = 1;
+        public static bool Hover { get; set; }
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudSimpleTable"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudSimpleTable.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
     }
 
@@ -1027,6 +1193,25 @@ public static class MudGlobal
         /// <seealso cref="MudTabs.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
     }
+
+    #region Timeline
+
+    /// <summary>
+    /// Defaults for the <see cref="MudTimelineItem"/> component.
+    /// </summary>
+    public static class TimelineItemDefaults
+    {
+        /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudTimelineItem"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Outlined" />.
+        /// </remarks>
+        /// <seealso cref="MudTimelineItem.Variant"/>
+        public static Variant Variant { get; set; } = MudBlazor.Variant.Outlined;
+    }
+
+    #endregion
 
 
     /// <summary>
