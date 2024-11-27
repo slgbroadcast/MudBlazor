@@ -222,7 +222,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListBehavior)]
-        public int? MaxItems { get; set; } = 10;
+        public int? MaxItems { get; set; } = MudBlazor.MudGlobal.AutoCompleteDefaults.MaxItems;
 
         /// <summary>
         /// The minimum number of characters typed to initiate a search.
@@ -263,7 +263,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Behavior)]
-        public bool Strict { get; set; } = true;
+        public bool Strict { get; set; } = MudBlazor.MudGlobal.AutoCompleteDefaults.Strict;
 
         /// <summary>
         /// The debounce interval, in milliseconds.
@@ -409,7 +409,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListBehavior)]
-        public bool SelectValueOnTab { get; set; }
+        public bool SelectValueOnTab { get; set; } = MudBlazor.MudGlobal.AutoCompleteDefaults.SelectValueOnTab;
 
         /// <summary>
         /// Additionally, opens the list when focus is received on the input element; otherwise only opens on click.

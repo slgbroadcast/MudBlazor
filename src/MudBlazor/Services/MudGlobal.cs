@@ -9,6 +9,9 @@ namespace MudBlazor;
 /// </summary>
 public static class MudGlobal
 {
+    /// <summary>
+    /// Default values for all components.
+    /// </summary>
     public static class All
     {
         /// <summary>
@@ -36,7 +39,6 @@ public static class MudGlobal
         public static bool Dense { get; set; }
     }
 
-    // TODO: Is IconButton ButtonDefault or an independent class?  => public bool Ripple { get; set; } = true;
     // TODO: MudRadio uses Ripple from MudBooleanInput. Should i set MudBooleanInput.Ripple to virtual and overwrite the default value in MudRadio ?
 
     /// <summary>
@@ -60,7 +62,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudAlert.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -92,9 +94,31 @@ public static class MudGlobal
         /// <seealso cref="MudAutocomplete{T}.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
 
-
+        /// <summary>
+        /// The default for the maximum number of items to display for <see cref="MudAutocomplete{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>10</c>.  A value of <c>null</c> will display all items.
+        /// </remarks>
+        /// <seealso cref="MudAutocomplete{T}.MaxItems"/>
         public static int? MaxItems { get; set; } = 10;
+
+        /// <summary>
+        /// The default strict setting for <see cref="MudAutocomplete{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudAutocomplete{T}.Strict"/>
         public static bool Strict { get; set; } = true;
+
+        /// <summary>
+        /// The default value setting when pressing tab for <see cref="MudAutocomplete{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudAutocomplete{T}.SelectValueOnTab"/>
         public static bool SelectValueOnTab { get; set; }
     }
 
@@ -112,7 +136,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Filled" />.
         /// </remarks>
         /// <seealso cref="MudAvatar.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Filled;
+        public static Variant Variant { get; set; } = Variant.Filled;
     }
 
     /// <summary>
@@ -127,7 +151,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Filled" />.
         /// </remarks>
         /// <seealso cref="MudAvatarGroup.MaxVariant"/>
-        public static Variant MaxVariant { get; set; } = MudBlazor.Variant.Filled;
+        public static Variant MaxVariant { get; set; } = Variant.Filled;
     }
 
     #endregion
@@ -211,7 +235,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudIconButton.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -244,7 +268,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudToggleIconButton.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -268,7 +292,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudButtonGroup.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     #endregion
@@ -309,7 +333,6 @@ public static class MudGlobal
     public static class CheckBoxDefaults
     {
         // public static bool Ripple { get; set; } = true; // TODO
-
 
         /// <summary>
         /// The default setting to use compact padding for <see cref="MudCheckBox{T}"/>.
@@ -366,7 +389,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Filled" />.
         /// </remarks>
         /// <seealso cref="MudChipSet{T}.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Filled;
+        public static Variant Variant { get; set; } = Variant.Filled;
     }
 
     /// <summary>
@@ -527,7 +550,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudField.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -589,7 +612,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudInputLabel.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     #endregion
@@ -606,7 +629,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudInputControl.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -732,7 +755,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudMenu.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -824,7 +847,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudPagination.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
     /// <summary>
@@ -855,7 +878,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudPicker{T}.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
 
@@ -963,7 +986,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Text" />.
         /// </remarks>
         /// <seealso cref="MudSlider{T}.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Text;
+        public static Variant Variant { get; set; } = Variant.Text;
     }
 
 
@@ -1208,7 +1231,7 @@ public static class MudGlobal
         /// Defaults to <see cref="MudBlazor.Variant.Outlined" />.
         /// </remarks>
         /// <seealso cref="MudTimelineItem.Variant"/>
-        public static Variant Variant { get; set; } = MudBlazor.Variant.Outlined;
+        public static Variant Variant { get; set; } = Variant.Outlined;
     }
 
     #endregion
