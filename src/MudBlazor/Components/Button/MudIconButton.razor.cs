@@ -79,7 +79,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Variant Variant { get; set; } = MudBlazor.MudGlobal.IconButtonDefaults.Variant;
+        public Variant Variant { get; set; } = MudGlobal.IconButtonDefaults.Variant;
 
         /// <summary>
         /// The custom content within this button.

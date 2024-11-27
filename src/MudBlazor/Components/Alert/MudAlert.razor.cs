@@ -112,7 +112,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Alert.Appearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.AlertDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.AlertDefaults.Dense;
 
         /// <summary>
         /// Gets or sets whether no icon is displayed.
@@ -142,7 +142,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Alert.Appearance)]
-        public Variant Variant { get; set; } = MudBlazor.MudGlobal.AlertDefaults.Variant;
+        public Variant Variant { get; set; } = MudGlobal.AlertDefaults.Variant;
 
         /// <summary>
         /// Gets or sets the content within the alert.

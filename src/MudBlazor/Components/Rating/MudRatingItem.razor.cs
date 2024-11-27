@@ -55,7 +55,7 @@ namespace MudBlazor
         /// Defaults to <c>true</c>.
         /// </remarks>
         [Parameter]
-        public bool Ripple { get; set; } = MudBlazor.MudGlobal.RatingItemDefaults.Ripple;
+        public bool Ripple { get; set; } = MudGlobal.RatingItemDefaults.Ripple;
 
         /// <summary>
         /// If true, the controls will be disabled.

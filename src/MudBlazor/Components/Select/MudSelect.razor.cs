@@ -201,7 +201,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.SelectDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.SelectDefaults.Dense;
 
         /// <summary>
         /// The Open Select Icon

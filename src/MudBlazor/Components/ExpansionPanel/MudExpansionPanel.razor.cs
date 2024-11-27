@@ -107,7 +107,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ExpansionPanel.Appearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.ExpansionPanelDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.ExpansionPanelDefaults.Dense;
 
         /// <summary>
         /// Adds left and right padding.

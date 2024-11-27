@@ -66,7 +66,7 @@ public partial class MudAppBar : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.AppBar.Appearance)]
-    public bool Dense { get; set; } = MudBlazor.MudGlobal.AppBarDefaults.Dense;
+    public bool Dense { get; set; } = MudGlobal.AppBarDefaults.Dense;
 
     /// <summary>
     /// Adds left and right padding to this appbar.

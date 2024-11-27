@@ -150,7 +150,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Menu.Appearance)]
-        public Variant Variant { get; set; } = MudBlazor.MudGlobal.MenuDefaults.Variant;
+        public Variant Variant { get; set; } = MudGlobal.MenuDefaults.Variant;
 
         /// <summary>
         /// Applies compact vertical padding to all menu items.
@@ -160,7 +160,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Menu.PopupAppearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.MenuDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.MenuDefaults.Dense;
 
         /// <summary>
         /// Expands this menu to the same width as its parent.
@@ -260,7 +260,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Menu.Appearance)]
-        public bool Ripple { get; set; } = MudBlazor.MudGlobal.MenuDefaults.Ripple;
+        public bool Ripple { get; set; } = MudGlobal.MenuDefaults.Ripple;
 
         /// <summary>
         /// Displays a drop shadow under the activator button.

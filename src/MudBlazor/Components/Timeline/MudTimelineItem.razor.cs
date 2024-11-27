@@ -48,7 +48,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Timeline.Dot)]
-        public Variant Variant { get; set; } = MudBlazor.MudGlobal.TimelineItemDefaults.Variant;
+        public Variant Variant { get; set; } = MudGlobal.TimelineItemDefaults.Variant;
 
         /// <summary>
         /// User styles, applied to the lineItem dot.

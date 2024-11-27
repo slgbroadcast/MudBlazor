@@ -222,7 +222,6 @@ public static class MudGlobal
         public static bool Ripple { get; set; } = All.Ripple;
     }
 
-
     /// <summary>
     /// Defaults for the <see cref="MudIconButton"/> component.
     /// </summary>
@@ -803,7 +802,6 @@ public static class MudGlobal
         public static bool Ripple { get; set; } = All.Ripple;
     }
 
-
     /// <summary>
     /// Defaults for the <see cref="MudOverlay"/> component.
     /// </summary>
@@ -953,7 +951,6 @@ public static class MudGlobal
         public static bool Ripple { get; set; } = All.Ripple;
     }
 
-
     #region Select
 
     /// <summary>
@@ -973,7 +970,6 @@ public static class MudGlobal
 
     #endregion
 
-
     /// <summary>
     /// Defaults for the <see cref="MudSlider{T}"/> component.
     /// </summary>
@@ -989,7 +985,6 @@ public static class MudGlobal
         public static Variant Variant { get; set; } = Variant.Text;
     }
 
-
     /// <summary>
     /// Defaults for the <see cref="MudSwitch{T}"/> component.
     /// </summary>
@@ -997,7 +992,6 @@ public static class MudGlobal
     {
         // public static bool Ripple { get; set; } = true; TODO
     }
-
 
     /// <summary>
     /// Defaults for the <see cref="MudStack"/> component.
@@ -1065,7 +1059,22 @@ public static class MudGlobal
     /// </summary>
     public static class SimpleTable
     {
+        /// <summary>
+        /// The default size of the drop shadow for <see cref="MudSimpleTable"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>1</c>.
+        /// </remarks>
+        /// <seealso cref="MudSimpleTable.Elevation"/>
         public static int Elevation { set; get; } = 1;
+        
+        /// <summary>
+        /// The default hover setting for <see cref="MudSimpleTable"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudSimpleTable.Hover"/>
         public static bool Hover { get; set; }
 
         /// <summary>
@@ -1096,7 +1105,6 @@ public static class MudGlobal
     }
 
     #endregion
-
 
     /// <summary>
     /// Defaults for the <see cref="MudTabs"/> component.
@@ -1235,7 +1243,6 @@ public static class MudGlobal
     }
 
     #endregion
-
 
     /// <summary>
     /// Defaults for the <see cref="MudToolBar"/> component.

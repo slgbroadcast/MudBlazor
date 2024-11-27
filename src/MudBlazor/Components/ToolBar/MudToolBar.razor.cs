@@ -26,7 +26,7 @@ public partial class MudToolBar : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.ToolBar.Appearance)]
-    public bool Dense { get; set; } = MudBlazor.MudGlobal.ToolBarDefaults.Dense;
+    public bool Dense { get; set; } = MudGlobal.ToolBarDefaults.Dense;
 
     /// <summary>
     /// Adds left and right padding.

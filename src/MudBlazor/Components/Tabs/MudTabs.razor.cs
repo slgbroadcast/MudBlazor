@@ -173,7 +173,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Tabs.Appearance)]
-        public bool Ripple { get; set; } = MudBlazor.MudGlobal.TabDefaults.Ripple;
+        public bool Ripple { get; set; } = MudGlobal.TabDefaults.Ripple;
 
         /// <summary>
         /// If true, displays slider animation

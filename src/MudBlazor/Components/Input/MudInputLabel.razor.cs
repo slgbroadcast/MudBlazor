@@ -50,7 +50,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Variant.Text"/>.
         /// </remarks>
         [Parameter]
-        public Variant Variant { get; set; } = MudBlazor.MudGlobal.InputLabelDefaults.Variant;
+        public Variant Variant { get; set; } = MudGlobal.InputLabelDefaults.Variant;
 
         /// <summary>
         /// The amount of vertical spacing to apply.

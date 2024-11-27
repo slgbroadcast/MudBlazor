@@ -103,7 +103,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Table.Appearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.TableDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.TableDefaults.Dense;
 
         /// <summary>
         /// Highlights rows when hovering over them.

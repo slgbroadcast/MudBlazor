@@ -93,7 +93,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public Variant Variant { get; set; } = MudBlazor.MudGlobal.ButtonGroupDefaults.Variant;
+        public Variant Variant { get; set; } = MudGlobal.ButtonGroupDefaults.Variant;
 
         /// <summary>
         /// If true, the button group will take up 100% of available width.

@@ -83,7 +83,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Variant Variant { get; set; } = MudBlazor.MudGlobal.ToggleIconButtonDefaults.Variant;
+    public Variant Variant { get; set; } = MudGlobal.ToggleIconButtonDefaults.Variant;
 
     /// <summary>
     /// An alternative variant to use in the toggled state.
@@ -110,7 +110,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public bool Ripple { get; set; } = MudBlazor.MudGlobal.ToggleIconButtonDefaults.Ripple;
+    public bool Ripple { get; set; } = MudGlobal.ToggleIconButtonDefaults.Ripple;
 
     /// <summary>
     /// Displays a shadow.

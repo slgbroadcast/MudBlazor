@@ -176,7 +176,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Ripple { get; set; } = MudBlazor.MudGlobal.ToggleGroupDefaults.Ripple;
+        public bool Ripple { get; set; } = MudGlobal.ToggleGroupDefaults.Ripple;
 
         /// <summary>
         /// The size of the items in the toggle group.

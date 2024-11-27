@@ -146,7 +146,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.TreeView.Appearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.TreeViewDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.TreeViewDefaults.Dense;
 
         /// <summary>
         /// Setting a height will allow to scroll the TreeView. If not set, it will try to grow in height.
@@ -193,7 +193,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.TreeView.Appearance)]
-        public bool Ripple { get; set; } = MudBlazor.MudGlobal.TreeViewDefaults.Ripple;
+        public bool Ripple { get; set; } = MudGlobal.TreeViewDefaults.Ripple;
 
         /// <summary>
         /// Tree items that will be rendered using the Item

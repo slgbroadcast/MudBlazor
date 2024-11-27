@@ -108,7 +108,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Rating.Appearance)]
-        public bool Ripple { get; set; } = MudBlazor.MudGlobal.RatingDefaults.Ripple;
+        public bool Ripple { get; set; } = MudGlobal.RatingDefaults.Ripple;
 
         /// <summary>
         /// If true, the controls will be disabled.

@@ -70,7 +70,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public bool Dense { get; set; } = MudBlazor.MudGlobal.CheckBoxDefaults.Dense;
+        public bool Dense { get; set; } = MudGlobal.CheckBoxDefaults.Dense;
 
         /// <summary>
         /// The icon to display for a checked state.
