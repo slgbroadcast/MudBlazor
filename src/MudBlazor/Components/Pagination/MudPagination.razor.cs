@@ -111,7 +111,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.PaginationDefaults.Variant;
 
         /// <summary>
         /// The color of the selected page button.

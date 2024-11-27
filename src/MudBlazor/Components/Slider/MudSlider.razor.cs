@@ -151,9 +151,12 @@ namespace MudBlazor
         /// <summary>
         /// The variant to use.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.SliderDefaults.Variant;
 
         /// <summary>
         /// Displays the value over the slider thumb.

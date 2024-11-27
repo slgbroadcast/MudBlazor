@@ -297,7 +297,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.PickerDefaults.Variant;
 
         /// <summary>
         /// The location of the <see cref="AdornmentIcon"/> for the input.

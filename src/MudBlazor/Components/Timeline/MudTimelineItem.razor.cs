@@ -43,9 +43,12 @@ namespace MudBlazor
         /// <summary>
         /// Variant of the dot.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Outlined" />.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Timeline.Dot)]
-        public Variant Variant { get; set; } = Variant.Outlined;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.TimelineItemDefaults.Variant;
 
         /// <summary>
         /// User styles, applied to the lineItem dot.
