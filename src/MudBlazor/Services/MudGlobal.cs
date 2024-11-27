@@ -9,6 +9,51 @@ namespace MudBlazor;
 /// </summary>
 public static class MudGlobal
 {
+    public static class All
+    {
+        public static bool DropShadow { get; set; } = true;
+        public static bool Ripple { get; set; } = true;
+        public static bool? Dense { get; set; }
+        public static Variant? Variant { get; set; } = MudBlazor.Variant.Text;
+    }
+
+    // TODO: Is IconButton ButtonDefault or an independent class?  => public bool Ripple { get; set; } = true;
+
+    /// <summary>
+    /// Defaults for the <see cref="MudAlert"/> component.
+    /// </summary>
+    public static class AlertDefaults
+    {
+        public static bool Dense { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudAutocomplete{T}"/> component.
+    /// </summary>
+    public static class AutoCompleteDefaults
+    {
+        public static int? MaxItems { get; set; } = 10;
+        public static bool Strict { get; set; } = true;
+        public static bool SelectValueOnTab { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudBooleanInput{T}"/> component.
+    /// </summary>
+    public static class BooleanInputDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudBooleanInput{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudBooleanInput{T}.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+    #region Buttons
+
     /// <summary>
     /// Defaults for the <see cref="MudButton"/> component.
     /// </summary>
@@ -37,7 +82,66 @@ public static class MudGlobal
         /// Defaults to <see cref="Variant.Text"/>.
         /// </remarks>
         public static Variant Variant { get; set; } = Variant.Text;
+
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudBaseButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudBaseButton.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
+
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudBaseButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudBaseButton.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
     }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudToggleIconButton"/> component.
+    /// </summary>
+    public static class ToggleIconButtonDefaults
+    {
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudToggleIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudToggleIconButton.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
+
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudToggleIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudToggleIconButton.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudButtonGroup"/> component.
+    /// </summary>
+    public static class ButtoGroupDefaults
+    {
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudButtonGroup"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudButtonGroup.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
+    }
+
+    #endregion
 
     /// <summary>
     /// Defaults for the <see cref="MudCard"/> component.
@@ -68,6 +172,55 @@ public static class MudGlobal
         /// </remarks>
         public static bool Outlined { get; set; }
     }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudCheckBox{T}"/> component.
+    /// </summary>
+    public static class CheckBoxDefaults
+    {
+        public static bool Ripple { get; set; } = true;
+        public static bool Dense { get; set; }
+    }
+
+
+    /// <summary>
+    /// Defaults for the <see cref="MudChip{T}"/> component.
+    /// </summary>
+    public static class ChipDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudChip{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>null</c>.
+        /// </remarks>
+        /// <seealso cref="MudChip{T}.Ripple"/>
+        public static bool? Ripple { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudChipSet{T}"/> component.
+    /// </summary>
+    public static class ChipSetDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudChipSet{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>. Can be overridden by setting <see cref="ChipDefaults.Ripple"/>.
+        /// </remarks>
+        /// <seealso cref="MudChipSet{T}.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudDrawerHeader"/> component.
+    /// </summary>
+    public static class DrawerHeaderDefaults
+    {
+        public static bool Dense { get; set; }
+    }
+
 
     /// <summary>
     /// Defaults for the <see cref="MudDataGrid{T}"/> component.
@@ -170,6 +323,31 @@ public static class MudGlobal
     }
 
     /// <summary>
+    /// Defaults for the <see cref="MudExpansionPanel"/> component.
+    /// </summary>
+    public static class ExpansionPanelDefaults
+    {
+        public static bool Dense { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudExpansionPanels"/> component.
+    /// </summary>
+    public static class ExpansionPanelsDefaults
+    {
+        public static bool Dense { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudField"/> component.
+    /// </summary>
+    public static class FieldDefaults
+    {
+        public static Variant Variant { get; set; } = Variant.Text;
+    }
+
+
+    /// <summary>
     /// Defaults for the <see cref="MudGrid"/> component.
     /// </summary>
     public static class GridDefaults
@@ -245,6 +423,31 @@ public static class MudGlobal
     }
 
     /// <summary>
+    /// Defaults for the <see cref="MudList{T}"/> component.
+    /// </summary>
+    public static class ListDefaults
+    {
+        public static bool Dense { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudListItem{T}"/> component.
+    /// </summary>
+    public static class ListItemDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudListItem{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudListItem{T}.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+        
+        public static bool Dense { get; set; }
+    }
+
+    /// <summary>
     /// Defaults for the <see cref="MudMenu"/> component.
     /// </summary>
     public static class MenuDefaults
@@ -259,7 +462,27 @@ public static class MudGlobal
         /// Indicate the default waiting time to prevent closing if a mouse enter event occurs.
         /// </summary>
         public static int PreventCloseWaitingTime { get; set; } = 50;
+
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudMenu.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
+
+        public static bool Dense { get; set; }
     }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudNavGroup"/> component.
+    /// </summary>
+    public static class NavGroupDefaults
+    {
+        public static bool Ripple { get; set; }
+    }
+
 
     /// <summary>
     /// Defaults for the <see cref="MudOverlay"/> component.
@@ -303,6 +526,23 @@ public static class MudGlobal
         /// Defaults to <see cref="TransitionDefaults.Duration"/>.
         /// </remarks>
         public static TimeSpan Duration { get; set; } = TransitionDefaults.Duration;
+
+        public static Variant Variant { get; set; } = Variant.Text;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudPagination"/> component.
+    /// </summary>
+    public static class PaginationDefaults
+    {
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudPagination"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudPagination.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
     }
 
     /// <summary>
@@ -317,7 +557,70 @@ public static class MudGlobal
         /// Defaults to <c>8</c>.
         /// </remarks>
         public static int Elevation { get; set; } = 8;
+
+        /// <summary>
+        /// The default drop shadow setting for <see cref="MudPopover"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudPopover.DropShadow"/>
+        public static bool DropShadow { get; set; } = All.DropShadow;
     }
+
+
+    /// <summary>
+    /// Defaults for the <see cref="MudSelectItem{T}"/> component.
+    /// </summary>
+    public static class SelectItemDefaults
+    {
+        public static bool Ripple { get; set; } = true;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudRadio{T}"/> component.
+    /// </summary>
+    public static class RadioDefaults
+    {
+        public static bool Dense { get; set; }
+        public static bool Ripple { get; set; } = true;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudRating"/> component.
+    /// </summary>
+    public static class RatingDefaults
+    {
+        public static bool Ripple { get; set; } = true;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudRatingItem"/> component.
+    /// </summary>
+    public static class RatingItemDefaults
+    {
+        public static bool Ripple { get; set; } = true;
+    }
+
+
+    /// <summary>
+    /// Defaults for the <see cref="MudSimpleTable"/> component.
+    /// </summary>
+    public static class SimpleTable
+    {
+        public static int Elevation { set; get; } = 1;
+        public static bool Hover { get; set; }
+        public static bool Dense { get; set; }
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudSwitch{T}"/> component.
+    /// </summary>
+    public static class SwitchDefaults
+    {
+        public static bool Ripple { get; set; } = true;
+    }
+
 
     /// <summary>
     /// Defaults for the <see cref="MudStack"/> component.
@@ -348,6 +651,15 @@ public static class MudGlobal
         /// Maximum is <c>20</c>.
         /// </remarks>
         public static int Spacing { get; set; } = 3;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudTable{T}"/> component.
+    /// </summary>
+    public static class TableDefaults
+    {
+        public static bool Dense { get; set; }
+        public static bool Ripple { get; set; } = true;
     }
 
     /// <summary>
@@ -458,6 +770,17 @@ public static class MudGlobal
         /// Defaults to <c>false</c>. When <c>true</c>, the effects will be applied to the container as well.
         /// </remarks>
         public static bool ApplyEffectsToContainer { get; set; }
+
+        public static bool Ripple { get; set; } = true;
+    }
+
+
+    /// <summary>
+    /// Defaults for the <see cref="MudToolBar"/> component.
+    /// </summary>
+    public static class ToolBarDefaults
+    {
+        public static bool Dense { get; set; }
     }
 
     /// <summary>
@@ -474,6 +797,14 @@ public static class MudGlobal
         /// The default transition time for <see cref="MudTooltip"/>.
         /// </summary>
         public static TimeSpan Duration { get; set; } = TransitionDefaults.Duration;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudTreeView{T}"/> component.
+    /// </summary>
+    public static class TreeViewDefaults
+    {
+        public static bool Dense { get; set; }
     }
 
     /// <summary>

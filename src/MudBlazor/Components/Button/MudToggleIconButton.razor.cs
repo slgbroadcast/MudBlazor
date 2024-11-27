@@ -110,7 +110,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public bool Ripple { get; set; } = true;
+    public bool Ripple { get; set; } = MudBlazor.MudGlobal.ToggleIconButtonDefaults.Ripple;
 
     /// <summary>
     /// Displays a shadow.
@@ -120,7 +120,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public bool DropShadow { get; set; } = true;
+    public bool DropShadow { get; set; } = MudGlobal.ToggleIconButtonDefaults.DropShadow;
 
     /// <summary>
     /// Disables interaction with the button.

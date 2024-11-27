@@ -162,7 +162,7 @@ public partial class MudChipSet<T> : MudComponentBase, IDisposable
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
-    public bool Ripple { get; set; } = true;
+    public bool Ripple { get; set; } = MudBlazor.MudGlobal.ChipSetDefaults.Ripple;
 
     /// <summary>
     /// Uses the theme border radius for chips in this set.

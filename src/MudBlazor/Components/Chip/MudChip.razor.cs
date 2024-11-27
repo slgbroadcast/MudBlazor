@@ -231,7 +231,7 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
-    public bool? Ripple { get; set; }
+    public bool? Ripple { get; set; } = MudBlazor.MudGlobal.ChipDefaults.Ripple;
 
     /// <summary>
     /// The content within this chip.

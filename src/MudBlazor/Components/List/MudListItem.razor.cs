@@ -130,7 +130,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudBlazor.MudGlobal.ListItemDefaults.Ripple;
 
         /// <summary>
         /// The icon to display for this list item.

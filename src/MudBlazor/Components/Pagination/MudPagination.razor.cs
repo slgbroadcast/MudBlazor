@@ -151,7 +151,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public bool DropShadow { get; set; } = MudGlobal.PaginationDefaults.DropShadow;
 
         /// <summary>
         /// Prevents the user from clicking page buttons.

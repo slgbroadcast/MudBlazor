@@ -63,7 +63,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public bool DropShadow { get; set; } = MudGlobal.ButtoGroupDefaults.DropShadow;
 
         /// <summary>
         /// The color of all buttons in this group.
