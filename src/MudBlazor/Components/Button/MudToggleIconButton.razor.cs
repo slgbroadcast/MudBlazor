@@ -83,7 +83,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Variant Variant { get; set; } = Variant.Text;
+    public Variant Variant { get; set; } = MudBlazor.MudGlobal.ToggleIconButtonDefaults.Variant;
 
     /// <summary>
     /// An alternative variant to use in the toggled state.

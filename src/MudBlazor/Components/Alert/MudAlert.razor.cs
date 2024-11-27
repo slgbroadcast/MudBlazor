@@ -142,7 +142,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Alert.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.AlertDefaults.Variant;
 
         /// <summary>
         /// Gets or sets the content within the alert.

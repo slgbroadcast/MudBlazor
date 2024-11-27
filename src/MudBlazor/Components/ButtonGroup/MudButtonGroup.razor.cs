@@ -63,7 +63,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public bool DropShadow { get; set; } = MudGlobal.ButtoGroupDefaults.DropShadow;
+        public bool DropShadow { get; set; } = MudGlobal.ButtonGroupDefaults.DropShadow;
 
         /// <summary>
         /// The color of all buttons in this group.
@@ -93,7 +93,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.ButtonGroupDefaults.Variant;
 
         /// <summary>
         /// If true, the button group will take up 100% of available width.

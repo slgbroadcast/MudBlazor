@@ -85,7 +85,7 @@ public partial class MudChipSet<T> : MudComponentBase, IDisposable
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
-    public Variant Variant { get; set; } = Variant.Filled;
+    public Variant Variant { get; set; } = MudBlazor.MudGlobal.ChipSetDefaults.Variant;
 
     /// <summary>
     /// The default color for all chips in this set.

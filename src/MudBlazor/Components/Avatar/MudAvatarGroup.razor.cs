@@ -109,7 +109,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.AvatarGroup.Appearance)]
-        public Variant MaxVariant { get; set; } = Variant.Filled;
+        public Variant MaxVariant { get; set; } = MudBlazor.MudGlobal.AvatarGroupDefaults.MaxVariant;
 
         /// <summary>
         /// The maximum allowed avatars to display.

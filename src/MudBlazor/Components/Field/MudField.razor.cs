@@ -124,7 +124,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Field.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudBlazor.MudGlobal.FieldDefaults.Variant;
 
         /// <summary>
         /// Prevents the user from interacting with this field.

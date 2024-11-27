@@ -157,7 +157,7 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
-    public Variant? Variant { get; set; }
+    public Variant? Variant { get; set; } = MudBlazor.MudGlobal.ChipDefaults.Variant;
 
     /// <summary>
     /// The avatar content to display inside the chip.
