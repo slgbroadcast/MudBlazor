@@ -21,9 +21,12 @@ public partial class MudToolBar : MudComponentBase
     /// <summary>
     /// Uses compact padding.
     /// </summary>
+    /// <remarks>
+    /// Defaults to <c>false</c>.
+    /// </remarks>
     [Parameter]
     [Category(CategoryTypes.ToolBar.Appearance)]
-    public bool Dense { get; set; }
+    public bool Dense { get; set; } = MudGlobal.ToolBarDefaults.Dense;
 
     /// <summary>
     /// Adds left and right padding.

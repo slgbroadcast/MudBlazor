@@ -82,7 +82,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public bool DropShadow { get; set; } = MudGlobal.PopoverDefaults.DropShadow;
 
         /// <summary>
         /// The amount of drop shadow to apply.

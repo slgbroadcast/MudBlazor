@@ -85,7 +85,7 @@ public partial class MudChipSet<T> : MudComponentBase, IDisposable
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
-    public Variant Variant { get; set; } = Variant.Filled;
+    public Variant Variant { get; set; } = MudGlobal.ChipSetDefaults.Variant;
 
     /// <summary>
     /// The default color for all chips in this set.
@@ -162,7 +162,7 @@ public partial class MudChipSet<T> : MudComponentBase, IDisposable
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
-    public bool Ripple { get; set; } = true;
+    public bool Ripple { get; set; } = MudGlobal.ChipSetDefaults.Ripple;
 
     /// <summary>
     /// Uses the theme border radius for chips in this set.
