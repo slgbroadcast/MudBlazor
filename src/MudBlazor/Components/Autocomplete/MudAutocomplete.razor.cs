@@ -128,7 +128,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.AutoCompleteDefaults.Dense;
 
         /// <summary>
         /// The "open" Autocomplete icon.

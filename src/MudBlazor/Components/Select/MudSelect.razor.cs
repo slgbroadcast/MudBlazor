@@ -196,9 +196,12 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact vertical padding will be applied to all Select items.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.SelectDefaults.Dense;
 
         /// <summary>
         /// The Open Select Icon

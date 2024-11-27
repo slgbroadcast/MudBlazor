@@ -141,9 +141,12 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact vertical padding will be applied to all TreeView items.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.TreeView.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.TreeViewDefaults.Dense;
 
         /// <summary>
         /// Setting a height will allow to scroll the TreeView. If not set, it will try to grow in height.
@@ -183,11 +186,14 @@ namespace MudBlazor
         public Func<TreeItemData<T>, Task<bool>>? FilterFunc { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to show a ripple effect when the user clicks the button. Default is true.
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.TreeView.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudBlazor.MudGlobal.TreeViewDefaults.Ripple;
 
         /// <summary>
         /// Tree items that will be rendered using the Item

@@ -203,11 +203,11 @@ namespace MudBlazor
         /// Uses less vertical padding between items.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.
+        /// Defaults to <c>null</c>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool? Dense { get; set; }
+        public bool? Dense { get; set; } = MudBlazor.MudGlobal.ListItemDefaults.Dense;
 
         /// <summary>
         /// Applies left and right padding to this list items.

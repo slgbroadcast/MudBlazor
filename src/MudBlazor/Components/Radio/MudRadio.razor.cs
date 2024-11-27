@@ -80,7 +80,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Radio.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.RadioDefaults.Dense;
 
         /// <summary>
         /// The icon displayed when in a checked state.

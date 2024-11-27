@@ -80,7 +80,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.NavMenu.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.NavMenuDefaults.Dense;
 
         /// <summary>
         /// The content within this menu.

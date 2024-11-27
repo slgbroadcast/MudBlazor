@@ -59,7 +59,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ExpansionPanel.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.ExpansionPanelsDefaults.Dense;
 
         /// <summary>
         /// Adds left and right padding to all panels.

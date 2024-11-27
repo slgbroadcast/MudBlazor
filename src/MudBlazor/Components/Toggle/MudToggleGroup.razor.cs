@@ -169,11 +169,14 @@ namespace MudBlazor
         public bool Delimiters { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets whether to show a ripple effect when the user clicks the button. Default is true.
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudBlazor.MudGlobal.ToggleGroupDefaults.Ripple;
 
         /// <summary>
         /// The size of the items in the toggle group.

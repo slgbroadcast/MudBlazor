@@ -43,9 +43,12 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact padding will be used.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.SimpleTable.Dense;
 
         /// <summary>
         /// If true, table will be outlined.

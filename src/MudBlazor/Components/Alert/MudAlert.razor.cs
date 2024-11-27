@@ -112,7 +112,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Alert.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudBlazor.MudGlobal.AlertDefaults.Dense;
 
         /// <summary>
         /// Gets or sets whether no icon is displayed.

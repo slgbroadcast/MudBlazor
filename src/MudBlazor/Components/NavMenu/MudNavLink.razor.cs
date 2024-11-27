@@ -122,7 +122,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.General.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudBlazor.MudGlobal.NavLinkDefaults.Ripple;
 
         /// <summary>
         /// The URL to navigate to when this link is clicked.

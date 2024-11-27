@@ -11,20 +11,74 @@ public static class MudGlobal
 {
     public static class All
     {
+        /// <summary>
+        /// The default drop shadow setting for all components.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         public static bool DropShadow { get; set; } = true;
+
+        /// <summary>
+        /// The default ripple effect setting for all components.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         public static bool Ripple { get; set; } = true;
-        public static bool? Dense { get; set; }
+
+
+        /// <summary>
+        /// The default setting to use compact padding for all components.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        public static bool Dense { get; set; }
+
         public static Variant? Variant { get; set; } = MudBlazor.Variant.Text;
     }
 
     // TODO: Is IconButton ButtonDefault or an independent class?  => public bool Ripple { get; set; } = true;
+    // TODO: MudRadio uses Ripple from MudBooleanInput. Should i set MudBooleanInput.Ripple to virtual and overwrite the default value in MudRadio ?
 
     /// <summary>
     /// Defaults for the <see cref="MudAlert"/> component.
     /// </summary>
     public static class AlertDefaults
     {
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudBooleanInput{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudBooleanInput{T}.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudAlert"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudAlert.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudAppBar"/> component.
+    /// </summary>
+    public static class AppBarDefaults
+    {
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudAppBar"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudAppBar.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -32,6 +86,16 @@ public static class MudGlobal
     /// </summary>
     public static class AutoCompleteDefaults
     {
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudAutocomplete{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudAutocomplete{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
+
+
         public static int? MaxItems { get; set; } = 10;
         public static bool Strict { get; set; } = true;
         public static bool SelectValueOnTab { get; set; }
@@ -178,8 +242,17 @@ public static class MudGlobal
     /// </summary>
     public static class CheckBoxDefaults
     {
-        public static bool Ripple { get; set; } = true;
-        public static bool Dense { get; set; }
+        // public static bool Ripple { get; set; } = true; // TODO
+
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudCheckBox{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudCheckBox{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
 
@@ -211,14 +284,6 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudChipSet{T}.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
-    }
-
-    /// <summary>
-    /// Defaults for the <see cref="MudDrawerHeader"/> component.
-    /// </summary>
-    public static class DrawerHeaderDefaults
-    {
-        public static bool Dense { get; set; }
     }
 
 
@@ -260,12 +325,13 @@ public static class MudGlobal
         public static bool Bordered { get; set; }
 
         /// <summary>
-        /// The default dense setting for <see cref="MudDataGrid{T}"/>.
+        /// The default setting to use compact padding for <see cref="MudDataGrid{T}"/>.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>. When <c>true</c>, uses compact padding.
+        /// Defaults to <c>false</c>.
         /// </remarks>
-        public static bool Dense { get; set; }
+        /// <seealso cref="MudDataGrid{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
 
         /// <summary>
         /// The default hover setting for <see cref="MudDataGrid{T}"/>.
@@ -309,6 +375,21 @@ public static class MudGlobal
     }
 
     /// <summary>
+    /// Defaults for the <see cref="MudDrawerHeader"/> component.
+    /// </summary>
+    public static class DrawerHeaderDefaults
+    {
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudDrawerHeader"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudDrawerHeader.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
+    }
+
+    /// <summary>
     /// Defaults for the <see cref="MudDialog"/> component.
     /// </summary>
     public static class DialogDefaults
@@ -327,7 +408,14 @@ public static class MudGlobal
     /// </summary>
     public static class ExpansionPanelDefaults
     {
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudExpansionPanel"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudExpansionPanel.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -335,7 +423,14 @@ public static class MudGlobal
     /// </summary>
     public static class ExpansionPanelsDefaults
     {
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudExpansionPanels"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudExpansionPanels.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -345,7 +440,6 @@ public static class MudGlobal
     {
         public static Variant Variant { get; set; } = Variant.Text;
     }
-
 
     /// <summary>
     /// Defaults for the <see cref="MudGrid"/> component.
@@ -422,12 +516,21 @@ public static class MudGlobal
         public static Underline Underline { get; set; } = Underline.Hover;
     }
 
+    #region List
+
     /// <summary>
     /// Defaults for the <see cref="MudList{T}"/> component.
     /// </summary>
     public static class ListDefaults
     {
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudList{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudList{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -443,9 +546,18 @@ public static class MudGlobal
         /// </remarks>
         /// <seealso cref="MudListItem{T}.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
-        
-        public static bool Dense { get; set; }
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudListItem{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>null</c>.
+        /// </remarks>
+        /// <seealso cref="MudListItem{T}.Dense"/>
+        public static bool? Dense { get; set; }
     }
+
+    #endregion
 
     /// <summary>
     /// Defaults for the <see cref="MudMenu"/> component.
@@ -472,7 +584,38 @@ public static class MudGlobal
         /// <seealso cref="MudMenu.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
 
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudMenu.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudMenu.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudNavMenu"/> component.
+    /// </summary>
+    public static class NavMenuDefaults
+    {
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudNavMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudNavMenu.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -480,7 +623,29 @@ public static class MudGlobal
     /// </summary>
     public static class NavGroupDefaults
     {
-        public static bool Ripple { get; set; }
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudNavGroup"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudNavGroup.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+    /// <summary>
+    /// Defaults for the <see cref="MudNavLink"/> component.
+    /// </summary>
+    public static class NavLinkDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudNavLink"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudNavLink.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
     }
 
 
@@ -568,22 +733,41 @@ public static class MudGlobal
         public static bool DropShadow { get; set; } = All.DropShadow;
     }
 
+    #region Select
 
     /// <summary>
-    /// Defaults for the <see cref="MudSelectItem{T}"/> component.
+    /// Defaults for the <see cref="MudSelect{T}"/> component.
     /// </summary>
-    public static class SelectItemDefaults
+    public static class SelectDefaults
     {
-        public static bool Ripple { get; set; } = true;
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudSelect{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudSelect{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
+
+    #endregion
+
 
     /// <summary>
     /// Defaults for the <see cref="MudRadio{T}"/> component.
     /// </summary>
     public static class RadioDefaults
     {
-        public static bool Dense { get; set; }
-        public static bool Ripple { get; set; } = true;
+        // public static bool Ripple { get; set; } = true; TODO
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudRadio{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudRadio{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -591,7 +775,14 @@ public static class MudGlobal
     /// </summary>
     public static class RatingDefaults
     {
-        public static bool Ripple { get; set; } = true;
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudRating"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudRating.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
     }
 
     /// <summary>
@@ -599,7 +790,14 @@ public static class MudGlobal
     /// </summary>
     public static class RatingItemDefaults
     {
-        public static bool Ripple { get; set; } = true;
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudRatingItem"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudRatingItem.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
     }
 
 
@@ -610,7 +808,15 @@ public static class MudGlobal
     {
         public static int Elevation { set; get; } = 1;
         public static bool Hover { get; set; }
-        public static bool Dense { get; set; }
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudSimpleTable"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudSimpleTable.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -618,7 +824,7 @@ public static class MudGlobal
     /// </summary>
     public static class SwitchDefaults
     {
-        public static bool Ripple { get; set; } = true;
+        // public static bool Ripple { get; set; } = true; TODO
     }
 
 
@@ -654,13 +860,54 @@ public static class MudGlobal
     }
 
     /// <summary>
+    /// Defaults for the <see cref="MudStepper"/> component.
+    /// </summary>
+    public static class StepperDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudStepper"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudStepper.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+    /// <summary>
     /// Defaults for the <see cref="MudTable{T}"/> component.
     /// </summary>
     public static class TableDefaults
     {
-        public static bool Dense { get; set; }
-        public static bool Ripple { get; set; } = true;
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudTable{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudTable{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
+
+    #region Toggle
+
+    /// <summary>
+    /// Defaults for the <see cref="MudToggleGroup{T}"/> component.
+    /// </summary>
+    public static class ToggleGroupDefaults
+    {
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudToggleGroup{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudToggleGroup{T}.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+    }
+
+    #endregion
+
 
     /// <summary>
     /// Defaults for the <see cref="MudTabs"/> component.
@@ -771,7 +1018,14 @@ public static class MudGlobal
         /// </remarks>
         public static bool ApplyEffectsToContainer { get; set; }
 
-        public static bool Ripple { get; set; } = true;
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudTabs"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudTabs.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
     }
 
 
@@ -780,7 +1034,14 @@ public static class MudGlobal
     /// </summary>
     public static class ToolBarDefaults
     {
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudToolBar"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudToolBar.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>
@@ -804,7 +1065,23 @@ public static class MudGlobal
     /// </summary>
     public static class TreeViewDefaults
     {
-        public static bool Dense { get; set; }
+        /// <summary>
+        /// The default ripple effect setting for <see cref="MudTreeView{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        /// <seealso cref="MudTreeView{T}.Ripple"/>
+        public static bool Ripple { get; set; } = All.Ripple;
+
+        /// <summary>
+        /// The default setting to use compact padding for <see cref="MudTreeView{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        /// <seealso cref="MudTreeView{T}.Dense"/>
+        public static bool Dense { get; set; } = All.Dense;
     }
 
     /// <summary>

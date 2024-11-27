@@ -193,7 +193,7 @@ public partial class MudStepper : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.List.Appearance)]
-    public bool Ripple { get; set; } = true;
+    public bool Ripple { get; set; } = MudBlazor.MudGlobal.StepperDefaults.Ripple;
 
     /// <summary>
     /// If there is too many steps, the navigation becomes scrollable.

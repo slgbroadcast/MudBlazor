@@ -30,7 +30,7 @@ public partial class MudDrawerHeader
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Drawer.Appearance)]
-    public bool Dense { get; set; }
+    public bool Dense { get; set; } = MudBlazor.MudGlobal.DrawerHeaderDefaults.Dense;
 
     /// <summary>
     /// Navigates to the index page on click.
