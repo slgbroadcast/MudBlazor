@@ -158,7 +158,7 @@ public partial class MudChipSet<T> : MudComponentBase, IDisposable
     /// Shows a ripple effect when a chip is clicked.
     /// </summary>
     /// <remarks>
-    /// Defaults to <c>true</c>. Can be overridden by setting <see cref="MudChip{T}.Ripple"/>.
+    /// Defaults to <c>true</c>.  Can be overridden by setting <see cref="MudChip{T}.Ripple"/>.
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Chip.Appearance)]
