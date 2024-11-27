@@ -1046,17 +1046,17 @@ public static class MudGlobal
     }
 
     /// <summary>
-    /// Defaults for the <see cref="MudTable{T}"/> component.
+    /// Defaults for the <see cref="MudTableBase"/> component.
     /// </summary>
     public static class TableDefaults
     {
         /// <summary>
-        /// The default setting to use compact padding for <see cref="MudTable{T}"/>.
+        /// The default setting to use compact padding for <see cref="MudTableBase"/>.
         /// </summary>
         /// <remarks>
         /// Defaults to <c>false</c>.
         /// </remarks>
-        /// <seealso cref="MudTable{T}.Dense"/>
+        /// <seealso cref="MudTableBase.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
     }
 
