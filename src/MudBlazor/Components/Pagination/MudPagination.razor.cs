@@ -111,7 +111,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudGlobal.PaginationDefaults.Variant;
 
         /// <summary>
         /// The color of the selected page button.
@@ -151,7 +151,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public bool DropShadow { get; set; } = MudGlobal.PaginationDefaults.DropShadow;
 
         /// <summary>
         /// Prevents the user from clicking page buttons.

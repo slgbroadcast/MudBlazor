@@ -124,7 +124,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudGlobal.ListDefaults.Dense;
 
         /// <summary>
         /// Applies left and right padding to all list items.

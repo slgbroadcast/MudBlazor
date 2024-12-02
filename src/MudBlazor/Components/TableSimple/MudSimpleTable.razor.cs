@@ -20,18 +20,24 @@ namespace MudBlazor
                 .Build();
 
         /// <summary>
-        /// Child content of component.
+        /// The size of the drop shadow.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>1</c>.  A higher number creates a heavier drop shadow.  Use a value of <c>0</c> for no shadow.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public int Elevation { set; get; } = 1;
+        public int Elevation { set; get; } = MudGlobal.SimpleTableDefaults.Elevation;
 
         /// <summary>
         /// If true, the table row will shade on hover.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public bool Hover { get; set; }
+        public bool Hover { get; set; } = MudGlobal.SimpleTableDefaults.Hover;
 
         /// <summary>
         /// If true, border-radius is set to 0.
@@ -43,9 +49,12 @@ namespace MudBlazor
         /// <summary>
         /// If true, compact padding will be used.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudGlobal.SimpleTableDefaults.Dense;
 
         /// <summary>
         /// If true, table will be outlined.

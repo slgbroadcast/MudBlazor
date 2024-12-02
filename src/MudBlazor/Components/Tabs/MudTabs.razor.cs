@@ -166,11 +166,14 @@ namespace MudBlazor
         public bool ApplyEffectsToContainer { get; set; } = MudGlobal.TabDefaults.ApplyEffectsToContainer;
 
         /// <summary>
-        /// Gets or sets whether to show a ripple effect when the user clicks the button. Default is true.
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Tabs.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudGlobal.TabDefaults.Ripple;
 
         /// <summary>
         /// If true, displays slider animation

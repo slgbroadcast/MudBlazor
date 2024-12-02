@@ -50,7 +50,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Variant.Text"/>.
         /// </remarks>
         [Parameter]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudGlobal.InputLabelDefaults.Variant;
 
         /// <summary>
         /// The amount of vertical spacing to apply.
@@ -59,7 +59,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Margin.None"/>.
         /// </remarks>
         [Parameter]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.InputLabelDefaults.Margin;
 
         /// <summary>
         /// For WCAG accessibility, the ID of the input component related to this label.

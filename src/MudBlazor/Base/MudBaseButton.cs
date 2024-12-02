@@ -103,7 +103,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public virtual bool DropShadow { get; set; } = true;
 
         /// <summary>
         /// Shows a ripple effect when the user clicks the button.
@@ -113,7 +113,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public virtual bool Ripple { get; set; } = true;
 
         /// <summary>
         /// Occurs when this button has been clicked.
