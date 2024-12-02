@@ -27,7 +27,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public int Elevation { set; get; } = MudGlobal.SimpleTable.Elevation;
+        public int Elevation { set; get; } = MudGlobal.SimpleTableDefaults.Elevation;
 
         /// <summary>
         /// If true, the table row will shade on hover.
@@ -37,7 +37,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public bool Hover { get; set; } = MudGlobal.SimpleTable.Hover;
+        public bool Hover { get; set; } = MudGlobal.SimpleTableDefaults.Hover;
 
         /// <summary>
         /// If true, border-radius is set to 0.
@@ -54,7 +54,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.SimpleTable.Appearance)]
-        public bool Dense { get; set; } = MudGlobal.SimpleTable.Dense;
+        public bool Dense { get; set; } = MudGlobal.SimpleTableDefaults.Dense;
 
         /// <summary>
         /// If true, table will be outlined.

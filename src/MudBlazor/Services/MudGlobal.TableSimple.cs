@@ -9,7 +9,7 @@ public static partial class MudGlobal
     /// <summary>
     /// Defaults for the <see cref="MudSimpleTable"/> component.
     /// </summary>
-    public static class SimpleTable
+    public static class SimpleTableDefaults
     {
         /// <summary>
         /// The default size of the drop shadow for <see cref="MudSimpleTable"/>.

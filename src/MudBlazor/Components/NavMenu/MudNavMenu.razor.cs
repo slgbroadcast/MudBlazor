@@ -26,7 +26,8 @@ namespace MudBlazor
                 .AddClass(Class)
                 .Build();
 
-        [CascadingParameter] private NavigationContext? NavigationContext { get; set; }
+        [CascadingParameter]
+        private NavigationContext? NavigationContext { get; set; }
 
         /// <summary>
         /// The color of the active <see cref="MudNavLink" />.
@@ -52,8 +53,8 @@ namespace MudBlazor
         /// Shows a rounded border for all <see cref="MudNavLink" /> items.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.  
-        /// When <c>true</c>, the theme <c>border-radius</c> value will be used. 
+        /// Defaults to <c>false</c>.
+        /// When <c>true</c>, the theme <c>border-radius</c> value will be used.
         /// Only takes affect if <see cref="Bordered"/> is <c>true</c>.
         /// </remarks>
         [Parameter]
@@ -74,7 +75,7 @@ namespace MudBlazor
         /// Uses compact vertical padding to all <see cref="MudNavLink"/> items.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.  
+        /// Defaults to <c>false</c>.
         /// Will be overridden if <see cref="Margin"/> is not <see cref="Margin.None"/>.
         /// </remarks>
         [Parameter]
