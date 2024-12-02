@@ -212,7 +212,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public override  Variant Variant { get; set; } = MudGlobal.SelectDefaults.Variant;
+        public override Variant Variant { get; set; } = MudGlobal.SelectDefaults.Variant;
 
         /// <summary>
         /// The amount of vertical spacing for this input.
