@@ -119,6 +119,26 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
         public Variant Variant { get; set; } = MudGlobal.ButtonDefaults.Variant;
+        
+        /// <summary>
+        /// Displays a shadow.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.Button.Appearance)]
+        public override bool DropShadow { get; set; } = MudBlazor.MudGlobal.ButtonDefaults.DropShadow;
+        
+        /// <summary>
+        /// Shows a ripple effect when the user clicks the button.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.Button.Appearance)]
+        public override bool Ripple { get; set; } = MudBlazor.MudGlobal.ButtonDefaults.Ripple;
 
         /// <summary>
         /// Expands the button to 100% of the container width.

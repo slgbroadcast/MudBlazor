@@ -7,7 +7,7 @@ namespace MudBlazor;
 /// <summary>
 /// Settings which control the default behavior and appearance of MudBlazor components.
 /// </summary>
-public static class MudGlobal
+public static partial class MudGlobal
 {
     /// <summary>
     /// Default values for all components.
@@ -38,8 +38,6 @@ public static class MudGlobal
         /// </remarks>
         public static bool Dense { get; set; }
     }
-
-    // TODO: MudRadio uses Ripple from MudBooleanInput. Should i set MudBooleanInput.Ripple to virtual and overwrite the default value in MudRadio ?
 
     /// <summary>
     /// Defaults for the <see cref="MudAlert"/> component.
@@ -172,103 +170,6 @@ public static class MudGlobal
     }
 
     #region Buttons
-
-    /// <summary>
-    /// Defaults for the <see cref="MudButton"/> component.
-    /// </summary>
-    public static class ButtonDefaults
-    {
-        /// <summary>
-        /// The default color for <see cref="MudButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <see cref="Color.Default"/>.
-        /// </remarks>
-        public static Color Color { get; set; } = Color.Default;
-
-        /// <summary>
-        /// The default size for <see cref="MudButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <see cref="Size.Medium"/>.
-        /// </remarks>
-        public static Size Size { get; set; } = Size.Medium;
-
-        /// <summary>
-        /// The default variant for <see cref="MudButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <see cref="MudBlazor.Variant.Text"/>.
-        /// </remarks>
-        /// <seealso cref="MudButton.Variant"/>
-        public static Variant Variant { get; set; } = Variant.Text;
-
-        /// <summary>
-        /// The default drop shadow setting for <see cref="MudBaseButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>true</c>.
-        /// </remarks>
-        /// <seealso cref="MudBaseButton.DropShadow"/>
-        public static bool DropShadow { get; set; } = All.DropShadow;
-
-        /// <summary>
-        /// The default ripple effect setting for <see cref="MudBaseButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>true</c>.
-        /// </remarks>
-        /// <seealso cref="MudBaseButton.Ripple"/>
-        public static bool Ripple { get; set; } = All.Ripple;
-    }
-
-    /// <summary>
-    /// Defaults for the <see cref="MudIconButton"/> component.
-    /// </summary>
-    public static class IconButtonDefaults
-    {
-        /// <summary>
-        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudIconButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
-        /// </remarks>
-        /// <seealso cref="MudIconButton.Variant"/>
-        public static Variant Variant { get; set; } = Variant.Text;
-    }
-
-    /// <summary>
-    /// Defaults for the <see cref="MudToggleIconButton"/> component.
-    /// </summary>
-    public static class ToggleIconButtonDefaults
-    {
-        /// <summary>
-        /// The default drop shadow setting for <see cref="MudToggleIconButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>true</c>.
-        /// </remarks>
-        /// <seealso cref="MudToggleIconButton.DropShadow"/>
-        public static bool DropShadow { get; set; } = All.DropShadow;
-
-        /// <summary>
-        /// The default ripple effect setting for <see cref="MudToggleIconButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <c>true</c>.
-        /// </remarks>
-        /// <seealso cref="MudToggleIconButton.Ripple"/>
-        public static bool Ripple { get; set; } = All.Ripple;
-
-        /// <summary>
-        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudToggleIconButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
-        /// </remarks>
-        /// <seealso cref="MudToggleIconButton.Variant"/>
-        public static Variant Variant { get; set; } = Variant.Text;
-    }
 
     /// <summary>
     /// Defaults for the <see cref="MudButtonGroup"/> component.
@@ -915,7 +816,7 @@ public static class MudGlobal
         /// The default setting to use compact padding for <see cref="MudRadio{T}"/>.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.
+        /// <inheritdoc cref="All.Dense"/>
         /// </remarks>
         /// <seealso cref="MudRadio{T}.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
