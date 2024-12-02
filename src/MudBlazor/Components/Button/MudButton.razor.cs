@@ -128,7 +128,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public override bool DropShadow { get; set; } = MudBlazor.MudGlobal.ButtonDefaults.DropShadow;
+        public override bool DropShadow { get; set; } = MudGlobal.ButtonDefaults.DropShadow;
 
         /// <summary>
         /// Shows a ripple effect when the user clicks the button.
@@ -138,7 +138,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public override bool Ripple { get; set; } = MudBlazor.MudGlobal.ButtonDefaults.Ripple;
+        public override bool Ripple { get; set; } = MudGlobal.ButtonDefaults.Ripple;
 
         /// <summary>
         /// Expands the button to 100% of the container width.

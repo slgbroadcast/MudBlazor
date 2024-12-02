@@ -80,7 +80,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
         public Variant Variant { get; set; } = MudGlobal.IconButtonDefaults.Variant;
-        
+
         /// <summary>
         /// Displays a shadow.
         /// </summary>
@@ -89,8 +89,8 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public override bool DropShadow { get; set; } = MudBlazor.MudGlobal.IconButtonDefaults.DropShadow;
-        
+        public override bool DropShadow { get; set; } = MudGlobal.IconButtonDefaults.DropShadow;
+
         /// <summary>
         /// Shows a ripple effect when the user clicks the button.
         /// </summary>
@@ -99,7 +99,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public override bool Ripple { get; set; } = MudBlazor.MudGlobal.IconButtonDefaults.Ripple;
+        public override bool Ripple { get; set; } = MudGlobal.IconButtonDefaults.Ripple;
 
         /// <summary>
         /// The custom content within this button.

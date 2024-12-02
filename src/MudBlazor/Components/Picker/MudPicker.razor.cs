@@ -393,7 +393,7 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Margin Margin { get; set; } = MudBlazor.MudGlobal.PickerDefaults.Margin;
+        public Margin Margin { get; set; } = MudGlobal.PickerDefaults.Margin;
 
         /// <summary>
         /// The mask to apply to input values when <see cref="Editable"/> is <c>true</c>.

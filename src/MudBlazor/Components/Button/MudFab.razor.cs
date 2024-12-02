@@ -92,7 +92,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Button.Behavior)]
         public string? Label { get; set; }
-        
+
         /// <summary>
         /// Displays a shadow.
         /// </summary>
@@ -101,8 +101,8 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public override bool DropShadow { get; set; } = MudBlazor.MudGlobal.FabDefaults.DropShadow;
-        
+        public override bool DropShadow { get; set; } = MudGlobal.FabDefaults.DropShadow;
+
         /// <summary>
         /// Shows a ripple effect when the user clicks the button.
         /// </summary>
@@ -111,6 +111,6 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public override bool Ripple { get; set; } = MudBlazor.MudGlobal.FabDefaults.Ripple;
+        public override bool Ripple { get; set; } = MudGlobal.FabDefaults.Ripple;
     }
 }

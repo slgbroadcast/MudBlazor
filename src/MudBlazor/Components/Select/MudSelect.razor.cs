@@ -203,7 +203,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
         public string? ListClass { get; set; }
-        
+
         /// <summary>
         /// The appearance variation to use.
         /// </summary>
@@ -223,7 +223,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
         public override Margin Margin { get; set; } = MudGlobal.SelectDefaults.Margin;
-        
+
         /// <summary>
         /// Shows the label inside the input if no <see cref="MudBaseInput{T}.Value"/> is specified.
         /// </summary>
