@@ -77,6 +77,36 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         public bool Clearable { get; set; }
+        
+        /// <summary>
+        /// The appearance variation to use.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Variant.Text"/>.  Other options are <c>Outlined</c> and <c>Filled</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override  Variant Variant { get; set; } = MudGlobal.RangeInputDefaults.Variant;
+
+        /// <summary>
+        /// The amount of vertical spacing for this input.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Margin.None"/>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Margin Margin { get; set; } = MudGlobal.RangeInputDefaults.Margin;
+        
+        /// <summary>
+        /// Shows the label inside the input if no <see cref="MudBaseInput{T}.Value"/> is specified.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.  When <c>true</c>, the label will not move into the input when the input is empty.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override bool ShrinkLabel { get; set; } = MudGlobal.RangeInputDefaults.ShrinkLabel;
 
         /// <summary>
         /// The content within this input component.

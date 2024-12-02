@@ -59,7 +59,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Margin.None"/>.
         /// </remarks>
         [Parameter]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.InputLabelDefaults.Margin;
 
         /// <summary>
         /// For WCAG accessibility, the ID of the input component related to this label.

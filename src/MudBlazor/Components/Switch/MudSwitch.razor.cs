@@ -69,6 +69,16 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
         public Color ThumbIconColor { get; set; } = Color.Default;
+        
+        /// <summary>
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override bool Ripple { get; set; } = MudGlobal.SwitchDefaults.Ripple;
 
         protected internal async Task HandleKeyDownAsync(KeyboardEventArgs obj)
         {

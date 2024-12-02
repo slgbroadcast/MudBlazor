@@ -60,7 +60,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Field.Appearance)]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.FieldDefaults.Margin;
 
         /// <summary>
         /// Typography for the field text.

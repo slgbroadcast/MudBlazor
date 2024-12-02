@@ -51,7 +51,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Margin.None"/>.
         /// </remarks>
         [Parameter]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.InputControlDefaults.Margin;
 
         /// <summary>
         /// Displays an asterisk to indicate an input is required.

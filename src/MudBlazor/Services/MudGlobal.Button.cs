@@ -17,6 +17,7 @@ public static partial class MudGlobal
         /// <remarks>
         /// Defaults to <see cref="Color.Default"/>.  Theme colors are supported.
         /// </remarks>
+        /// <seealso cref="MudButton.Color"/>
         public static Color Color { get; set; } = Color.Default;
 
         /// <summary>
@@ -25,6 +26,7 @@ public static partial class MudGlobal
         /// <remarks>
         /// Defaults to <see cref="Size.Medium"/>.
         /// </remarks>
+        /// <seealso cref="MudButton.Size"/>
         public static Size Size { get; set; } = Size.Medium;
 
         /// <summary>
@@ -42,7 +44,7 @@ public static partial class MudGlobal
         /// <remarks>
         /// <inheritdoc cref="All.DropShadow"/>
         /// </remarks>
-        /// <seealso cref="MudBaseButton.DropShadow"/>
+        /// <seealso cref="MudButton.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
 
         /// <summary>
@@ -68,8 +70,7 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudFab.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
-        
-        
+
         /// <summary>
         /// The default ripple effect setting for <see cref="MudFab"/>.
         /// </summary>
@@ -93,7 +94,7 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudIconButton.Variant"/>
         public static Variant Variant { get; set; } = Variant.Text;
-        
+
         /// <summary>
         /// The default drop shadow setting for <see cref="MudIconButton"/>.
         /// </summary>
@@ -119,10 +120,19 @@ public static partial class MudGlobal
     public static class ToggleIconButtonDefaults
     {
         /// <summary>
+        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudToggleIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
+        /// </remarks>
+        /// <seealso cref="MudToggleIconButton.Variant"/>
+        public static Variant Variant { get; set; } = Variant.Text;
+
+        /// <summary>
         /// The default drop shadow setting for <see cref="MudToggleIconButton"/>.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>true</c>.
+        /// <inheritdoc cref="All.DropShadow"/>
         /// </remarks>
         /// <seealso cref="MudToggleIconButton.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
@@ -135,14 +145,5 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudToggleIconButton.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
-
-        /// <summary>
-        /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudToggleIconButton"/>.
-        /// </summary>
-        /// <remarks>
-        /// Defaults to <see cref="MudBlazor.Variant.Text" />.
-        /// </remarks>
-        /// <seealso cref="MudToggleIconButton.Variant"/>
-        public static Variant Variant { get; set; } = Variant.Text;
     }
 }

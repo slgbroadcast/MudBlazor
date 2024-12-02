@@ -61,6 +61,16 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.Behavior)]
         public bool KeyboardEnabled { get; set; } = true;
+        
+        /// <summary>
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override bool Ripple { get; set; } = MudGlobal.CheckBoxDefaults.Ripple;
 
         /// <summary>
         /// Uses compact padding.

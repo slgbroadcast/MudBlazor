@@ -69,7 +69,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.NavMenu.Appearance)]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudBlazor.MudGlobal.NavMenuDefaults.Margin;
 
         /// <summary>
         /// Uses compact vertical padding to all <see cref="MudNavLink"/> items.
