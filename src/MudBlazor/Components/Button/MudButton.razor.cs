@@ -119,7 +119,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
         public Variant Variant { get; set; } = MudGlobal.ButtonDefaults.Variant;
-        
+
         /// <summary>
         /// Displays a shadow.
         /// </summary>
@@ -129,7 +129,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
         public override bool DropShadow { get; set; } = MudBlazor.MudGlobal.ButtonDefaults.DropShadow;
-        
+
         /// <summary>
         /// Shows a ripple effect when the user clicks the button.
         /// </summary>

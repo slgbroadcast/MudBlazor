@@ -71,7 +71,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Radio.Appearance)]
         public Color? UncheckedColor { get; set; } = null;
-        
+
         /// <summary>
         /// Gets or sets whether to show a ripple effect when the user clicks the button.
         /// </summary>

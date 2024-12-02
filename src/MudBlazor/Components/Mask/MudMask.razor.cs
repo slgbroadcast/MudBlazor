@@ -134,7 +134,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
         public string ClearIcon { get; set; } = Icons.Material.Filled.Clear;
-        
+
         /// <summary>
         /// The appearance variation to use.
         /// </summary>
@@ -143,7 +143,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public override  Variant Variant { get; set; } = MudGlobal.MaskDefaults.Variant;
+        public override Variant Variant { get; set; } = MudGlobal.MaskDefaults.Variant;
 
         /// <summary>
         /// The amount of vertical spacing for this input.
@@ -154,7 +154,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
         public override Margin Margin { get; set; } = MudGlobal.MaskDefaults.Margin;
-        
+
         /// <summary>
         /// Shows the label inside the input if no <see cref="MudBaseInput{T}.Value"/> is specified.
         /// </summary>

@@ -26,8 +26,7 @@ namespace MudBlazor
                 .AddClass(Class)
                 .Build();
 
-        [CascadingParameter]
-        private NavigationContext? NavigationContext { get; set; }
+        [CascadingParameter] private NavigationContext? NavigationContext { get; set; }
 
         /// <summary>
         /// The color of the active <see cref="MudNavLink" />.

@@ -436,7 +436,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         public override string? Pattern { get; set; } = @"[0-9,.\-]";
-        
+
         /// <summary>
         /// The appearance variation to use.
         /// </summary>
@@ -445,7 +445,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public override  Variant Variant { get; set; } = MudGlobal.NumericFieldDefaults.Variant;
+        public override Variant Variant { get; set; } = MudGlobal.NumericFieldDefaults.Variant;
 
         /// <summary>
         /// The amount of vertical spacing for this input.
@@ -456,7 +456,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
         public override Margin Margin { get; set; } = MudGlobal.NumericFieldDefaults.Margin;
-        
+
         /// <summary>
         /// Shows the label inside the input if no <see cref="MudBaseInput{T}.Value"/> is specified.
         /// </summary>
