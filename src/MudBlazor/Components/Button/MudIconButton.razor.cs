@@ -49,7 +49,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Color Color { get; set; } = Color.Default;
+        public Color Color { get; set; } = MudGlobal.IconButtonDefaults.Color;
 
         /// <summary>
         /// The size of the button.
@@ -59,7 +59,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public Size Size { get; set; } = MudGlobal.IconButtonDefaults.Size;
 
         /// <summary>
         /// The amount of negative margin applied.

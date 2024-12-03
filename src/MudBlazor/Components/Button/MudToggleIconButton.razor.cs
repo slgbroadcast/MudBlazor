@@ -49,7 +49,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Color Color { get; set; } = Color.Default;
+    public Color Color { get; set; } = MudGlobal.ToggleIconButtonDefaults.Color;
 
     /// <summary>
     /// An alternative color to use in the toggled state.
@@ -66,7 +66,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Size Size { get; set; } = Size.Medium;
+    public Size Size { get; set; } = MudGlobal.ToggleIconButtonDefaults.Size;
 
     /// <summary>
     /// An alternative size to use in the toggled state.

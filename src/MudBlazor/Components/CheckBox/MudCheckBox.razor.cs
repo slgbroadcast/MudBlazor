@@ -73,6 +73,16 @@ namespace MudBlazor
         public override bool Ripple { get; set; } = MudGlobal.CheckBoxDefaults.Ripple;
 
         /// <summary>
+        /// The Size of the component.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Size Size { get; set; } = MudGlobal.CheckBoxDefaults.Size;
+
+        /// <summary>
         /// Uses compact padding.
         /// </summary>
         /// <remarks>

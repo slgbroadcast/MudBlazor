@@ -33,7 +33,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public bool OverrideStyles { get; set; } = true;
+        public bool OverrideStyles { get; set; } = MudGlobal.ButtonGroupDefaults.OverrideStyles;
 
         /// <summary>
         /// The custom content within this group.
@@ -73,7 +73,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public Color Color { get; set; } = Color.Default;
+        public Color Color { get; set; } = MudGlobal.ButtonGroupDefaults.Color;
 
         /// <summary>
         /// The size of all buttons in the group.
@@ -83,7 +83,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.ButtonGroup.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public Size Size { get; set; } = MudGlobal.ButtonGroupDefaults.Size;
 
         /// <summary>
         /// The display variant of all buttons in the group.

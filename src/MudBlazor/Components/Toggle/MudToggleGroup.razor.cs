@@ -155,18 +155,24 @@ namespace MudBlazor
         public bool RightToLeft { get; set; }
 
         /// <summary>
-        /// If true, show an outline border. Default is true.
+        /// If true, show an outline border.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Outlined { get; set; } = true;
+        public bool Outlined { get; set; } = MudGlobal.ToggleGroupDefaults.Outlined;
 
         /// <summary>
-        /// If true, show a line delimiter between items. Default is true.
+        /// If true, show a line delimiter between items.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Delimiters { get; set; } = true;
+        public bool Delimiters { get; set; } = MudGlobal.ToggleGroupDefaults.Delimiters;
 
         /// <summary>
         /// Gets or sets whether to show a ripple effect when the user clicks the button.
@@ -181,9 +187,12 @@ namespace MudBlazor
         /// <summary>
         /// The size of the items in the toggle group.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public Size Size { get; set; } = MudGlobal.ToggleGroupDefaults.Size;
 
         /// <summary>
         /// The selection behavior of the group. SingleSelection (the default) is a radio-button like exclusive collection.
@@ -195,11 +204,14 @@ namespace MudBlazor
         public SelectionMode SelectionMode { get; set; }
 
         /// <summary>
-        /// The color of the component. Affects borders and selection color. Default is Colors.Primary.
+        /// The color of the component. Affects borders and selection color.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Color.Primary"/>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public Color Color { get; set; } = Color.Primary;
+        public Color Color { get; set; } = MudGlobal.ToggleGroupDefaults.Color;
 
         /// <summary>
         /// If true, the items show a check mark next to the text or render fragment. Customize the check mark by setting
