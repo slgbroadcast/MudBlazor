@@ -108,7 +108,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public Origin AnchorOrigin { get; set; } = MudBlazor.MudGlobal.AutocompleteDefaults.AnchorOrigin;
+        public Origin AnchorOrigin { get; set; } = MudGlobal.AutocompleteDefaults.AnchorOrigin;
 
         /// <summary>
         /// The transform origin point for the popover.
@@ -118,7 +118,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public Origin TransformOrigin { get; set; } = MudBlazor.MudGlobal.AutocompleteDefaults.TransformOrigin;
+        public Origin TransformOrigin { get; set; } = MudGlobal.AutocompleteDefaults.TransformOrigin;
 
         /// <summary>
         /// The appearance variation to use.

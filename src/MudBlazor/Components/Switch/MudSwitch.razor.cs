@@ -88,7 +88,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public override Size Size { get; set; } = MudGlobal.CheckBoxDefaults.Size;
+        public override Size Size { get; set; } = MudGlobal.SwitchDefaults.Size;
 
         protected internal async Task HandleKeyDownAsync(KeyboardEventArgs obj)
         {
