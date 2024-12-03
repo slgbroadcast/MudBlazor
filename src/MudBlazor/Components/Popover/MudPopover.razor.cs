@@ -82,7 +82,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public bool DropShadow { get; set; } = MudGlobal.PopoverDefaults.DropShadow;
 
         /// <summary>
         /// The amount of drop shadow to apply.
@@ -142,7 +142,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public Origin AnchorOrigin { get; set; } = Origin.TopLeft;
+        public Origin AnchorOrigin { get; set; } = MudGlobal.PopoverDefaults.AnchorOrigin;
 
         /// <summary>
         /// The direction this popover will appear relative to the <see cref="Origin"/>.
@@ -152,7 +152,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public Origin TransformOrigin { get; set; } = Origin.TopLeft;
+        public Origin TransformOrigin { get; set; } = MudGlobal.PopoverDefaults.TransformOrigin;
 
         /// <summary>
         /// The behavior applied when there is not enough space for this popover to be visible.

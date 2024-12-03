@@ -137,7 +137,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.NavMenu.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudGlobal.NavGroupDefaults.Ripple;
 
         /// <summary>
         /// Displays the items within this group.

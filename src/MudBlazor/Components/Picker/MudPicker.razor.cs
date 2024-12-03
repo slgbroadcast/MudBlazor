@@ -297,7 +297,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudGlobal.PickerDefaults.Variant;
 
         /// <summary>
         /// The location of the <see cref="AdornmentIcon"/> for the input.
@@ -393,7 +393,7 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.PickerDefaults.Margin;
 
         /// <summary>
         /// The mask to apply to input values when <see cref="Editable"/> is <c>true</c>.
@@ -414,7 +414,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+        public Origin AnchorOrigin { get; set; } = MudGlobal.PickerDefaults.AnchorOrigin;
 
         /// <summary>
         /// The direction the popover opens, relative to its container.
@@ -424,7 +424,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public Origin TransformOrigin { get; set; } = Origin.TopLeft;
+        public Origin TransformOrigin { get; set; } = MudGlobal.PickerDefaults.TransformOrigin;
 
         /// <summary>
         /// The behavior of the popover when it overflows its container.
@@ -434,7 +434,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public OverflowBehavior OverflowBehavior { get; set; } = OverflowBehavior.FlipOnOpen;
+        public OverflowBehavior OverflowBehavior { get; set; } = MudGlobal.PickerDefaults.OverflowBehavior;
 
         protected IMask? _mask = null;
 

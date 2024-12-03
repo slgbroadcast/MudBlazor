@@ -55,19 +55,22 @@ namespace MudBlazor
         /// <summary>
         /// If true, an arrow will be displayed pointing towards the content from the tooltip.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Tooltip.Appearance)]
-        public bool Arrow { get; set; } = false;
+        public bool Arrow { get; set; } = MudGlobal.TooltipDefaults.Arrow;
 
         /// <summary>
         /// Sets the length of time that the opening transition takes to complete.
         /// </summary>
         /// <remarks>
-        /// Set globally via <see cref="MudGlobal.TransitionDefaults.Duration"/>.
+        /// Set globally via <see cref="MudGlobal.TooltipDefaults.Duration"/>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Tooltip.Appearance)]
-        public double Duration { get; set; } = MudGlobal.TransitionDefaults.Duration.TotalMilliseconds;
+        public double Duration { get; set; } = MudGlobal.TooltipDefaults.Duration.TotalMilliseconds;
 
         /// <summary>
         /// Sets the amount of time in milliseconds to wait from opening the popover before beginning to perform the transition. 

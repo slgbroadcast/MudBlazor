@@ -87,7 +87,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Avatar.Appearance)]
-        public Variant Variant { get; set; } = Variant.Filled;
+        public Variant Variant { get; set; } = MudGlobal.AvatarDefaults.Variant;
 
         /// <summary>
         /// The content within the avatar.

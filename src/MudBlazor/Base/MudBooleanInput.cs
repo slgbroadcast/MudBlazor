@@ -92,18 +92,24 @@ namespace MudBlazor
         public string? Label { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to show a ripple effect when the user clicks the button. Default is true.
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public virtual bool Ripple { get; set; } = true;
 
         /// <summary>
         /// The Size of the component.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public virtual Size Size { get; set; } = Size.Medium;
 
         /// <summary>
         /// The color of the component. It supports the theme colors.

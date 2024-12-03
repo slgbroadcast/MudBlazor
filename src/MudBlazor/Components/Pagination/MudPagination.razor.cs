@@ -111,7 +111,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudGlobal.PaginationDefaults.Variant;
 
         /// <summary>
         /// The color of the selected page button.
@@ -121,7 +121,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public Color Color { get; set; } = Color.Primary;
+        public Color Color { get; set; } = MudGlobal.PaginationDefaults.Color;
 
         /// <summary>
         /// Shows rectangular-shaped page buttons.
@@ -141,7 +141,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public Size Size { get; set; } = MudGlobal.PaginationDefaults.Size;
 
         /// <summary>
         /// Shows a drop shadow under each page button.
@@ -151,7 +151,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Pagination.Appearance)]
-        public bool DropShadow { get; set; } = true;
+        public bool DropShadow { get; set; } = MudGlobal.PaginationDefaults.DropShadow;
 
         /// <summary>
         /// Prevents the user from clicking page buttons.

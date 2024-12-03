@@ -425,6 +425,16 @@ namespace MudBlazor
         public string? GroupFooterStyle { get; set; }
 
         /// <summary>
+        /// Uses compact padding for all rows.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.Table.Appearance)]
+        public override bool Dense { get; set; } = MudGlobal.TableDefaults.Dense;
+
+        /// <summary>
         /// The content for the footer of each group when <see cref="GroupBy"/> is set.
         /// </summary>
         /// <remarks>

@@ -211,7 +211,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Variant Variant { get; set; } = MudGlobal.InputDefaults.Variant;
+        public virtual Variant Variant { get; set; } = Variant.Text;
 
         /// <summary>
         /// The amount of vertical spacing for this input.
@@ -221,7 +221,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Margin Margin { get; set; } = MudGlobal.InputDefaults.Margin;
+        public virtual Margin Margin { get; set; } = Margin.None;
 
         /// <summary>
         /// Typography for the input text.
@@ -332,7 +332,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public bool ShrinkLabel { get; set; } = MudGlobal.InputDefaults.ShrinkLabel;
+        public virtual bool ShrinkLabel { get; set; }
 
         /// <summary>
         /// Occurs when the <see cref="Text"/> property has changed.

@@ -205,11 +205,44 @@ namespace MudBlazor
         public string? ListClass { get; set; }
 
         /// <summary>
+        /// The appearance variation to use.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Variant.Text"/>.  Other options are <c>Outlined</c> and <c>Filled</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Variant Variant { get; set; } = MudGlobal.SelectDefaults.Variant;
+
+        /// <summary>
+        /// The amount of vertical spacing for this input.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Margin.None"/>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Margin Margin { get; set; } = MudGlobal.SelectDefaults.Margin;
+
+        /// <summary>
+        /// Shows the label inside the input if no <see cref="MudBaseInput{T}.Value"/> is specified.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.  When <c>true</c>, the label will not move into the input when the input is empty.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override bool ShrinkLabel { get; set; } = MudGlobal.SelectDefaults.ShrinkLabel;
+
+        /// <summary>
         /// If true, compact vertical padding will be applied to all Select items.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudGlobal.SelectDefaults.Dense;
 
         /// <summary>
         /// The Open Select Icon
@@ -514,14 +547,14 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+        public Origin AnchorOrigin { get; set; } = MudGlobal.SelectDefaults.AnchorOrigin;
 
         /// <summary>
         /// Sets the transform origin point for the popover.
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public Origin TransformOrigin { get; set; } = Origin.TopLeft;
+        public Origin TransformOrigin { get; set; } = MudGlobal.SelectDefaults.TransformOrigin;
 
         /// <summary>
         /// If true, the Select's input will not show any values that are not defined in the dropdown.

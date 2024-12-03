@@ -53,8 +53,8 @@ namespace MudBlazor
         /// Shows a rounded border for all <see cref="MudNavLink" /> items.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.  
-        /// When <c>true</c>, the theme <c>border-radius</c> value will be used. 
+        /// Defaults to <c>false</c>.
+        /// When <c>true</c>, the theme <c>border-radius</c> value will be used.
         /// Only takes affect if <see cref="Bordered"/> is <c>true</c>.
         /// </remarks>
         [Parameter]
@@ -69,18 +69,18 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.NavMenu.Appearance)]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.NavMenuDefaults.Margin;
 
         /// <summary>
         /// Uses compact vertical padding to all <see cref="MudNavLink"/> items.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.  
+        /// Defaults to <c>false</c>.
         /// Will be overridden if <see cref="Margin"/> is not <see cref="Margin.None"/>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.NavMenu.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudGlobal.NavMenuDefaults.Dense;
 
         /// <summary>
         /// The content within this menu.

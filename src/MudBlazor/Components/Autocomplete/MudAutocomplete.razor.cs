@@ -108,7 +108,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+        public Origin AnchorOrigin { get; set; } = MudBlazor.MudGlobal.AutocompleteDefaults.AnchorOrigin;
 
         /// <summary>
         /// The transform origin point for the popover.
@@ -118,7 +118,37 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public Origin TransformOrigin { get; set; } = Origin.TopLeft;
+        public Origin TransformOrigin { get; set; } = MudBlazor.MudGlobal.AutocompleteDefaults.TransformOrigin;
+
+        /// <summary>
+        /// The appearance variation to use.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Variant.Text"/>.  Other options are <c>Outlined</c> and <c>Filled</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Variant Variant { get; set; } = MudGlobal.AutocompleteDefaults.Variant;
+
+        /// <summary>
+        /// The amount of vertical spacing for this input.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Margin.None"/>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Margin Margin { get; set; } = MudGlobal.AutocompleteDefaults.Margin;
+
+        /// <summary>
+        /// Shows the label inside the input if no <see cref="MudBaseInput{T}.Value"/> is specified.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>false</c>.  When <c>true</c>, the label will not move into the input when the input is empty.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override bool ShrinkLabel { get; set; } = MudGlobal.AutocompleteDefaults.ShrinkLabel;
 
         /// <summary>
         /// Uses compact padding.
@@ -128,7 +158,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListAppearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudGlobal.AutocompleteDefaults.Dense;
 
         /// <summary>
         /// The "open" Autocomplete icon.
@@ -222,7 +252,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListBehavior)]
-        public int? MaxItems { get; set; } = 10;
+        public int? MaxItems { get; set; } = MudGlobal.AutocompleteDefaults.MaxItems;
 
         /// <summary>
         /// The minimum number of characters typed to initiate a search.
@@ -263,7 +293,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Behavior)]
-        public bool Strict { get; set; } = true;
+        public bool Strict { get; set; } = MudGlobal.AutocompleteDefaults.Strict;
 
         /// <summary>
         /// The debounce interval, in milliseconds.
@@ -420,7 +450,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.ListBehavior)]
-        public bool SelectValueOnTab { get; set; }
+        public bool SelectValueOnTab { get; set; } = MudGlobal.AutocompleteDefaults.SelectValueOnTab;
 
         /// <summary>
         /// Additionally, opens the list when focus is received on the input element; otherwise only opens on click.

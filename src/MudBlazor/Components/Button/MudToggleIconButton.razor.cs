@@ -49,7 +49,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Color Color { get; set; } = Color.Default;
+    public Color Color { get; set; } = MudGlobal.ToggleIconButtonDefaults.Color;
 
     /// <summary>
     /// An alternative color to use in the toggled state.
@@ -66,7 +66,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Size Size { get; set; } = Size.Medium;
+    public Size Size { get; set; } = MudGlobal.ToggleIconButtonDefaults.Size;
 
     /// <summary>
     /// An alternative size to use in the toggled state.
@@ -83,7 +83,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public Variant Variant { get; set; } = Variant.Text;
+    public Variant Variant { get; set; } = MudGlobal.ToggleIconButtonDefaults.Variant;
 
     /// <summary>
     /// An alternative variant to use in the toggled state.
@@ -110,7 +110,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public bool Ripple { get; set; } = true;
+    public bool Ripple { get; set; } = MudGlobal.ToggleIconButtonDefaults.Ripple;
 
     /// <summary>
     /// Displays a shadow.
@@ -120,7 +120,7 @@ public partial class MudToggleIconButton : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Button.Appearance)]
-    public bool DropShadow { get; set; } = true;
+    public bool DropShadow { get; set; } = MudGlobal.ToggleIconButtonDefaults.DropShadow;
 
     /// <summary>
     /// Disables interaction with the button.

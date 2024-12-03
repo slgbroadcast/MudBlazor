@@ -73,6 +73,26 @@ namespace MudBlazor
         public Color? UncheckedColor { get; set; } = null;
 
         /// <summary>
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override bool Ripple { get; set; } = MudGlobal.RadioDefaults.Ripple;
+
+        /// <summary>
+        /// The Size of the component.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.FormComponent.Appearance)]
+        public override Size Size { get; set; } = MudGlobal.CheckBoxDefaults.Size;
+
+        /// <summary>
         /// Uses compact vertical padding.
         /// </summary>
         /// <remarks>
@@ -80,7 +100,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Radio.Appearance)]
-        public bool Dense { get; set; }
+        public bool Dense { get; set; } = MudGlobal.RadioDefaults.Dense;
 
         /// <summary>
         /// The icon displayed when in a checked state.

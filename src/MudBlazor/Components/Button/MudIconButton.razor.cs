@@ -49,7 +49,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Color Color { get; set; } = Color.Default;
+        public Color Color { get; set; } = MudGlobal.IconButtonDefaults.Color;
 
         /// <summary>
         /// The size of the button.
@@ -59,7 +59,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public Size Size { get; set; } = MudGlobal.IconButtonDefaults.Size;
 
         /// <summary>
         /// The amount of negative margin applied.
@@ -79,7 +79,27 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Button.Appearance)]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudGlobal.IconButtonDefaults.Variant;
+
+        /// <summary>
+        /// Displays a shadow.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.Button.Appearance)]
+        public override bool DropShadow { get; set; } = MudGlobal.IconButtonDefaults.DropShadow;
+
+        /// <summary>
+        /// Shows a ripple effect when the user clicks the button.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
+        [Parameter]
+        [Category(CategoryTypes.Button.Appearance)]
+        public override bool Ripple { get; set; } = MudGlobal.IconButtonDefaults.Ripple;
 
         /// <summary>
         /// The custom content within this button.

@@ -51,7 +51,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Margin.None"/>.
         /// </remarks>
         [Parameter]
-        public Margin Margin { get; set; } = Margin.None;
+        public Margin Margin { get; set; } = MudGlobal.InputControlDefaults.Margin;
 
         /// <summary>
         /// Displays an asterisk to indicate an input is required.
@@ -144,7 +144,7 @@ namespace MudBlazor
         /// Defaults to <see cref="Variant.Text"/>.  Other values include <see cref="Variant.Filled"/> and <see cref="Variant.Outlined"/>.
         /// </remarks>
         [Parameter]
-        public Variant Variant { get; set; } = Variant.Text;
+        public Variant Variant { get; set; } = MudGlobal.InputControlDefaults.Variant;
 
         /// <summary>
         /// Prevents the user from changing this input's value.

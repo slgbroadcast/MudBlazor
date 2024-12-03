@@ -130,7 +130,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudGlobal.ListItemDefaults.Ripple;
 
         /// <summary>
         /// The icon to display for this list item.
@@ -203,11 +203,11 @@ namespace MudBlazor
         /// Uses less vertical padding between items.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.
+        /// Defaults to <c>null</c>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.List.Appearance)]
-        public bool? Dense { get; set; }
+        public bool? Dense { get; set; } = MudGlobal.ListItemDefaults.Dense;
 
         /// <summary>
         /// Applies left and right padding to this list items.

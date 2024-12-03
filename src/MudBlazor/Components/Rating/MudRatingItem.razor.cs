@@ -49,10 +49,13 @@ namespace MudBlazor
         public Color Color { get; set; } = Color.Default;
 
         /// <summary>
-        /// Gets or sets whether to show a ripple effect when the user clicks the button. Default is true.
+        /// Gets or sets whether to show a ripple effect when the user clicks the button.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>.
+        /// </remarks>
         [Parameter]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = MudGlobal.RatingItemDefaults.Ripple;
 
         /// <summary>
         /// If true, the controls will be disabled.
