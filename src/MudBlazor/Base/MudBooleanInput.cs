@@ -104,9 +104,12 @@ namespace MudBlazor
         /// <summary>
         /// The Size of the component.
         /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public Size Size { get; set; } = Size.Medium;
+        public virtual Size Size { get; set; } = Size.Medium;
 
         /// <summary>
         /// The color of the component. It supports the theme colors.
