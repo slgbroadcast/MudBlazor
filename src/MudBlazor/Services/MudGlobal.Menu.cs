@@ -57,5 +57,23 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudMenu.Variant"/>
         public static Variant Variant { get; set; } = Variant.Text;
+
+        /// <summary>
+        /// The default location where the popover will open from for <see cref="MudMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Origin.BottomLeft" />.
+        /// </remarks>
+        /// <seealso cref="MudMenu.AnchorOrigin"/>
+        public static Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+
+        /// <summary>
+        /// The default transform origin point for the popover for <see cref="MudMenu"/>.
+        /// </summary>
+        /// <remarks>
+        /// <inheritdoc cref="All.TransformOrigin"/>
+        /// </remarks>
+        /// <seealso cref="MudMenu.TransformOrigin"/>
+        public static Origin TransformOrigin { get; set; } = All.TransformOrigin;
     }
 }

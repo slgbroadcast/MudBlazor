@@ -19,5 +19,14 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudSwitch{T}.Ripple"/>
         public static bool Ripple { get; set; } = All.Ripple;
+
+        /// <summary>
+        /// The default size for <see cref="MudSwitch{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        /// <seealso cref="MudSwitch{T}.Size"/>
+        public static Size Size { get; set; } = Size.Medium;
     }
 }

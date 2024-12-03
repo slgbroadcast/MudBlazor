@@ -27,5 +27,24 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudPopover.DropShadow"/>
         public static bool DropShadow { get; set; } = All.DropShadow;
+
+
+        /// <summary>
+        /// The default location where the popover will open from for <see cref="MudPopover"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Origin.TopLeft" />.
+        /// </remarks>
+        /// <seealso cref="MudPopover.AnchorOrigin"/>
+        public static Origin AnchorOrigin { get; set; } = Origin.TopLeft;
+
+        /// <summary>
+        /// The default transform origin point for the popover for <see cref="MudPopover"/>.
+        /// </summary>
+        /// <remarks>
+        /// <inheritdoc cref="All.TransformOrigin"/>
+        /// </remarks>
+        /// <seealso cref="MudPopover.TransformOrigin"/>
+        public static Origin TransformOrigin { get; set; } = All.TransformOrigin;
     }
 }

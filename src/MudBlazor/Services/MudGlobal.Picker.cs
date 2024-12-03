@@ -44,5 +44,32 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudPicker{T}.Margin"/>
         public static Margin Margin { get; set; } = All.Margin;
+
+        /// <summary>
+        /// The default location where the popover will open from for <see cref="MudPicker{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Origin.BottomLeft" />.
+        /// </remarks>
+        /// <seealso cref="MudPicker{T}.AnchorOrigin"/>
+        public static Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+
+        /// <summary>
+        /// The default transform origin point for the popover for <see cref="MudPicker{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// <inheritdoc cref="All.TransformOrigin"/>
+        /// </remarks>
+        /// <seealso cref="MudPicker{T}.TransformOrigin"/>
+        public static Origin TransformOrigin { get; set; } = All.TransformOrigin;
+
+        /// <summary>
+        /// The default OverflowBehavior for <see cref="MudPicker{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="OverflowBehavior.FlipOnOpen"/>.
+        /// </remarks>
+        /// <seealso cref="MudPicker{T}.OverflowBehavior"/>
+        public static OverflowBehavior OverflowBehavior { get; set; } = OverflowBehavior.FlipOnOpen;
     }
 }

@@ -12,6 +12,15 @@ public static partial class MudGlobal
     public static class TreeViewDefaults
     {
         /// <summary>
+        /// The default color for <see cref="MudTreeView{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Color.Primary"/>.
+        /// </remarks>
+        /// <seealso cref="MudTreeView{T}.Color"/>
+        public static Color Color { get; set; } = Color.Primary;
+
+        /// <summary>
         /// The default ripple effect setting for <see cref="MudTreeView{T}"/>.
         /// </summary>
         /// <remarks>

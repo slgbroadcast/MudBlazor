@@ -28,5 +28,23 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudPagination.Variant"/>
         public static Variant Variant { get; set; } = Variant.Text;
+
+        /// <summary>
+        /// The default color for <see cref="MudPagination"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Color.Default"/>.
+        /// </remarks>
+        /// <seealso cref="MudPagination.Color"/>
+        public static Color Color { get; set; } = Color.Default;
+
+        /// <summary>
+        /// The default size for <see cref="MudPagination"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        /// <seealso cref="MudPagination.Size"/>
+        public static Size Size { get; set; } = Size.Medium;
     }
 }

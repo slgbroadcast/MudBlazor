@@ -21,6 +21,24 @@ public static partial class MudGlobal
         public static bool ShrinkLabel { get; set; } = All.ShrinkLabel;
 
         /// <summary>
+        /// The default location where the popover will open from for <see cref="MudAutocomplete{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Origin.BottomLeft" />.
+        /// </remarks>
+        /// <seealso cref="MudAutocomplete{T}.AnchorOrigin"/>
+        public static Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+
+        /// <summary>
+        /// The default transform origin point for the popover for <see cref="MudAutocomplete{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// <inheritdoc cref="All.TransformOrigin"/>
+        /// </remarks>
+        /// <seealso cref="MudAutocomplete{T}.TransformOrigin"/>
+        public static Origin TransformOrigin { get; set; } = All.TransformOrigin;
+
+        /// <summary>
         /// The default variant for <see cref="MudAutocomplete{T}"/>.
         /// </summary>
         /// <remarks>

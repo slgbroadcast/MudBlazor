@@ -23,6 +23,14 @@ public static partial class MudGlobal
         public static bool ShrinkLabel { get; set; }
 
         /// <summary>
+        /// The default transform origin point for the popover for all components.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Origin.TopLeft"/>.
+        /// </remarks>
+        public static Origin TransformOrigin { get; set; } = Origin.TopLeft;
+
+        /// <summary>
         /// The default margin for all components.
         /// </summary>
         /// <remarks>

@@ -12,6 +12,24 @@ public static partial class MudGlobal
     public static class ButtonGroupDefaults
     {
         /// <summary>
+        /// The default color for <see cref="MudButtonGroup"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Color.Default"/>.
+        /// </remarks>
+        /// <seealso cref="MudButtonGroup.Color"/>
+        public static Color Color { get; set; } = Color.Default;
+
+        /// <summary>
+        /// The default size for <see cref="MudButtonGroup"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        /// <seealso cref="MudButtonGroup.Size"/>
+        public static Size Size { get; set; } = Size.Medium;
+
+        /// <summary>
         /// The default drop shadow setting for <see cref="MudButtonGroup"/>.
         /// </summary>
         /// <remarks>
@@ -28,5 +46,15 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudButtonGroup.Variant"/>
         public static Variant Variant { get; set; } = Variant.Text;
+
+        /// <summary>
+        /// Override individual button styles with a <see cref="MudButtonGroup"/> style.
+        /// When <c>true</c>, the button styles are defined by the group.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <c>true</c>
+        /// </remarks>
+        /// <seealso cref="MudButtonGroup.OverrideStyles"/>
+        public static bool OverrideStyles { get; set; } = true;
     }
 }

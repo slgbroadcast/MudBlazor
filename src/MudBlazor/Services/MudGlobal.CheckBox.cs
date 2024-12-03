@@ -28,5 +28,14 @@ public static partial class MudGlobal
         /// </remarks>
         /// <seealso cref="MudCheckBox{T}.Dense"/>
         public static bool Dense { get; set; } = All.Dense;
+
+        /// <summary>
+        /// The default size for <see cref="MudCheckBox{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        /// <seealso cref="MudCheckBox{T}.Size"/>
+        public static Size Size { get; set; } = Size.Medium;
     }
 }

@@ -87,6 +87,24 @@ public static partial class MudGlobal
     public static class IconButtonDefaults
     {
         /// <summary>
+        /// The default color for <see cref="MudIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Color.Default"/>.  Theme colors are supported.
+        /// </remarks>
+        /// <seealso cref="MudIconButton.Color"/>
+        public static Color Color { get; set; } = Color.Default;
+
+        /// <summary>
+        /// The default size for <see cref="MudIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        /// <seealso cref="MudIconButton.Size"/>
+        public static Size Size { get; set; } = Size.Medium;
+
+        /// <summary>
         /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudIconButton"/>.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,24 @@ public static partial class MudGlobal
     /// </summary>
     public static class ToggleIconButtonDefaults
     {
+        /// <summary>
+        /// The default color for <see cref="MudToggleIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Color.Default"/>.  Theme colors are supported.
+        /// </remarks>
+        /// <seealso cref="MudToggleIconButton.Color"/>
+        public static Color Color { get; set; } = Color.Default;
+
+        /// <summary>
+        /// The default size for <see cref="MudToggleIconButton"/>.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="Size.Medium"/>.
+        /// </remarks>
+        /// <seealso cref="MudToggleIconButton.Size"/>
+        public static Size Size { get; set; } = Size.Medium;
+
         /// <summary>
         /// The default <see cref="MudBlazor.Variant"/> for <see cref="MudToggleIconButton"/>.
         /// </summary>
