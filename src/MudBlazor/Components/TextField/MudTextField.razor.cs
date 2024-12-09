@@ -160,7 +160,7 @@ namespace MudBlazor
         private bool HasMask => _mask is not null;
 
         [Parameter] public string? InputStyle { get; set; }
-        
+
         /// <inheritdoc />
         public override ValueTask FocusAsync()
         {

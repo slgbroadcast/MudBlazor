@@ -54,7 +54,7 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.ComponentBase.Common)]
         public object? Tag { get; set; }
-        
+
         // TODO SBS-1317: Dies wird zur Zeit nur beim MudButton verwendet. Prüfen, wo das sonst noch Sinn macht
         /// <summary>
         /// Optional ID for component
