@@ -2,9 +2,9 @@
 @typeparam T
 @inherits MudBaseSelectItem
 
-@if (HideContent == false)
+@if (!HideContent)
 {
-	<MudListItem @attributes="UserAttributes" Value="@ItemId" id="@ItemId" OnClick="@OnClicked" OnClickHandlerPreventDefault="true" Icon="@CheckBoxIcon" Disabled="@Disabled" Class="@GetCssClasses()" Style="@Style">
+	<MudListItem @attributes="UserAttributes" Value="@ItemId" id="@ItemId" OnClick="@OnClicked" OnClickPreventDefault="true" Icon="@CheckBoxIcon" Disabled="@Disabled" Class="@GetCssClasses()" Style="@Style">
 		@if (ChildContent != null)
 		{
 			@ChildContent
@@ -15,5 +15,3 @@
 		}
 	</MudListItem>
 }
-
-
