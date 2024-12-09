@@ -36,8 +36,7 @@ namespace MudBlazor
         [CascadingParameter(Name = "RightToLeft")]
         public bool RightToLeft { get; set; }
 
-        [Inject]
-        private IResizeObserverFactory _resizeObserverFactory { get; set; } = null!;
+        [Inject] private IResizeObserverFactory _resizeObserverFactory { get; set; } = null!;
 
         /// <summary>
         /// If true, render all tabs and hide (display:none) every non-active.
