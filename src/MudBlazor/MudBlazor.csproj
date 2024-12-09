@@ -17,6 +17,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/MudBlazor/MudBlazor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <NoWarn>$(NoWarn);NU1902,NU1903,CS0618</NoWarn> <!-- TODO SBS-3160: Entfernen -->
   </PropertyGroup>
   
   <PropertyGroup>
