@@ -41,6 +41,11 @@ namespace MudBlazor
             catch (TaskCanceledException)
             {
             }
+#if !DEBUG
+            catch (ObjectDisposedException)
+            {
+            }
+#endif
         }
 
         /// <summary>
@@ -76,6 +81,11 @@ namespace MudBlazor
             catch (TaskCanceledException)
             {
             }
+#if !DEBUG
+            catch (ObjectDisposedException)
+            {
+            }
+#endif
         }
 
         /// <summary>
@@ -112,6 +122,12 @@ namespace MudBlazor
             {
                 return false;
             }
+#if !DEBUG
+            catch (ObjectDisposedException)
+            {
+                return false;
+            }
+#endif
         }
 
         /// <summary>
@@ -152,6 +168,12 @@ namespace MudBlazor
             {
                 return false;
             }
+#if !DEBUG
+            catch (ObjectDisposedException)
+            {
+                return false;
+            }
+#endif
         }
 
         /// <summary>
@@ -216,6 +238,12 @@ namespace MudBlazor
             {
                 return (false, fallbackValue);
             }
+#if !DEBUG
+            catch (ObjectDisposedException)
+            {
+                return (false, fallbackValue);
+            }
+#endif
         }
 
         /// <summary>
@@ -224,11 +252,11 @@ namespace MudBlazor
         /// <typeparam name="TValue">The JSON-serializable return type.</typeparam>
         /// <param name="jsRuntime">The <see cref="IJSRuntime"/>.</param>
         /// <param name="fallbackValue">The value that should be returned in case an exception occured</param>
+        /// <param name="identifier">An identifier for the function to invoke. For example, the value <c>"someScope.someFunction"</c> will invoke the function <c>window.someScope.someFunction</c>.</param>
         /// <param name="cancellationToken">
         /// A cancellation token to signal the cancellation of the operation. Specifying this parameter will override any default cancellations such as due to timeouts
         /// (<see cref="JSRuntime.DefaultAsyncTimeout"/>) from being applied.
         /// </param>
-        /// <param name="identifier">An identifier for the function to invoke. For example, the value <c>"someScope.someFunction"</c> will invoke the function <c>window.someScope.someFunction</c>.</param>
         /// <param name="args">JSON-serializable arguments.</param>
         /// <returns>An instance of <typeparamref name="TValue"/> obtained by JSON-deserializing the return value into a tuple. The first item (sucess) is true in case where there was no exception, otherwise fall.</returns>
         public static async ValueTask<(bool success, TValue value)> InvokeAsyncWithErrorHandling<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.PublicProperties)] TValue>(this IJSRuntime jsRuntime, TValue fallbackValue, string identifier, CancellationToken cancellationToken, params object[] args)
@@ -258,6 +286,12 @@ namespace MudBlazor
             {
                 return (false, fallbackValue);
             }
+#if !DEBUG
+            catch (ObjectDisposedException)
+            {
+                return (false, fallbackValue);
+            }
+#endif
         }
     }
 }
