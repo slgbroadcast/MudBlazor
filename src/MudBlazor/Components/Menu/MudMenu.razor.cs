@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Interfaces;
+using MudBlazor.State;
 using MudBlazor.Utilities;
 
 namespace MudBlazor
@@ -16,12 +17,22 @@ namespace MudBlazor
     /// <seealso cref="MudMenuItem" />
     public partial class MudMenu : MudComponentBase, IActivatable, IDisposable
     {
+        private readonly ParameterState<bool> _openState;
         private readonly List<MudMenu> _children = [];
         private (double Top, double Left) _openPosition;
         private bool _isPointerOver;
         private bool _isTransient;
         private CancellationTokenSource? _hoverCts;
         private CancellationTokenSource? _leaveCts;
+
+        public MudMenu()
+        {
+            using var registerScope = CreateRegisterScope();
+            _openState = registerScope.RegisterParameter<bool>(nameof(Open))
+                .WithParameter(() => Open)
+                .WithEventCallback(() => OpenChanged)
+                .WithChangeHandler(OnOpenChanged);
+        }
 
         protected string Classname =>
             new CssBuilder("mud-menu")
@@ -283,19 +294,20 @@ namespace MudBlazor
         public RenderFragment? ChildContent { get; set; }
 
         /// <summary>
-        /// Occurs when <see cref="Open"/> has changed.
-        /// </summary>
-        [Parameter]
-        [Category(CategoryTypes.Menu.PopupBehavior)]
-        public EventCallback<bool> OpenChanged { get; set; }
-
-        /// <summary>
-        /// Whether this menu is open.
+        /// Whether this menu is open and the menu items are visible.
         /// </summary>
         /// <remarks>
         /// When this property changes, <see cref="OpenChanged"/> occurs.
         /// </remarks>
-        public bool Open { get; private set; }
+        [Parameter]
+        [Category(CategoryTypes.Menu.PopupBehavior)]
+        public bool Open { get; set; }
+
+        /// <summary>
+        /// Occurs when <see cref="Open"/> has changed.
+        /// </summary>
+        [Parameter]
+        public EventCallback<bool> OpenChanged { get; set; }
 
         [CascadingParameter]
         protected MudMenu? ParentMenu { get; set; }
@@ -320,6 +332,13 @@ namespace MudBlazor
             ParentMenu?.RegisterChild(this);
         }
 
+        protected Task OnOpenChanged(ParameterChangedEventArgs<bool> args)
+        {
+            return args.Value ?
+                OpenMenuAsync(EventArgs.Empty) :
+                CloseMenuAsync();
+        }
+
         /// <summary>
         /// Closes this menu and all descendants.
         /// </summary>
@@ -330,9 +349,8 @@ namespace MudBlazor
                 await child.CloseMenuAsync();
             }
 
-            Open = false;
+            await _openState.SetValueAsync(false);
             StateHasChanged();
-            await OpenChanged.InvokeAsync(Open);
         }
 
         /// <summary>
@@ -369,11 +387,11 @@ namespace MudBlazor
         /// <remarks>
         /// Parents are not automatically opened when a child is opened.
         /// </remarks>
-        public Task OpenMenuAsync(EventArgs args, bool transient = false)
+        public async Task OpenMenuAsync(EventArgs args, bool transient = false)
         {
             if (Disabled)
             {
-                return Task.CompletedTask;
+                return;
             }
 
             _isTransient = transient;
@@ -384,15 +402,13 @@ namespace MudBlazor
             }
 
             // Don't open if already open. But let the stuff above get updated.
-            if (Open)
+            if (_openState.Value)
             {
-                return Task.CompletedTask;
+                return;
             }
 
-            Open = true;
+            await _openState.SetValueAsync(true);
             StateHasChanged();
-
-            return OpenChanged.InvokeAsync(Open);
         }
 
         /// <summary>
@@ -418,14 +434,9 @@ namespace MudBlazor
                 }
             }
 
-            if (Open)
-            {
-                return CloseMenuAsync();
-            }
-            else
-            {
-                return OpenMenuAsync(args);
-            }
+            return _openState.Value
+                ? CloseMenuAsync()
+                : OpenMenuAsync(args);
         }
 
         private async Task PointerEnterAsync(PointerEventArgs args)
@@ -450,7 +461,7 @@ namespace MudBlazor
                 return;
             }
 
-            if (Open || ActivationEvent != MouseEvent.MouseOver)
+            if (_openState.Value || ActivationEvent != MouseEvent.MouseOver)
             {
                 return;
             }
