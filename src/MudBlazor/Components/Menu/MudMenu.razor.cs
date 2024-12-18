@@ -365,8 +365,14 @@ namespace MudBlazor
                 await child.CloseMenuAsync();
             }
 
+            // Don't close if already closed.
+            if (!_openState.Value)
+            {
+                return;
+            }
+
             await _openState.SetValueAsync(false);
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
         }
 
         /// <summary>
@@ -382,10 +388,8 @@ namespace MudBlazor
                 {
                     break;
                 }
-                else
-                {
-                    top = top.ParentMenu;
-                }
+
+                top = top.ParentMenu;
             }
 
             // Close the top-most menu, which will cascade down to close all its children.
@@ -426,7 +430,7 @@ namespace MudBlazor
             }
 
             await _openState.SetValueAsync(true);
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
         }
 
         /// <summary>
@@ -467,10 +471,12 @@ namespace MudBlazor
             _isPointerOver = true;
 
             // Cancel any existing leave delay to prevent premature closure.
+            // ReSharper disable MethodHasAsyncOverload
             _leaveCts?.Cancel();
 
             // Start a new hover delay.
             _hoverCts?.Cancel();
+            // ReSharper restore MethodHasAsyncOverload
             _hoverCts = new();
 
             try
@@ -509,10 +515,12 @@ namespace MudBlazor
             }
 
             // Cancel any existing mouse hover delay.
+            // ReSharper disable MethodHasAsyncOverload
             _hoverCts?.Cancel();
 
             // Start a leave delay to allow for re-entry.
             _leaveCts?.Cancel();
+            // ReSharper restore MethodHasAsyncOverload
             _leaveCts = new();
 
             try
