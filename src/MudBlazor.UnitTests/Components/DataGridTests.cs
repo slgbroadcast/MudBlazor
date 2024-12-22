@@ -155,6 +155,26 @@ namespace MudBlazor.UnitTests.Components
         }
 
         [Test]
+        public void DataGirdWithServerDataAndVirtualize()
+        {
+            var comp = Context.RenderComponent<DataGridServerDataWithVirtualizeTest>();
+            var dataGrid = comp.FindComponent<MudDataGrid<DataGridServerDataWithVirtualizeTest.Item>>();
+
+            // Count the number of rows including header.
+            var rows = dataGrid.FindAll("tr");
+            rows.Count.Should().Be(7, because: "1 header row + 5 data rows + 1 footer row");
+
+            var cells = dataGrid.FindAll("td");
+            cells.Count.Should().Be(5, because: "We have 5 data rows with one column");
+
+            cells[0].TextContent.Should().Be("Value_0");
+            cells[1].TextContent.Should().Be("Value_1");
+            cells[2].TextContent.Should().Be("Value_2");
+            cells[3].TextContent.Should().Be("Value_3");
+            cells[4].TextContent.Should().Be("Value_4");
+        }
+
+        [Test]
         public async Task DataGridSortableVirtualizeServerDataTest()
         {
             var comp = Context.RenderComponent<DataGridSortableVirtualizeServerDataTest>();
