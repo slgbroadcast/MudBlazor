@@ -329,6 +329,11 @@ namespace MudBlazor
 
         protected bool GetActivatorHidden() => ActivatorContent is null && string.IsNullOrWhiteSpace(Label) && string.IsNullOrWhiteSpace(Icon);
 
+        /// <summary>
+        /// Walk recursively up the menu hierarchy to determine if any parent menu is dense.
+        /// </summary>
+        internal bool GetDense() => Dense || ParentMenu?.GetDense() == true;
+
         protected Origin GetAnchorOrigin()
         {
             if (AnchorOrigin is not null)
@@ -501,6 +506,23 @@ namespace MudBlazor
                 : OpenMenuAsync(args);
         }
 
+        private bool IsHoverable(PointerEventArgs args)
+        {
+            // If hover isn't enabled (and it's not a submenu) then there's no work to be done.
+            if (ActivationEvent != MouseEvent.MouseOver && ParentMenu is null)
+            {
+                return false;
+            }
+
+            // The click event will conflict with this one on devices that can't hover so we'll return so we only handle one.
+            if (args.PointerType is "touch" or "pen")
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Handles the pointer entering either the activator or the menu list.
         /// </summary>
@@ -508,14 +530,7 @@ namespace MudBlazor
         {
             _isPointerOver = true;
 
-            // If hover isn't enabled (and it's not a submenu) then there's no work to be done.
-            if (ActivationEvent != MouseEvent.MouseOver && ParentMenu is null)
-            {
-                return;
-            }
-
-            // The click event will conflict with this one on devices that can't hover so we'll return so we only handle one.
-            if (args.PointerType is "touch" or "pen")
+            if (!IsHoverable(args))
             {
                 return;
             }
@@ -547,19 +562,18 @@ namespace MudBlazor
             // Open the menu if it's not already open. We don't want to call the method and update the state if we don't have to.
             if (!_openState.Value)
             {
-                await OpenMenuAsync(args, true);
+                await OpenSubMenuAsync(args);
             }
         }
 
         /// <summary>
         /// Handles the pointer leaving either the activator or the menu list.
         /// </summary>
-        private async Task PointerLeaveAsync()
+        private async Task PointerLeaveAsync(PointerEventArgs args)
         {
             _isPointerOver = false;
 
-            // If it's not transient or hover isn't enabled (and it's not a submenu) then there's no work to be done.
-            if (!_isTransient || (ActivationEvent != MouseEvent.MouseOver && ParentMenu is null))
+            if (!_isTransient || !IsHoverable(args))
             {
                 return;
             }
