@@ -8,11 +8,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using MudBlazor.Interfaces;
 using MudBlazor.Interop;
 
 namespace MudBlazor;
 
-[Obsolete($"Please use {nameof(IPopoverService)} in conjunction with {nameof(IMudPopoverHolder)}. This will be removed in v7.")]
+[Obsolete($"Please use {nameof(IPopoverService)} in conjunction with {nameof(IMudPopoverHolder)}. This will be removed in a future version.")]
 public class MudPopoverHandler : IMudPopoverHolder
 {
     private readonly SemaphoreSlim _semaphore = new(1, 1);
@@ -67,14 +68,14 @@ public class MudPopoverHandler : IMudPopoverHolder
         }
     }
 
-    [Obsolete($"Use {nameof(UpdateFragmentAsync)} instead. This method will be removed in v7.")]
+    [Obsolete($"Use {nameof(UpdateFragmentAsync)} instead. This method will be removed in a future version.")]
     public void UpdateFragment(RenderFragment fragment,
         MudComponentBase componentBase, string @class, string style, bool showContent)
     {
         Fragment = fragment;
         SetComponentBaseParameters(componentBase, @class, @style, showContent);
         // this basically calls StateHasChanged on the Popover
-        ElementReference?.StateHasChanged();
+        (ElementReference as IMudStateHasChanged)?.StateHasChanged();
         _updater?.Invoke(); // <-- this doesn't do anything anymore except making unit tests happy 
     }
 
@@ -91,7 +92,7 @@ public class MudPopoverHandler : IMudPopoverHolder
 
             Fragment = fragment;
             SetComponentBaseParameters(componentBase, @class, @style, showContent);
-            ElementReference?.StateHasChanged();
+            (ElementReference as IMudStateHasChanged)?.StateHasChanged();
             _updater?.Invoke(); // <-- this doesn't do anything anymore except making unit tests happy
         }
         finally

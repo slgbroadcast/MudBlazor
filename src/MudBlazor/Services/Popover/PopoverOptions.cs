@@ -13,6 +13,12 @@ namespace MudBlazor
     public class PopoverOptions
     {
         /// <summary>
+        /// Gets or sets a value indicating whether to check for the presence of a popover provider <see cref="MudPopoverProvider"/>.
+        /// The default value is <c>true</c>.
+        /// </summary>
+        public bool CheckForPopoverProvider { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets the CSS class of the popover container.
         /// The default value is <c>mudblazor-main-content</c>.
         /// </summary>
@@ -58,6 +64,7 @@ namespace MudBlazor
         /// <remarks>
         /// For more info please visit: <see href="https://github.com/MarkCiliaVincenti/AsyncKeyedLock/wiki/How-to-use-AsyncKeyedLocker#pooling">AsyncKeyedLocker</see>.
         /// </remarks>
+        [Obsolete("Will be removed in v8. Popover is lock free and doesn't requires this anymore.")]
         public int PoolSize { get; set; } = 3000;
 
         /// <summary>
@@ -69,6 +76,7 @@ namespace MudBlazor
         /// <remarks>
         /// For more info please visit: <see href="https://github.com/MarkCiliaVincenti/AsyncKeyedLock/wiki/How-to-use-AsyncKeyedLocker#pooling">AsyncKeyedLocker</see>.
         /// </remarks>
+        [Obsolete("Will be removed in v8. Popover is lock free and doesn't requires this anymore.")]
         public int PoolInitialFill { get; set; } = 100;
     }
 }
