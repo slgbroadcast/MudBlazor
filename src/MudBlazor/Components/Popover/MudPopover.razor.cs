@@ -88,7 +88,7 @@ namespace MudBlazor
         /// The amount of drop shadow to apply.
         /// </summary>
         /// <remarks>
-        /// Defaults to <see cref="MudGlobal.PopoverDefaults.Elevation"/>.
+        /// Defaults to 8 in <see cref="MudGlobal.PopoverDefaults.Elevation"/>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
@@ -98,11 +98,13 @@ namespace MudBlazor
         /// Displays square borders around this popover.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>false</c>.  When <c>true</c>, the CSS <c>border-radius</c> is set to <c>0</c>.
+        /// Defaults to <c>false</c>.
+        /// Can be overridden by <see cref="MudGlobal.Rounded"/>.
+        /// When <c>true</c>, the CSS <c>border-radius</c> is set to <c>0</c>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
-        public bool Square { get; set; }
+        public bool Square { get; set; } = MudGlobal.Rounded == false;
 
         /// <summary>
         /// Displays this popover in a fixed position, even through scrolling.
@@ -118,7 +120,7 @@ namespace MudBlazor
         /// The length of time that the opening transition takes to complete.
         /// </summary>
         /// <remarks>
-        /// Defaults to <see cref="MudGlobal.TransitionDefaults.Duration"/>.
+        /// Defaults to 251ms in <see cref="MudGlobal.TransitionDefaults.Duration"/>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
@@ -128,7 +130,7 @@ namespace MudBlazor
         /// The amount of time, in milliseconds, from opening the popover to beginning the transition. 
         /// </summary>
         /// <remarks>
-        /// Defaults to <see cref="MudGlobal.TransitionDefaults.Delay"/>.
+        /// Defaults to 0ms in <see cref="MudGlobal.TransitionDefaults.Delay"/>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Popover.Appearance)]
