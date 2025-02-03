@@ -72,6 +72,8 @@ namespace MudBlazor
                 .AddClass($"mud-drawer-overlay-{Variant.ToDescriptionString()}")
                 .AddClass($"mud-drawer-overlay-{_breakpointState.Value.ToDescriptionString()}")
                 .AddClass($"mud-drawer-overlay--initial", _initial)
+                .AddClass($"mud-skip-overlay-positioning") // popovers try to position the overlay by zindex, this skips that behavior
+                .AddClass($"mud-skip-overlay-section") // drawer overlay remains outside of Section
                 .Build();
 
         protected string Stylename =>
@@ -206,7 +208,12 @@ namespace MudBlazor
         /// <item><description><see cref="Breakpoint.LgAndUp"/>: Aliases to <see cref="Breakpoint.Lg"/></description></item> 
         /// <item><description><see cref="Breakpoint.XlAndUp"/>: Aliases to <see cref="Breakpoint.Xl"/></description></item> 
         /// </list> 
-        /// Setting the value to <see cref="Breakpoint.None"/> will always close the drawer, while <see cref="Breakpoint.Always"/> will always keep it open. 
+        /// <para>
+        /// Setting the value to <see cref="Breakpoint.None"/> will always close the drawer, while <see cref="Breakpoint.Always"/> will always keep it open.
+        /// </para>
+        /// <para>
+        /// Applies when <see cref="Variant" /> is set to <see cref="DrawerVariant.Responsive"/> or <see cref="DrawerVariant.Mini" />.
+        /// </para>
         /// </remarks> 
         [Parameter]
         [Category(CategoryTypes.Drawer.Behavior)]
@@ -454,6 +461,11 @@ namespace MudBlazor
             if (browserViewportEventArgs.IsImmediate)
             {
                 _lastUpdatedBreakpoint = browserViewportEventArgs.Breakpoint;
+                if (!IsResponsiveOrMini())
+                {
+                    return;
+                }
+
                 if (HandleBreakpointNone())
                 {
                     await InitialOpenState(false);

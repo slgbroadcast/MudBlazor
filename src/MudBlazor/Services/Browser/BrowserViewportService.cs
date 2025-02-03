@@ -17,7 +17,7 @@ namespace MudBlazor;
 /// <summary>
 /// Represents a service that serves to listen to browser window size changes and breakpoints.
 /// </summary>
-internal class BrowserViewportService : IBrowserViewportService
+internal sealed class BrowserViewportService : IBrowserViewportService
 {
     private bool _disposed;
     private readonly CancellationToken _cancellationToken;
@@ -245,18 +245,12 @@ internal class BrowserViewportService : IBrowserViewportService
     }
 
     /// <inheritdoc />
-    public ValueTask DisposeAsync()
-    {
-        return DisposeAsyncCore();
-    }
-
-    private ValueTask DisposeAsyncCore()
+    public async ValueTask DisposeAsync()
     {
         if (!_disposed)
         {
             _disposed = true;
-            // ReSharper disable once MethodHasAsyncOverload - not available in .NET6 & .NET7
-            _cancellationTokenSource.Cancel();
+            await _cancellationTokenSource.CancelAsync();
             _observerManager.Clear();
 
             if (_dotNetReferenceLazy.IsValueCreated)
@@ -264,17 +258,12 @@ internal class BrowserViewportService : IBrowserViewportService
                 _dotNetReferenceLazy.Value.Dispose();
             }
 
-            // https://github.com/MudBlazor/MudBlazor/pull/5367#issuecomment-1258649968
-            // Fixed in NET8
             // Do not send our CancellationTokenSource as it was cancelled.
-            _ = _resizeListenerInterop.Dispose();
+            await _resizeListenerInterop.Dispose(CancellationToken.None);
 
             _cancellationTokenSource.Dispose();
         }
-
-        return ValueTask.CompletedTask;
     }
-
 
     // ReSharper disable once UnusedMember.Global used in tests
     internal BrowserViewportSubscription? GetInternalSubscription(IBrowserViewportObserver observer) => GetInternalSubscription(observer.Id);
