@@ -16,17 +16,17 @@ public class KeyInterceptorOptions
     /// <remarks>
     /// Note: This must be a single class name.
     /// </remarks>
-    public string? TargetClass { get; set; }
+    public string? TargetClass { get; init; }
 
     /// <summary>
     /// Specifies whether resize events should be logged in the browser's console.
     /// </summary>
-    public bool EnableLogging { get; set; }
+    public bool EnableLogging { get; init; }
 
     /// <summary>
     /// A list of key options that define the keys to intercept and their respective configurations.
     /// </summary>
-    public List<KeyOptions> Keys { get; set; } = [];
+    public IReadOnlyList<KeyOptions> Keys { get; init; } = [];
 
     /// <summary>
     /// Initializes a new instance of the <see cref="KeyInterceptorOptions"/> class.
@@ -43,7 +43,7 @@ public class KeyInterceptorOptions
     public KeyInterceptorOptions(string targetClass, params KeyOptions[] keys)
     {
         TargetClass = targetClass;
-        Keys = keys.ToList();
+        Keys = keys;
     }
 
     /// <summary>

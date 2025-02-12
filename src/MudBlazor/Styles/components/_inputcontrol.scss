@@ -16,6 +16,13 @@
   &.mud-input-control-boolean-input {
     flex: none;
     margin: 0;
+
+    & .mud-radio-group {
+      display: inherit;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+    }
   }
 
   &.mud-input-outlined-with-label {
@@ -67,7 +74,7 @@
 
   & > .mud-input-control-input-container > .mud-input-label-outlined {
     &.mud-input-label-inputcontrol {
-      line-height: 18px;
+      line-height: 1.15rem;
     }
   }
 
