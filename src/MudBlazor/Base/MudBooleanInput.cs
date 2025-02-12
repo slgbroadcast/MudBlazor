@@ -96,7 +96,7 @@ namespace MudBlazor
         /// </summary>
         [Parameter]
         [Category(CategoryTypes.FormComponent.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = false;
 
         /// <summary>
         /// The Size of the component.

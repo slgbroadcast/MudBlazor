@@ -158,7 +158,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Tabs.Appearance)]
-        public string MinimumTabWidth { get; set; } = "160px";
+        public string MinimumTabWidth { get; set; } = "25px";
 
         /// <summary>
         /// The location of the tab header.
@@ -240,7 +240,7 @@ namespace MudBlazor
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Tabs.Appearance)]
-        public bool Ripple { get; set; } = true;
+        public bool Ripple { get; set; } = false;
 
         /// <summary>
         /// Shows an animated line which slides to the selected tab.
@@ -449,7 +449,7 @@ namespace MudBlazor
                 var items = _panels.Select(x => x.PanelRef).ToList();
                 items.Add(_tabsContentSize);
 
-                if (_activePanelIndex != -1 && _panels.Count > 0)
+                if (_activePanelIndex > 0 && _panels.Count > 0 && _activePanelIndex < _panels.Count)
                     ActivePanel = _panels[_activePanelIndex];
 
                 await _resizeObserver!.Observe(items);

@@ -44,6 +44,8 @@ namespace MudBlazor
 
         protected string InputTypeString => InputType.ToDescriptionString();
 
+        [Parameter] public string? InputStyle { get; set; }
+
         /// <summary>
         /// The type of input collected by this component.
         /// </summary>

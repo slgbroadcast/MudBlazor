@@ -34,7 +34,7 @@ public partial class MudStack : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Stack.Behavior)]
-    public bool Row { get; set; } = MudGlobal.StackDefaults.Row;
+    public bool Row { get; set; }
 
     /// <summary>
     /// Reverses the order of items.
@@ -45,7 +45,7 @@ public partial class MudStack : MudComponentBase
     /// </remarks>
     [Parameter]
     [Category(CategoryTypes.Stack.Behavior)]
-    public bool Reverse { get; set; } = MudGlobal.StackDefaults.Reverse;
+    public bool Reverse { get; set; }
 
     /// <summary>
     /// The gap between items in increments of <c>4px</c>.
