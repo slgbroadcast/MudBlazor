@@ -7,12 +7,10 @@
 <div class="mud-chip-container"
      id="@_chipContainerId"
      @onkeydown="@HandleKeyDownAsync">
-    <div tabindex="@(IsClickable ? 0 : -1)"
-         role="@RoleAttribute"
-         @attributes="UserAttributes"
-         class="@Classname"
+    <div class="@Classname"
          style="@Style"
-         @onclick="this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickAsync)">
+         @attributes="GetAttributes()"
+         @onclick="@((IsClickable ? this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickAsync) : null)!)">
         @{
             if (AvatarContent is not null)
             {
