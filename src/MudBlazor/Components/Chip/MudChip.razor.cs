@@ -59,49 +59,28 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
         .AddClass($"mud-chip-{GetVariant().ToStringFast(true)}")
         .AddClass($"mud-chip-size-{GetSize().ToStringFast(true)}")
         .AddClass($"mud-chip-color-{GetColor().ToStringFast(true)}")
-        .AddClass("mud-clickable", IsButton || IsAnchor)
-        .AddClass("mud-ripple", IsButton && GetRipple())
+        .AddClass("mud-clickable", IsClickable)
+        .AddClass("mud-ripple", IsClickable && GetRipple())
         .AddClass("mud-chip-label", GetLabel())
         .AddClass("mud-disabled", GetDisabled())
         .AddClass("mud-chip-selected", SelectedState.Value)
         .AddClass(Class)
         .Build();
 
-    private bool IsAnchor => !string.IsNullOrWhiteSpace(Href);
+    private bool IsClickable => GetDisabled() is false
+                                && GetReadOnly() is false
+                                && (ChipSet is not null || OnClick.HasDelegate || !string.IsNullOrEmpty(Href));
 
-    private bool IsButton => GetDisabled() is false
-                             && GetReadOnly() is false
-                             && (ChipSet is not null || OnClick.HasDelegate);
-
-    private bool IsClosable => (OnClose.HasDelegate || ChipSet?.AllClosable == true) && !IsAnchor;
-
-    protected string GetHtmlTag()
-    {
-        if (IsButton)
-        {
-            return "button";
-        }
-
-        if (IsAnchor)
-        {
-            return "a";
-        }
-
-        return "div";
-    }
+    private bool IsClosable => OnClose.HasDelegate || ChipSet?.AllClosable == true;
 
     protected Dictionary<string, object?> GetAttributes()
     {
         var attributes = new Dictionary<string, object?>();
 
-        if (IsButton)
+        if (IsClickable)
         {
             attributes.Add("tabindex", 0);
-            attributes.Add("type", "button");
-        }
-        else if (IsAnchor)
-        {
-            attributes.Add("tabindex", 0);
+            attributes.Add("role", "button");
 
             attributes.Add("href", Href);
             attributes.Add("target", Target);
@@ -348,6 +327,16 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
     public T? Value { get; set; }
 
     /// <summary>
+    /// Performs a full page refresh when navigating to the URL in <see cref="Href"/>.
+    /// </summary>
+    /// <remarks>
+    /// Defaults to <c>false</c>.  When <c>true</c>, client-side routing is bypassed and a full page reload occurs.
+    /// </remarks>
+    [Parameter]
+    [Category(CategoryTypes.Chip.ClickAction)]
+    public bool ForceLoad { get; set; }
+
+    /// <summary>
     /// Selects this chip by default when part of a <see cref="MudChipSet{T}"/>.
     /// </summary>
     /// <remarks>
@@ -437,7 +426,7 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
 
     protected internal async Task OnClickAsync(MouseEventArgs ev)
     {
-        if (ChipSet?.ReadOnly == true || IsAnchor)
+        if (ChipSet?.ReadOnly == true)
         {
             return;
         }
@@ -447,7 +436,18 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
             await ChipSet.OnChipSelectedChangedAsync(this, SelectedState.Value);
         }
 
-        await OnClick.InvokeAsync(ev);
+        if (Href != null)
+        {
+            // TODO: Use MudElement to render <a> and this code can be removed. We know that it has potential problems on iOS
+            if (string.IsNullOrWhiteSpace(Target))
+                UriHelper?.NavigateTo(Href, ForceLoad);
+            else if (JsApiService != null)
+                await JsApiService.Open(Href, Target);
+        }
+        else
+        {
+            await OnClick.InvokeAsync(ev);
+        }
     }
 
     protected async Task OnCloseAsync(MouseEventArgs ev)
