@@ -85,30 +85,7 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
                                 && GetReadOnly() is false
                                 && (ChipSet is not null || OnClick.HasDelegate || !string.IsNullOrEmpty(Href));
 
-    private bool IsAnchor => !string.IsNullOrWhiteSpace(Href);
-
-    // A link is left to the browser, so Href takes precedence over OnClick and selection.
-    private bool IsButton => !IsAnchor
-                             && !GetDisabled()
-                             && !GetReadOnly()
-                             && (ChipSet is not null || OnClick.HasDelegate);
-
-    private bool IsClosable => (OnClose.HasDelegate || ChipSet?.AllClosable == true) && !IsAnchor;
-
-    protected string GetHtmlTag()
-    {
-        if (IsButton)
-        {
-            return "button";
-        }
-
-        if (IsAnchor)
-        {
-            return "a";
-        }
-
-        return "div";
-    }
+    private bool IsClosable => OnClose.HasDelegate || ChipSet?.AllClosable == true;
 
     protected Dictionary<string, object?> GetAttributes()
     {
@@ -147,7 +124,7 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
             }
         }
 
-        if (ChipSet is not null && !IsAnchor)
+        if (ChipSet is not null)
         {
             // Chips inside a set act as toggle buttons; expose the selected state to assistive technology.
             attributes.Add("aria-pressed", SelectedState.Value ? "true" : "false");
@@ -171,11 +148,11 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
     /// </remarks>
     private void OpenElement(RenderTreeBuilder builder)
     {
-        builder.OpenElement(0, GetHtmlTag());
+        builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", Classname);
         builder.AddAttribute(2, "style", Style);
         builder.AddMultipleAttributes(3, GetAttributes()!);
-        builder.AddAttribute(4, "onclick", IsButton ? this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickAsync) : null);
+        builder.AddAttribute(4, "onclick", IsClickable ? this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickAsync) : null);
     }
 
     internal Variant GetVariant()
@@ -474,7 +451,7 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
     {
         await base.OnAfterRenderAsync(firstRender);
 
-        var needsKeyInterceptor = CanHandleKeys() && (IsButton || IsClosable);
+        var needsKeyInterceptor = CanHandleKeys() && (IsClickable || IsClosable);
         if (needsKeyInterceptor && !_hasKeyInterceptorSubscription)
         {
             await SubscribeToKeyInterceptorAsync();

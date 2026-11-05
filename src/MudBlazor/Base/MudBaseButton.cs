@@ -201,6 +201,7 @@ namespace MudBlazor
             builder.AddAttribute(9, "disabled", GetDisabledState());
             builder.AddEventStopPropagationAttribute(10, "onclick", !GetClickPropagation());
             builder.AddElementReferenceCapture(11, _captureElementReference);
+            builder.AddAttribute(12, "id", HtmlId);
         }
 
         /// <summary>
