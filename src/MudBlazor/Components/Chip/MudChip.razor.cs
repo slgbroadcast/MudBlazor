@@ -95,6 +95,21 @@ public partial class MudChip<T> : MudComponentBase, IAsyncDisposable
 
     private bool IsClosable => (OnClose.HasDelegate || ChipSet?.AllClosable == true) && !IsAnchor;
 
+    protected string GetHtmlTag()
+    {
+        if (IsButton)
+        {
+            return "button";
+        }
+
+        if (IsAnchor)
+        {
+            return "a";
+        }
+
+        return "div";
+    }
+
     protected Dictionary<string, object?> GetAttributes()
     {
         var attributes = new Dictionary<string, object?>();
