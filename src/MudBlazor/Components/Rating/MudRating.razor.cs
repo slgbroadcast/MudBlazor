@@ -29,6 +29,7 @@ namespace MudBlazor
         protected string ClassName =>
             new CssBuilder("mud-rating-root")
                 .AddClass("mud-disabled", Disabled)
+                .AddClass("mud-readonly", ReadOnly)
                 .AddClass(Class)
                 .Build();
 
@@ -137,7 +138,7 @@ namespace MudBlazor
         /// Shows a ripple effect when an item is clicked.
         /// </summary>
         /// <remarks>
-        /// Defaults to <c>true</c>.
+        /// Defaults to <c>false</c>.
         /// </remarks>
         [Parameter]
         [Category(CategoryTypes.Rating.Appearance)]
@@ -219,7 +220,15 @@ namespace MudBlazor
             }
         }
 
-        internal Task HandleItemHoveredAsync(int? itemValue) => SetHoveredValueAsync(itemValue);
+        internal Task HandleItemHoveredAsync(int? itemValue)
+        {
+            if (ReadOnly || Disabled)
+            {
+                return Task.CompletedTask;
+            }
+
+            return SetHoveredValueAsync(itemValue);
+        }
 
         private async Task IncreaseValueAsync(int val)
         {
